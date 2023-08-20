@@ -38,18 +38,18 @@
             <dt th:text="#{mobile}"></dt>
             <dd>
                 <input type="text" name="mobile" th:field="*{mobile}">
-                <div class="errors" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
+                <div class="errors" th:each="err : ${#fields.errors('mobile')}" th:text="${err}"></div>
             </dd>
         </dl>
         <dl>
             <dt th:text="#{address}"></dt>
             <dd>
                 <div>
-                    <input type="text" name="zipcode" th:field="*{zipcode}">
-                    <button type="button" class="search_address" th:text="#{search.address}"></button>
+                    <input type="text" name="zipcode" th:field="*{zipcode}" readonly>
+                    <button type="button" class="search_address" th:text="#{search.address}" data-zipcode-name="zipcode" data-address-name="address"></button>
                     <span class="errors" th:each="err : ${#fields.errors('zipcode')}" th:text="${err}"></span>
                 </div>
-                <div><input type="text" name="address" th:field="*{address}"></div>
+                <div><input type="text" name="address" th:field="*{address}" readonly></div>
                 <div class="errors" th:each="err : ${#fields.errors('address')}" th:text="${err}"></div>
 
             </dd>

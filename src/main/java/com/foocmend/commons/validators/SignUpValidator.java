@@ -41,7 +41,7 @@ public class SignUpValidator implements Validator, PasswordValidator, MobileVali
 
         // 2. 비밀번호 복잡성 - 숫자, 영어
         if (password != null && !password.isEmpty() &&
-                alphaCheck(password, false) && numberCheck(password)) {
+                (!alphaCheck(password, false) || !numberCheck(password))) {
             errors.rejectValue("password", "complexity");
         }
 
@@ -59,7 +59,7 @@ public class SignUpValidator implements Validator, PasswordValidator, MobileVali
         if (mobile != null && !mobile.isBlank()) {
             mobile = mobile.replaceAll("\\D", "");
             form.setMobile(mobile);
-            if (!numberCheck(mobile)) {
+            if (!mobileNumCheck(mobile)) {
                 errors.rejectValue("mobile", "format");
             }
         }

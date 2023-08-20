@@ -53,6 +53,7 @@ public class SignUp {
      */
     private void commonProcess(Model model) {
         model.addAttribute("foods", Foods.getList());
+        model.addAttribute("addCommonScript", new String[] {"address"});
 
     }
 }
