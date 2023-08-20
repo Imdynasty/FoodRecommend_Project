@@ -1,5 +1,6 @@
 package com.foocmend.controllers.member;
 
+import com.foocmend.commons.Utils;
 import com.foocmend.commons.constants.Foods;
 import com.foocmend.commons.validators.SignUpValidator;
 import com.foocmend.services.member.SaveMemberService;
@@ -24,11 +25,12 @@ public class SignUp {
 
     private final SaveMemberService saveMemberService;
     private final SignUpValidator signUpValidator;
+    private final Utils utils;
 
     @GetMapping
     public String signup(@ModelAttribute SignUpForm signUpForm, Model model) {
         commonProcess(model);
-        return "front/member/signup";
+        return utils.view("member/signup");
     }
 
     @PostMapping
@@ -38,7 +40,7 @@ public class SignUp {
         signUpValidator.validate(signUpForm, errors);
 
         if (errors.hasErrors()) {
-            return "front/member/signup";
+            return utils.view("member/signup");
         }
 
         saveMemberService.save(signUpForm);
@@ -54,6 +56,5 @@ public class SignUp {
     private void commonProcess(Model model) {
         model.addAttribute("foods", Foods.getList());
         model.addAttribute("addCommonScript", new String[] {"address"});
-
     }
 }

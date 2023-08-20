@@ -19,7 +19,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 
         session.removeAttribute("requiredEmail");
         session.removeAttribute("requiredPassword");
-        session.removeAttribute("global");
+        session.removeAttribute("globalError");
 
         session.setAttribute("email", email);
 

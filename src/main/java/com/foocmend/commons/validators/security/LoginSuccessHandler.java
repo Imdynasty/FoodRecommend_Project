@@ -18,7 +18,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         session.removeAttribute("email");
         session.removeAttribute("requiredEmail");
         session.removeAttribute("requiredPassword");
-        session.removeAttribute("global");
+        session.removeAttribute("globalError");
 
         /** 편의상 회원 정보를 세션에 기록 */
         DetailMember detailMember = (DetailMember) authentication.getPrincipal();
