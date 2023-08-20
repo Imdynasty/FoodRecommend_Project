@@ -4,17 +4,20 @@
 <head>
     <meta name="_csrf" th:content="${_csrf.token}">
     <meta name="_csrf_header" th:content="${_csrf.headerName}">
-    <title></title>
+    <title>
+        <th:block th:if="${pageTitle}" th:text="${pageTitle + ' | '}"></th:block>
+        사이트관리
+    </title>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
     <link rel="stylesheet" type="text/css" th:each="file : ${addCommonCss}" th:href="@{/common/css/{cssFile}.css(cssFile=${file})}">
-    <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css)}">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css}">
     <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/admin/css/{cssFile}.css(cssFile=${file})}">
     <th:block layout:fragment="addCss"></th:block>
 
     <script th:src="@{/common/js/common.js}"></script>
     <script th:each="jsFile : ${addCommonScript}" th:src="@{/common/js/{jsFile}.js(jsFile=${jsFile})}"></script>
-    <script th:src="@{/admin/js/common.js)}"></script>
+    <script th:src="@{/admin/js/common.js}"></script>
     <script th:each="jsFile : ${addScript}" th:src="@{/admin/js/{jsFile}.js(jsFile=${jsFile})}"></script>
     <th:block layout:fragment="addScript"></th:block>
 </head>
