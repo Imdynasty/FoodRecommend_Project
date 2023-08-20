@@ -43,7 +43,7 @@ public class SaveMemberService {
         /** 비밀번호 해시화 처리 */
         String password = form.getPassword();
         if (password != null && !password.isBlank()) {
-            form.setPassword(encoder.encode(form.getPassword()));
+            member.setPassword(encoder.encode(form.getPassword()));
         }
 
         /** 선호 음식 문자열 변환 처리 S - 예 KOREA||JAPAN */
@@ -53,7 +53,6 @@ public class SaveMemberService {
             member.setFavoriteFoods(favoriteFoodsStr);
         }
         /** 선호 음식 문자열 변환 처리 E */
-
         repository.saveAndFlush(member);
     }
 }
