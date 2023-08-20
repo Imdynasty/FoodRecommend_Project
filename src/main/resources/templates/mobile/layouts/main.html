@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <title></title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:each="file : ${addCommonCss}" th:href="@{/common/css/{cssFile}.css(cssFile=${file})}">
+    <link rel="stylesheet" type="text/css" th:href="@{/mobile/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/mobile/css/{cssFile}.css(cssFile=${file})}">
+    <th:block layout:fragment="addCss"></th:block>
+
+    <script th:src="@{/common/js/common.js}"></script>
+    <script th:each="jsFile : ${addCommonScript}" th:src="@{/common/js/{jsFile}.js(jsFile=${jsFile})}"></script>
+    <script th:src="@{/front/js/common.js}"></script>
+    <script th:each="jsFile : ${addScript}" th:src="@{/mobile/js/{jsFile}.js(jsFile=${jsFile})}"></script>
+    <th:block layout:fragment="addScript"></th:block>
+</head>
+<body>
+<header th:replace="~{mobile/outlines/header::common}"></header>
+<main layout:fragment="content"></main>
+<footer th:replace="~{mobile/outlines/footer::common}"></footer>
+<iframe name="ifrmProcess" class="dn"></iframe>
+</body>
+</html>

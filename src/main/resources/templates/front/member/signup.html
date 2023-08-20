@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <h1 th:text="#{signUp}"></h1>
+    <form name="frmSave" id="frmSave" method="POST" th:action="@{/member/signup}" th:object="${signUpForm}" autocomplete="off">
+        <th:block th:replace="~{front/member/_form::form}"></th:block>
+        <div class="terms_wrap">
+            <div class="terms">
+                ...
+            </div>
+            <div>
+                <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}">
+                <label for="agree" th:text="#{member.agree}"></label>
+                <div class="errors" th:each="err : ${#fields.errors('agree')}" th:text="${err}"></div>
+            </div>
+        </div>
+        <button type="submit" th:text="#{signUp}"></button>
+    </form>
+</main>
+</html>

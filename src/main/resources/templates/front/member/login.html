@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <h1 th:text="#{login}"></h1>
+    <form name="frmLogin" id="frmLogin" method="POST" th:action="@{/member/login}" autocomplete="off">
+        <dl>
+            <dt th:text="#{email}"></dt>
+            <dd>
+                <input type="text" name="email" th:value="${session.email}">
+                <div class="errors" th:if="${session.requiredEmail != null}" th:text="${session.requiredEmail}"></div>
+            </dd>
+        </dl>
+        <dl>
+            <dt th:text="#{password}"></dt>
+            <dd>
+                <input type="password" name="password">
+                <div class="errors" th:if="${session.requiredPassword != null}" th:text="${session.requiredPassword}"></div>
+            </dd>
+        </dl>
+        <div class="links">
+            <a th:href="@{/member/find/email}" th:text="#{member.find.email}"></a>
+            <a th:href="@{/member/find/password}" th:text="#{member.find.password}"></a>
+            <a th:href="@{/member/signup}" th:text="#{signUp}"></a>
+        </div>
+
+        <div class="errors global" th:if="${session.globalError != null}" th:text="${session.globalError}"></div>
+        <button type="submit" th:text="#{login}"></button>
+    </form>
+</main>
