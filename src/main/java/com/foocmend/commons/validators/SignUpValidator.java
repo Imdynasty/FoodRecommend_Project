@@ -26,7 +26,7 @@ public class SignUpValidator implements Validator, PasswordValidator, MobileVali
          * 2. 비밀번호 복잡성 - 숫자, 영어
          * 3. 비밀번호 확인
          * 4. 닉네임 중복
-         *
+         * 5. 휴대전화번호 형식 체크
          */
         String email = form.getEmail();
         String password = form.getPassword();
@@ -58,6 +58,7 @@ public class SignUpValidator implements Validator, PasswordValidator, MobileVali
         // 5. 휴대전화번호 형식 체크
         if (mobile != null && !mobile.isBlank()) {
             mobile = mobile.replaceAll("\\D", "");
+            form.setMobile(mobile);
             if (!numberCheck(mobile)) {
                 errors.rejectValue("mobile", "format");
             }

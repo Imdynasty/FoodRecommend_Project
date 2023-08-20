@@ -1,9 +1,6 @@
 package com.foocmend.controllers.member;
 
-import jakarta.validation.constraints.AssertTrue;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -33,6 +30,7 @@ public class SignUpForm {
     @NotBlank
     private String gender;
 
+    @NotNull
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate birthDate;
 
