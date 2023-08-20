@@ -1,6 +1,7 @@
 package com.foocmend.services.member;
 
 import com.foocmend.commons.constants.Gender;
+import com.foocmend.commons.constants.Role;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +18,8 @@ public class DetailMember implements UserDetails {
     private String password;
     private String nickname;
     private Gender gender;
+
+    private Role role;
 
     private Collection<GrantedAuthority> authorities;
 

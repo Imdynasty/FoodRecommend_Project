@@ -33,6 +33,7 @@ public class SearchMemberService implements UserDetailsService {
                 .password(member.getPassword())
                 .gender(member.getGender())
                 .nickname(member.getNickname())
+                .role(member.getRole())
                 .authorities(authorities)
                 .build();
     }
