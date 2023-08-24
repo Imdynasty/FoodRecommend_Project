@@ -1,30 +1,46 @@
 package com.foocmend.controllers.admin;
 
+import com.foocmend.entities.Member;
+import com.foocmend.repositories.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller("adminBasicMemberManage")
-@RequestMapping("/admin/board")
+@RequestMapping("/admin/member")
+@RequiredArgsConstructor
 public class MemberManage {
+
+    private final MemberRepository repository;
+
     @GetMapping
     public String config(Model model) {
         commonProcess(model);
 
-        return "admin/basic/board";
+        return "admin/basic/member";
     }
 
     @PostMapping
     public String save(Model model) {
         commonProcess(model);
 
-        return "redirect:/admin/board";
+        return "redirect:/admin/member";
+    }
+    @GetMapping("/list")
+    public String findAll(Model model) {
+        List<Member> memberList = repository.findAll();
+        model.addAttribute("memberList", memberList);
+
+        return "admin/basic/member";
     }
 
     private void commonProcess(Model model) {
-        model.addAttribute("menuCode", "board");
+        model.addAttribute("menuCode", "member");
         model.addAttribute("pageTitle", "회원관리");
     }
 }

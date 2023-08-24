@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <h1>회원관리</h1>
+    <div>
+    <form method="get">
+        <th>가입일자</th>
+        <td>
+            <input type="date"> ~ <input type="date">
+            <button>조회</button>
+        </td>
+    </form>
+    </div>
+    <div>
+        <th:block th:replace="~{admin/basic/member_list::memberlist}"
+    </div>
+</section>
+</html>
