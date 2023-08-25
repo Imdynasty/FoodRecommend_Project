@@ -2,7 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
+
+    <th:block layout:fragment="addCss">
+        <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css}">
+    </th:block>
+
+    <th:block layout:fragment="addScript">
+        <script th:src="@{https://cdn.jsdelivr.net/npm/chart.js@4.3.3/dist/chart.umd.min.js}"></script>
+        <script th:src="@{/admin/js/chart.js}"></script>
+    </th:block>
     <section layout:fragment="content">
+
         <h1>맛집 관리</h1>
+        <div id="chart">
+            <canvas id="myChart" height="50" width="100"></canvas>
+            <a>dddddddddddd</a>
+        </div>
+        <div>
+
+        </div>
     </section>
 </html>
