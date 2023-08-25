@@ -3,4 +3,4 @@
 
 
 
-![KakaoTalk_20230825_125209583](https://github.com/Imdynasty/Portfolio_Team2/assets/103565090/bac79e33-bb88-45fb-8286-0329f8853004)
+![Foomend (4)](https://github.com/Imdynasty/Portfolio_Team2/assets/104712273/8af64403-bb19-43d7-9c2c-0535df4c22b8)
