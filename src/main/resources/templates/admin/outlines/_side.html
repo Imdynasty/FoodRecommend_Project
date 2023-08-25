@@ -14,6 +14,12 @@
                 회원 관리
             </a>
         </li>
+        <li>
+            <a th:href="@{/admin/review}" th:classappend="${menuCode} == 'review' ? 'on'">
+                <i class="xi-receipt"></i>
+                리뷰 관리
+            </a>
+        </li>
     </ul>
 </aside>
 </html>
