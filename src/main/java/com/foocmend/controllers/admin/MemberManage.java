@@ -2,6 +2,7 @@ package com.foocmend.controllers.admin;
 
 import com.foocmend.entities.Member;
 import com.foocmend.repositories.MemberRepository;
+import com.foocmend.services.member.SearchMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +21,12 @@ public class MemberManage {
 
     @GetMapping
     public String config(Model model) {
-        commonProcess(model);
+        List<Member> memberList = repository.findAll();
+        model.addAttribute("memberList", memberList);
 
+        commonProcess(model);
         return "admin/basic/member";
+
     }
 
     @PostMapping
@@ -30,13 +34,6 @@ public class MemberManage {
         commonProcess(model);
 
         return "redirect:/admin/member";
-    }
-    @GetMapping("/list")
-    public String findAll(Model model) {
-        List<Member> memberList = repository.findAll();
-        model.addAttribute("memberList", memberList);
-
-        return "admin/basic/member";
     }
 
     private void commonProcess(Model model) {

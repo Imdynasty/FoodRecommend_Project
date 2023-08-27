@@ -23,9 +23,11 @@ select { border: 1px solid #d5d5d5; min-width: 150px; height: 45px; }
 .input_grp > * { margin-right: 5px; }
 
 /** 기본 스타일 - 체크박스, 라디오 버튼 */
+//*
 input[type='checkbox'] { display: none; }
 input[type='checkbox']+label { min-height: 32px; line-height: 1; padding: 3px 0 3px 33px; background:url("../../images/chk-off.png") no-repeat left center; }
 input[type='checkbox']:checked+label { background:url("../../images/chk-on.png") no-repeat left center; }
+*/
 
 input[type='radio'] { display: none; }
 input[type='radio']+label { min-height: 24px; line-height: 1; padding: 3px 0 3px 25px; background:url("../../images/radio-off.png") no-repeat left center; }

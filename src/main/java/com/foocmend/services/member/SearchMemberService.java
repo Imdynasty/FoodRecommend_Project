@@ -37,4 +37,24 @@ public class SearchMemberService implements UserDetailsService {
                 .authorities(authorities)
                 .build();
     }
+    public String findUserIdByEmailAndNickname(String email, String nickname) {
+        Member findEmail = repository.findByEmailAndNickname(email, nickname);
+
+        if(findEmail != null) {
+            return findEmail.getEmail();
+        }
+        return null;
+    }
+
+    public boolean resetPasswordByEmailAndNickname(String email, String currPassword, String newPassword) {
+        Member member = repository.findByEmail(email);
+
+        if(member != null && member.getEmail().equals(currPassword)) {
+            member.setPassword(newPassword);
+            repository.saveAndFlush(member);
+            return true;
+        }
+
+        return false;
+    }
 }
