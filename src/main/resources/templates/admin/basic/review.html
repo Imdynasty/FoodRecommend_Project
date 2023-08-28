@@ -36,8 +36,11 @@
                     <input type="checkbox" class="checkall" id="checkall" data-target-name="bId">
                     <label for="checkall"></label>
                 </th>
-                <th width="150">작성자 ID</th>
-                <th width="300">리뷰명</th>
+                <th width="150">작성자 번호</th>
+                <th width="300">작성자 ID</th>
+                <th width="300">식당명</th>
+                <th width="500">내용</th>
+                <th width="250">작성일자</th>
                 <th></th>
             </tr>
             </thead>
@@ -51,15 +54,24 @@
                 <td align="center" th:text="*{bName}"></td>
                 <td>
                     <a th:href="@{/admin/basic/review/{bId}/update(bId=*{bId})}" class="sbtn">설정수정</a>
-                    <a th:href="@{/basic/review/list/{bId}(bId=*{bId})}" class="sbtn">미리보기</a>
-                    <a th:href="@{/basic/review/write/{bId}(bId=*{bId})}" class="sbtn blue">글쓰기</a>
                 </td>
+            </tr>
+            <tr th:each="reviewlist :${entityReview}">
+                <td th:text="${reviewList.memNo}"></td>
+                <td th:text="${reviewList.nickname}"></td>
+                <td th:text="${reviewList.subject}"></td>
+                <td th:text="${reviewList.content}"></td>
+                <td th:text="${reviewList.createdDt}"></td>
             </tr>
             </tbody>
         </table>
         <div class="table-action">
             <button type="button" class="sbtn"> 수정하기</button>
             <button type="button" class="sbtn blue"> 삭제하기</button>
+            <a th:href="@{/admin/review/write}" class="sbtn"> 작성하기</a>
+        </div>
+        <div>
+
         </div>
     </form>
 </section>
