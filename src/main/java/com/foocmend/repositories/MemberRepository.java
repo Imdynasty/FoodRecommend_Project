@@ -17,4 +17,6 @@ public interface MemberRepository extends JpaRepository<Member, String>, Queryds
         return exists(QMember.member.nickname.eq(nickname));
     }
 
+
+
 }

@@ -1,16 +1,20 @@
 package com.foocmend.db;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategorySelect {
-    public static void main(String[] args) {
+public class ChartDao {
+
+    public ArrayList<String> list() {
 
         String url = "jdbc:mysql://localhost:3306/foocmend";
         String username = "foocmend";
         String password = "_aA123456";
-        List<String> list = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              Statement stmt = conn.createStatement()){
@@ -25,7 +29,6 @@ public class CategorySelect {
                 list.add(rs.getString("양식"));
                 list.add(rs.getString("일식"));
             }
-            System.out.println(list);
 
             rs.close();
 
@@ -33,6 +36,7 @@ public class CategorySelect {
             e.printStackTrace();
         }
 
-
+        return list;
     }
+
 }

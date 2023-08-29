@@ -15,8 +15,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public abstract class BaseMember extends Base {
     @CreatedBy
     @Column(updatable = false)
-    private Long createdBy;
+    private String createdBy;
     @LastModifiedBy
     @Column(insertable = false)
-    private Long modifiedBy;
+    private String modifiedBy;
 }
