@@ -2,7 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
-<main layout:fragment="content">
 
+<main layout:fragment="content">
+    <div class="header">
+        <a id="login" th:href="@{member/login}">로그인</a>
+        <a id="signup" th:href="@{member/signup}">회원가입</a>
+    </div>
+    <div class="nav">
+        <input type="search">
+        <button type="submit"></button>
+    </div>
 </main>
 </html>
