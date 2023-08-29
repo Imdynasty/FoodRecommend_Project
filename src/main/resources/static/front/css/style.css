@@ -1,9 +1,39 @@
+/** 메인페이지 화면 */
+.frame {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    margin: 0px;
+    border-radius: 2px;
+    box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.1);
+    background: #5CA4EA;
+}
+
 /** 메인페이지 헤더 */
 .header { display:flex; justify-content:flex-end; }
 #login { margin: 0px 5px; }
 #signup { margin: 0px 5px; }
 
 /** 메인페이지 검색창 */
-.nav { display:flex; justify-content:center; margin: 20px 0px; }
-.nav > input { width:300px; height:30px; }
-.nav > button { width:40px; }
+.nav {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.nav > input {
+  height: 2.5em;
+  width: 400px;
+  padding: 0 10px;
+  box-shadow: 3px 3px 10px #566270;
+  outline: none;
+  border: none;
+  color: #4F86C6;
+  border-radius: 15px;
+}
+.nav > button {
+    position: absolute;
+    height: 100%;
+    right: 5px;
+}
