@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class FoodManagement {
 
-    private final ChartService service;
+    private ChartService service;
 
     @GetMapping
     public String food(Model model) {
         commonProcess(model);
+        service.getMapper();
 
         return "admin/basic/food";
     }
