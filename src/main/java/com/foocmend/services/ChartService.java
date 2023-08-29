@@ -11,7 +11,7 @@ public class ChartService {
 
     private final ChartMapper chartMapper;
 
-    public Member getMapper() {
+    public Long getMapper() {
         return chartMapper.categoryCount();
     }
 
