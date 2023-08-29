@@ -5,14 +5,15 @@ import com.foocmend.repositories.ChartMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@Service
-@RequiredArgsConstructor
-public class ChartService {
 
+public class ChartService {
+/*
     private final ChartMapper chartMapper;
 
     public Long getMapper() {
         return chartMapper.categoryCount();
     }
+
+ */
 
 }
