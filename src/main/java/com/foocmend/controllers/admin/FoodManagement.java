@@ -8,10 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,18 +21,18 @@ public class FoodManagement {
 
     private Logger logger = LoggerFactory.getLogger(FoodManagement.class);
 
-    private final ChartMapper mapper;
+    private final ChartService service;
 
-    @GetMapping
-    public @ResponseBody Map<String, Object> Chart() {
-        Map<String, Object> count = new HashMap<>();
+    @RequestMapping(value = "/admin/food", method = RequestMethod.GET)
+    public @ResponseBody List<Long> Chart(Model model) {
 
-        List<Member> list = mapper.categoryCount();
+        List<Long> list = service.getMapper();
 
         logger.info("food" + list.toString());
 
-        count.put("list", list);
-        return count;
+        model.addAttribute("list", list);
+
+        return list;
     }
 
     @GetMapping

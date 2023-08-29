@@ -106,9 +106,9 @@
 			<classifier>jakarta</classifier>
 		</dependency>
 		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.5.13</version>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>3.0.2</version>
 		</dependency>
 	</dependencies>
 

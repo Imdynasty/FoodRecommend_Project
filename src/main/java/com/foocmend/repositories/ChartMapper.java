@@ -7,6 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface ChartMapper {
-    List<Member> categoryCount();
+    List<Long> categoryCount();
 
 }
