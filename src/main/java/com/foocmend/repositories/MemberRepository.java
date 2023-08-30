@@ -3,11 +3,14 @@ package com.foocmend.repositories;
 import com.foocmend.entities.Member;
 import com.foocmend.entities.QMember;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 public interface MemberRepository extends JpaRepository<Member, String>, QuerydslPredicateExecutor<Member> {
 
     Member findByEmail(String email);
+
+    long countByFavoriteFoodsLike(String food);
 
     default boolean exists(String email) {
         return exists(QMember.member.email.eq(email));

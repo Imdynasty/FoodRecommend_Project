@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,21 +20,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class FoodManagement {
 
-    private Logger logger = LoggerFactory.getLogger(FoodManagement.class);
-
     private final ChartService service;
 
-    @RequestMapping(value = "/admin/food", method = RequestMethod.GET)
-    public @ResponseBody List<Long> Chart(Model model) {
+    List<Long> list = new ArrayList<>();
 
-        List<Long> list = service.getMapper();
-
-        logger.info("food" + list.toString());
-
-        model.addAttribute("list", list);
-
-        return list;
-    }
 
     @GetMapping
     public String food(Model model) {
@@ -50,8 +40,10 @@ public class FoodManagement {
     }
 
     private void commonProcess(Model model) {
+        list = service.getMapper();
         model.addAttribute("pageTitle", "맛집 관리");
         model.addAttribute("menuCode", "food");
+        model.addAttribute("list", list);
     }
 
 }
