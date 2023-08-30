@@ -45,9 +45,9 @@ public class InfoFileService {
     public List<FileInfo> getList(Options opts) {
 
         List<FileInfo> items = repository.getFiles(opts.getGid(), opts.getLocation(), opts.getMode().name());
-
-        items.stream().forEach(this::addFileInfo);
-
+        if (items != null && items.size() > 0) {
+            items.stream().forEach(this::addFileInfo);
+        }
         return items;
     }
 

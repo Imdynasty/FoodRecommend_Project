@@ -105,6 +105,5 @@ public class BoardAdmin {
         model.addAttribute("submenus", submenus);
 
         model.addAttribute("pageTitle", title);
-        model.addAttribute("title", title);
     }
 }

@@ -21,6 +21,7 @@ public interface FileInfoRepository extends JpaRepository<FileInfo, Long>, Query
      * @return
      */
     default List<FileInfo> getFiles(String gid, String location, String mode) {
+        if (gid == null) return null;
         QFileInfo fileInfo = QFileInfo.fileInfo;
 
         BooleanBuilder builder = new BooleanBuilder();

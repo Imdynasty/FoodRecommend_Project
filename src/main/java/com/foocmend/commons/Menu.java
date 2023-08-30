@@ -21,6 +21,12 @@ public class Menu {
             menus.add(new MenuDetail("posts", "게시글 관리", "/admin/board/posts"));
         }
 
+        // 음식점 관리 하위 메뉴
+        if (code.equals("restaurant")) {
+            menus.add(new MenuDetail("restaurant", "음식점 목록", "/admin/restaurant"));
+            menus.add(new MenuDetail("register", "음식점 등록/수정", "/admin/restaurant/register"));
+        }
+
         return menus;
     }
 
