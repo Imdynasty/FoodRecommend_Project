@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="form" th:object="${restaurantForm}">
+        <div class="errors global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+        <input type="hidden" name="gid" th:field="*{gid}">
+        <input type="file" id="file" class="dn">
+        <table class="table-cols">
+            <tr>
+                <th>분류</th>
+                <td>
+                    <span th:if="${categories != null && categories.size() > 0}" th:each="category, status : ${categories}">
+                        <input type="radio" name="type" th:value="${category.cateNm}" th:id="${'type_' + status.index}" th:field="*{type}">
+                        <label th:for="${'type_' + status.index}" th:text="${category.cateNm}"></label>
+                    </span>
+                 </td>
+            </tr>
+            <tr>
+                <th>상호명</th>
+                <td>
+                    <input type="text" name="storeName" th:field="*{storeName}">
+                    <div class="errors" th:each="err : ${#fields.errors('storeName')}" th:text="${err}"></div>
+                </td>
+            </tr>
+            <tr>
+                <th>주소</th>
+                <td>
+                    <div class="address_rows input_grp mb5">
+                        <input type="text" name="zonecode" id="zonecode" readonly class="w150" th:field="*{zonecode}">
+                        <button type="button" class="sbtn search_address" data-zipcode-name="zonecode" data-address-name="roadAddress">주소검색</button>
+                        <input type="hidden" name="zipcode" th:field="*{zipcode}">
+                    </div>
+                    <div class="address_rows mb5">
+                        <input type="text" name="roadAddress" th:field="*{roadAddress}" placeholder="도로명 주소">
+                    </div>
+                    <div class="address_rows">
+                        <input type="text" name="roadAddress" th:field="*{address}" placeholder="구 주소">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>지도</th>
+                <td>
+                    <input type="hidden" name="xpos" th:field="*{xpos}">
+                    <input type="hidden" name="ypos" th:field="*{ypos}">
+                    <div id="map" style="width:500px;height:400px;"></div>
+                </td>
+            </tr>
+            <tr>
+                <th>메인이미지</th>
+                <td>
+                    <button type="button" class="upload_files sbtn" data-location="main" data-image-only="true">이미지 업로드</button>
+                    <div class="uploaded_images" id="main_images">
+                        <div th:if="*{mainImages != null}" th:each="file : *{mainImages}" th:object="${file}" class="file_images" th:id="*{'file_' + id}">
+                            <a th:href="@{/file/delete/{id}(id=*{id})}" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess" class="remove">
+                                <i class="xi-close-min"></i>
+                            </a>
+                            <div class="bg view_image" th:data-id="*{id}" th:style="*{'background:url(' + thumbsUrl[0] + ') no-repeat center center; background-size:cover;'}"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>목록이미지</th>
+                <td>
+                    <button type="button" class="upload_files sbtn" data-location="list" data-image-only="true">이미지 업로드</button>
+                    <div class="uploaded_images" id="list_images">
+                        <div th:if="*{listImages != null}" th:each="file : *{listImages}" th:object="${file}" class="file_images" th:id="*{'file_' + id}">
+                            <a th:href="@{/file/delete/{id}(id=*{id})}" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess" class="remove">
+                                <i class="xi-close-min"></i>
+                            </a>
+                            <div class="bg view_image" th:data-id="*{id}" th:style="*{'background:url(' + thumbsUrl[0] + ') no-repeat center center; background-size:cover;'}"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>소개</th>
+                <td>
+                    <textarea name="description" th:utext="*{description}"></textarea>
+                    <button type="button" class="upload_files sbtn" data-location="editor">이미지 업로드</button>
+                    <div class="uploaded_images" id="editor_files">
+                        <span th:if="*{editorImages != null}" th:each="file : *{editorImages}" th:object="${file}" class="file_items" th:id="*{'file_' + id}">
+                            <a th:href="@{/file/download/{id}(id=*{id})}" th:text="*{fileName}"></a>
+                            <i class="xi-arrow-top insert_editor" th:data-url="*{fileUrl}"></i>
+                            <a th:href="@{/file/delete/{id}(id=*{id})}" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess" class="remove">
+                                <i class="xi-close-min"></i>
+                            </a>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <th:block th:replace="~{commons/_file_tpl::tpl_image1}"></th:block>
+        <th:block th:replace="~{commons/_file_tpl::tpl_editor}"></th:block>
+    </th:block>
+</html>
