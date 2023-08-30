@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="form" th:object="${boardForm}">
+    <div class="errors global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+    <input th:if="${board.useAttachImage && board.useAttachFile }" type="file" id="file" class="dn" multiple>
+    <dl>
+        <dt th:text="#{board.poster}"></dt>
+        <dd>
+            <input type="text" name="poster" th:field="*{poster}">
+            <div class="errors" th:each="err : ${#fields.errors('poster')}" th:text="${err}"></div>
+        </dd>
+    </dl>
+    <dl th:if="${board.isGuest == true}">
+        <dt th:text="#{board.password}"></dt>
+        <dd>
+            <input type="password" name="guestPw" th:field="*{guestPw}">
+            <div class="errors" th:each="err : ${#fields.errors('guestPw')}" th:text="${err}"></div>
+        </dd>
+    </dl>
+    <dl th:if="${board.categories != null && board.categories.length > 0 }">
+        <dt th:text="#{board.category}"></dt>
+        <dd>
+            <th:block th:each="category, status : ${board.categories}">
+                <input type="radio" name="category" th:value="${category}"
+                       th:id="${'category_' + status.index}">
+                <label th:for="${'category_' + status.index}" th:text="${category}"></label>
+            </th:block>
+        </dd>
+    </dl>
+    <dl>
+        <dt th:text="#{board.subject}"></dt>
+        <dd>
+            <input type="text" name="subject" th:field="*{subject}">
+            <div class="errors" th:each="err : ${#fields.errors('subject')}" th:text="${err}"></div>
+        </dd>
+    </dl>
+    <dl>
+        <dt th:text="#{board.content}"></dt>
+        <dd>
+            <textarea name="content" id="content" th:field="*{content}"></textarea>
+
+            <div class="errors" th:each="err : ${#fields.errors('content')}" th:text="${err}"></div>
+
+            <th:block th:if="${board.useEditor && board.useAttachImage}">
+                <button type="button" class="sbtn upload_files mt10" data-location="editor" data-image-only="true">이미지 추가</button>
+                <div class="attachedFiles" id="attachedFiles_editor">
+                    <span th:if="*{editorImages != null}" th:each="file : *{editorImages}" th:object="${file}" class="file_items" th:id="*{'file_' + id}">
+                        <a th:href="@{/file/download/{id}(id=*{id})}" th:text="*{fileName}"></a>
+                        <i class="xi-arrow-top insert_editor" th:data-url="*{fileUrl}"></i>
+                        <a th:href="@{/file/delete/{id}(id=*{id})}" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess" class="remove">
+                            <i class="xi-close-min"></i>
+                        </a>
+                    </span>
+                </div>
+            </th:block>
+        </dd>
+    </dl>
+    <dl th:if="${board.useAttachFile == true}">
+        <dt th:text="#{board.attach.file}"></dt>
+        <dd>
+            <button type="button" class="sbtn upload_files" th:text="#{board.attach.file}"  data-location="attach"></button>
+            <div class="attachedFiles" id="attachedFiles_files">
+                <span th:if="*{attachFiles != null}" th:each="file : *{attachFiles}" th:object="${file}" class="file_items" th:id="*{'file_' + id}"><a th:href="@{/file/download/{id}(id=*{id})}" th:text="*{fileName}"></a><a th:href="@{/file/delete/{id}(id=*{id})}" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess" class="remove">
+                            <i class="xi-close-min"></i>
+                </a>
+                </span>
+            </div>
+        </dd>
+    </dl>
+    <th:block th:replace="~{commons/_file_tpl::tpl_editor}"></th:block>
+    <th:block th:replace="~{commons/_file_tpl::tpl_file}"></th:block>
+</th:block>
+</html>
