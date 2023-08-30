@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="skin">
+    <th:block th:replace="~{front/board/skins/default/_board_title::title}"></th:block>
+    <ul>
+        <li th:if="${items != null && items.size() > 0}" th:each="item : ${items}" th:object="${item}">
+            <a th:href="@{/board/view/{id}(id=*{id})}" th:text="*{subject}"></a>
+            <span class="post_info">
+                <span class="poster">
+                    <th:block th:text="*{'작성자:' + poster}"></th:block>
+                    <th:block th:if="*{member != null}" th:text="*{'(' + member.email + ')'}"></th:block>
+                </span>
+                <span class="hit" th:if="*{hit > 0 && hit < 1000}" th:text="*{'조회수:' + hit}"></span>
+                <span class="hit" th:if="*{hit > 1000}" th:text="*{'조회수:' + #numbers.formatInteger(hit, 3, 'COMMA')}"></span>
+                <span class="created_dt" th:text="*{'작성일시:' + #temporals.format(createdDt, 'yyyy.MM.dd HH:mm')}"></span>
+
+            </span>
+        </li>
+        <li th:unless="${items != null && items.size() > 0}" class="no_data">
+            등록된 게시글이 없습니다.
+        </li>
+    </ul>
+    <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
+</th:block>
+</html>

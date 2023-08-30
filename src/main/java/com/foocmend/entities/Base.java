@@ -24,4 +24,6 @@ public abstract class Base {
     @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime modifiedDt;
+
+    private LocalDateTime deletedDt;
 }
