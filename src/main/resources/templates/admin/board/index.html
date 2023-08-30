@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <h1>게시판 검색</h1>
+    <form name="frmSearch" method="get" th:action="@{/admin/board}" autocomplete="off" th:object="${boardSearch}">
+        <table class="table-cols">
+            <tr>
+                <th>검색어</th>
+                <td>
+                    <div class="input_grp">
+                        <select name="sopt" th:field="*{sopt}">
+                            <option value="all">통합검색</option>
+                            <option value="bId">게시판 ID</option>
+                            <option value="bName">게시판명</option>
+                        </select>
+                        <input type="text" name="skey" th:field="*{skey}" placeholder="검색어 입력...">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="search_btn">
+            <button type="submit">조회하기</button>
+        </div>
+    </form>
+
+    <h1>게시판 목록</h1>
+    <form name='frmList' method="post" th:action="@{/admin/board}" autocomplete="off" target="ifrmProcess">
+        <input type="hidden" name="_method" value="patch">
+
+        <table class="table-rows">
+            <thead>
+            <tr>
+                <th width="40">
+                    <input type="checkbox" class="checkall" id="checkall" data-target-name="bId">
+                    <label for="checkall"></label>
+                </th>
+                <th width="150">게시판 ID</th>
+                <th width="300">게시판명</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, status : ${items}" th:object="${item}">
+                <td align="center">
+                    <input type="checkbox" name="bId" th:value="*{bId}" th:id="${'bid_' + status.index}">
+                    <label th:for="${'bid_' + status.index}"></label>
+                </td>
+                <td align="center" th:text="*{bId}"></td>
+                <td align="center" th:text="*{bName}"></td>
+                <td>
+                    <a th:href="@{/admin/board/{bId}/update(bId=*{bId})}" class="sbtn">설정수정</a>
+                    <a th:href="@{/board/list/{bId}(bId=*{bId})}" class="sbtn">미리보기</a>
+                    <a th:href="@{/board/write/{bId}(bId=*{bId})}" class="sbtn blue">글쓰기</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="table-action">
+            <button type="button" class="sbtn"> 수정하기</button>
+            <button type="button" class="sbtn blue"> 삭제하기</button>
+        </div>
+    </form>
+</section>
+</html>
