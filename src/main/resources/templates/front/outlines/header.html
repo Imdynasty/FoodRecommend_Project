@@ -1,6 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <header th:fragment="common">
+        <section class="top_menus">
+            <div class="inner layout_width">
+                <th:block sec:authorize="isAnonymous()">
+                    <a th:href="@{/member/signup}" th:text="#{signUp}"></a>
+                    <a th:href="@{/member/login}" th:text="#{login}"></a>
+                </th:block>
+                <th:block sec:authorize="isAuthenticated()">
+                    <span class="login_info" th:text="${#messages.msg('member.login.status', session.detailMember.nickname, session.detailMember.email)}"></span>
+                    <a th:href="@{/member/logout}" th:text="#{logout}"></a>
+                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}" th:text="#{admin.site.management}" target="_blank"></a>
+                </th:block>
+            </div>
+        </section>
+        <section class="logo_search">
+            <div class="inner layout_width">
+                <a th:href="@{/}" class="logo">
+                    <img th:src="@{/common/images/logo.png}">
+                </a>
 
+                <form class='frm_search' name="frmSearch" method="get" th:action="@{/restaurant}" autocomplete="off">
+                    <input type="text" name="skey" placeholder="오늘 뭐 먹지?">
+                    <input type="image" th:src="@{/common/images/search_btn.gif}">
+                </form>
+                <div class="links">
+                    링크 추가
+                </div>
+            </div>
+        </section>
+        <nav>
+            <a th:href="@{/search}">맛집찾기</a>
+            <a href="#">테마</a>
+            <a href="#">마켓</a>
+        </nav>
     </header>
 </html>

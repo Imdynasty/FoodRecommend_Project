@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+* { box-sizing: border-box; font-family: 'Noto Sans KR', sans-serif; color: #000; outline: none; }
+html { font-size: 13px; }
+ul, ol { list-style: none; margin:0; padding:0; }
+dl, dt, dd { margin:0; padding: 0; }
+a { text-decoration: none; }
+body { margin: 0; }
+img { border: 0; }
+
+/** 기준 너비 */
+.layout_width { max-width: 1300px; min-width: 1100px; margin: 0 auto; padding: 0 10px; }
+
+/** 기본 스타일 - 입력 */
+input[type='text'],
+input[type='number'],
+input[type='password'],
+input[type='email'],
+input[type='date'] { border: 1px solid #d5d5d5; width: 100%; height: 45px; padding: 0 10px; border-radius: 3px; }
+textarea { border: 1px solid #d5d5d5; width: 100%; min-height: 150px; padding: 10px; resize: none; }
+select { border: 1px solid #d5d5d5; min-width: 150px; height: 45px; }
+
+/** 기본 스타일 - 제목 */
+h1 { font-size: 1.75rem; padding: 0; margin: 0; margin-bottom: 20px; }
+
+/** 기본 스타일 - 체크박스, 라디오 버튼 */
+input[type='checkbox'] { display: none; }
+input[type='checkbox']+label { min-height: 32px; line-height: 1; padding: 3px 0 3px 33px; background:url("../images/chk-off.png") no-repeat left center; margin-right: 13px; cursor: pointer; }
+input[type='checkbox']:checked+label { background:url("../images/chk-on.png") no-repeat left center; }
+input[type='checkbox']+label.standalone { padding: 0; width: 28px; display: inline-block; margin: 0; }
+input[type='radio'] { display: none; }
+input[type='radio']+label { min-height: 24px; line-height: 1; padding: 3px 0 3px 25px; background:url("../images/radio-off.png") no-repeat left center; margin-right: 13px; cursor: pointer; }
+input[type='radio']:checked+label { background:url("../images/radio-on.png") no-repeat left center; }
+input[type='radio']+label.standalone { padding: 0; width: 28px; margin: 0; }
+
+
+span > input[type='checkbox']~label { display: inline-block; height: 32px; line-height: 32px; padding-left: 33px; background:url("../images/chk-off.png") no-repeat left center; margin-right: 13px; cursor: pointer; }
+span > input[type='checkbox']:checked~label { background:url("../images/chk-on.png") no-repeat left center; }
+span > input[type='checkbox']~label.standalone { padding: 0; width: 28px; display: inline-block; margin: 0; }
+
+span > input[type='radio']~label { min-height: 24px; line-height: 1; padding: 3px 0 3px 25px; background:url("../images/radio-off.png") no-repeat left center; margin-right: 13px; cursor: pointer; }
+span > input[type='radio']:checked~label { background:url("../images/radio-on.png") no-repeat left center; }
+span > input[type='radio']~label.standalone { padding: 0; width: 28px; margin: 0; }
+
+
+/** 에러 공통 */
+.errors { box-shadow: 1px 1px 5px #ccc; padding: 10px; border-radius: 3px; color:#689a9f; margin: 5px 0; font-weight: 700; text-align: center; }
+
+
+/** 페이징 공통 */
+.pagination { text-align: center; margin: 15px 0; }
+.pagination a { display: inline-block; padding: 5px 10px; border: 1px solid #d5d5d5; border-radius: 5px; margin: 0 2px; font-size: 0.9rem; }
+.pagination a.on { background-color: #689a9f; color: #ffffff; border-color: #689a9f; }
+
+/** 헤더 영역 S */
+header { position: fixed; top: 0; left: 0; width: 100%; background: #fff; border-bottom: 1px solid #000; }
+header .top_menus { border-bottom: 1px solid #d7d7d7; height: 32px; }
+header .top_menus > .inner { line-height: 31px; text-align: right;  }
+header .top_menus .login_info { color: #689a9f; font-weight: bold; }
+header .top_menus a:hover { text-decoration: underline; }
+header .top_menus a { margin-left: 10px; }
+header .logo_search { background: #e6e6dd; }
+header .logo_search > .inner { display: flex; align-items: center; justify-content: space-between; }
+header .logo_search .logo, header .logo_search .links { width: 0; flex-grow: 1; }
+header .logo_search .logo img { height: 100px; }
+header .frm_search { display: flex; width: 450px; border: 1px solid #d5d5d5; }
+header .frm_search input[type='text'] { flex-grow: 1; height: 46px; border: 0; }
+header .frm_search input[type='image'] { border-left: 0; }
+header .logo_search .links { text-align: right; }
+header nav { text-align: center; height: 50px; line-height: 50px; font-size: 1.4rem;  }
+header nav a+a { margin-left: 150px; }
+/** 헤더 영역 E */
+/** 본문 영역 S */
+main { margin-top: 187px; }
+
+/** 본문 영역 E */
+/** 푸터 영역 S */
+footer { background: #e6e6dd; margin-top: 100px; min-height: 150px; }
+footer > .inner { padding: 20px 10px; }
+
+/** 푸터 영역 E */
