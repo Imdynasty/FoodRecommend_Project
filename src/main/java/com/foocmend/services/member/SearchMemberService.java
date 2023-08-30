@@ -1,5 +1,7 @@
 package com.foocmend.services.member;
 
+import com.foocmend.commons.validators.EditInfoValidator;
+import com.foocmend.commons.validators.PasswordValidator;
 import com.foocmend.entities.Member;
 import com.foocmend.repositories.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +17,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class SearchMemberService implements UserDetailsService {
+public class SearchMemberService implements UserDetailsService, PasswordValidator {
+
     private final MemberRepository repository;
+    private final GeneratePassword generatePassword;
+    private final EditInfoValidator editInfoValidator;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -46,15 +51,12 @@ public class SearchMemberService implements UserDetailsService {
         return null;
     }
 
-    public boolean resetPasswordByEmailAndNickname(String email, String currPassword, String newPassword) {
-        Member member = repository.findByEmail(email);
+    public Member findByEmailAndNicknameAndMobile(String email, String nickname, String mobile) {
+        Member findPw = repository.findByEmailAndNicknameAndMobile(email, nickname, mobile);
 
-        if(member != null && member.getEmail().equals(currPassword)) {
-            member.setPassword(newPassword);
-            repository.saveAndFlush(member);
-            return true;
+        if(findPw != null) {
+            return findPw;
         }
-
-        return false;
+        return null;
     }
 }

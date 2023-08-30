@@ -7,7 +7,7 @@
     </section>
     <section class="right">
         <th:block sec:authorize="isAuthenticated()">
-            <a th:href="@{/admin/myinfo}" class="sbtn">회원정보수정</a>
+            <a th:href="@{/member/mypage}" class="sbtn">회원정보수정</a>
             <a th:href="@{/member/logout}" class="sbtn blue">로그아웃</a>
         </th:block>
         <th:block sec:authorize="isAnonymous()">

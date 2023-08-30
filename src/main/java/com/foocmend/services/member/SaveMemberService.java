@@ -25,7 +25,7 @@ public class SaveMemberService {
 
     public void save(SignUpForm form) {
         Member member = null;
-        if (memberUtil.isLogin() && form.getMode().equals("edit")) { // 회원정보 수정
+        if (memberUtil.isLogin() && form.getMode().contains("edit")) { // 회원정보 수정
             member = memberUtil.getEntity();
         } else { // 가입
             member = new Member();

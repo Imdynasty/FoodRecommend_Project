@@ -4,7 +4,7 @@
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
     <h1 th:text="#{signUp}"></h1>
-    <form name="frmSave" id="frmSave" method="POST" th:action="@{/member/edit}" th:object="${signUpForm}" autocomplete="off">
+    <form name="frmSave" id="frmSave" method="POST" th:action="@{/member/mypage/edit}" th:object="${signUpForm}" autocomplete="off">
         <th:block th:replace="~{front/member/_form::form}"></th:block>
         <button type="submit" th:text="#{edit}"></button>
     </form>

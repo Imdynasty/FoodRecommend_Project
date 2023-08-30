@@ -11,8 +11,8 @@ public interface MemberRepository extends JpaRepository<Member, String>, Queryds
 
     Member findByEmail(String email);
     List<Member> findAll();
-    Member findByNickname(String nickname);
     Member findByEmailAndNickname(String email, String nickname);
+    Member findByEmailAndNicknameAndMobile(String email, String nickname, String mobile);
 
     default boolean exists(String email) {
         return exists(QMember.member.email.eq(email));
