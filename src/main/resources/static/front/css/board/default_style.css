@@ -1,0 +1,5 @@
+.board_main { width: 920px; margin: 220px auto 20px auto; }
+.board_main * { box-sizing: border-box; }
+.board_main dl { display: flex; margin-bottom: 10px; }
+.board_main dt { width: 90px; }
+.board_main dd { flex-grow: 1; }
