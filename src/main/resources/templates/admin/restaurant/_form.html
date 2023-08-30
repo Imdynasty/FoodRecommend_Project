@@ -8,9 +8,11 @@
             <tr>
                 <th>분류</th>
                 <td>
-                    <span th:if="${categories != null && categories.size() > 0}" th:each="category, status : ${categories}">
-                        <input type="radio" name="type" th:value="${category.cateNm}" th:id="${'type_' + status.index}" th:field="*{type}">
-                        <label th:for="${'type_' + status.index}" th:text="${category.cateNm}"></label>
+                    <span th:if="${categories != null && categories.size() > 0}">
+                        <select name="type" >
+                            <option th:value="all"></option>
+                            <option th:each="category, status : ${categories}" th:value="${category.cateNm}" th:text="${category.cateNm}" th:selected="${category.cateNm} == ${categories.size}" th:id="${'type_' + status.index}" th:field="*{type}"></option>
+                        </select>
                     </span>
                  </td>
             </tr>
