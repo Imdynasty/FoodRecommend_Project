@@ -8,16 +8,19 @@
     </th:block>
 
     <th:block layout:fragment="addScript">
-        <script th:src="@{https://cdn.jsdelivr.net/npm/chart.js@4.3.3/dist/chart.umd.min.js}"></script>
-        <script th:src="@{/admin/js/chart.js}"></script>
+        <script type="text/javascript" th:src="@{https://cdn.jsdelivr.net/npm/chart.js@4.3.3/dist/chart.umd.min.js}"></script>
     </th:block>
     <section layout:fragment="content">
 
         <h1>맛집 관리</h1>
         <input type="search" class="search">
         <div id="chart">
-            <canvas id="myChart"></canvas>
+            <canvas id="myChart" ></canvas>
         </div>
+        <script th:inline="javascript">
+            const list = [[${list}]]
+        </script>
+        <script th:inline="javascript" th:src="@{/admin/js/chart.js}"></script>
         <div id="chart2">
             <canvas id="myChart2"></canvas>
         </div>

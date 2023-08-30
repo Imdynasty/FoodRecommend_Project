@@ -8,12 +8,15 @@
             <tr>
                 <th>분류</th>
                 <td>
-                    <span th:if="${categories != null && categories.size() > 0}">
-                        <select name="type" >
-                            <option th:value="all"></option>
-                            <option th:each="category, status : ${categories}" th:value="${category.cateNm}" th:text="${category.cateNm}" th:selected="${category.cateNm} == ${categories.size}" th:id="${'type_' + status.index}" th:field="*{type}"></option>
-                        </select>
-                    </span>
+                    <select name="type">
+                        <option th:value="all"></option>
+                        <option th:each="category, status : ${categories}"
+                                th:value="${category.cateNm}"
+                                th:text="${category.cateNm}"
+                                th:selected="${category.cateNm} == ${categories.size}"
+                                th:id="${'type_' + status.index}" th:field="*{type}">
+                        </option>
+                    </select>
                  </td>
             </tr>
             <tr>

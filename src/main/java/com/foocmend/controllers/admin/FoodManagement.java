@@ -22,6 +22,8 @@ public class FoodManagement {
     @GetMapping
     public String food(Model model) {
         commonProcess(model);
+        list = service.getMapper();
+        model.addAttribute("list", list);
 
         return "admin/basic/food";
     }
@@ -34,10 +36,10 @@ public class FoodManagement {
     }
 
     private void commonProcess(Model model) {
-        list = service.getMapper();
+
         model.addAttribute("pageTitle", "맛집 관리");
         model.addAttribute("menuCode", "food");
-        model.addAttribute("list", list);
+
     }
 
 }

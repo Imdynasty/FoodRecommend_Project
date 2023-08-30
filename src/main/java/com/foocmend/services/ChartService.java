@@ -12,9 +12,10 @@ import java.util.List;
 public class ChartService {
 
     private final MemberRepository repository;
-    List<Long> list = new ArrayList<>();
 
     public List<Long> getMapper() {
+        List<Long> list = new ArrayList<>();
+
         list.add(repository.countByFavoriteFoodsLike("%korea%"));
         list.add(repository.countByFavoriteFoodsLike("%america%"));
         list.add(repository.countByFavoriteFoodsLike("%japan%"));

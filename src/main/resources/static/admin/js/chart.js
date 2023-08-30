@@ -1,8 +1,5 @@
   window.onload = function() {
   const ctx = document.getElementById('myChart');
-   /*<![CDATA[*/
-   var list = "[[${list}]]";
-   /*]]>*/
 
   new Chart(ctx, {
       type: 'bar', // 그래프의 종류
