@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.foocmend.repositories.ChartMapper">
-    <select id="categoryCount" resultType="long">
-        SELECT count(case when favoriteFoods like '%korea%' then 1 end) AS 한식, count(case when favoriteFoods like '%america%' then 1 end) AS 양식, count(case when favoriteFoods like '%japan%' then 1 end) AS 일식 FROM member where gender='male'
-    </select>
-</mapper>

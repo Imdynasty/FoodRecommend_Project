@@ -1,6 +1,5 @@
 package com.foocmend.services;
 
-import com.foocmend.repositories.ChartMapper;
 import com.foocmend.repositories.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
