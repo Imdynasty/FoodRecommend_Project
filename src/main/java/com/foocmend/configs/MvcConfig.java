@@ -1,6 +1,9 @@
 package com.foocmend.configs;
 
 import com.foocmend.commons.interceptors.CommonInterceptor;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
@@ -20,6 +23,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private CommonInterceptor commonInterceptor; // 공통 인터셉터
+
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -43,5 +49,10 @@ public class MvcConfig implements WebMvcConfigurer {
         ms.addBasenames("messages.commons", "messages.validations", "messages.errors");
 
         return ms;
+    }
+
+    @Bean
+    public JPAQueryFactory JPAQueryFactory() {
+        return new JPAQueryFactory(em);
     }
 }

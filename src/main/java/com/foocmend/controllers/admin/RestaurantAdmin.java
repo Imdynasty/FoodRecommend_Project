@@ -1,9 +1,8 @@
 package com.foocmend.controllers.admin;
 
-import com.foocmend.commons.AlertBackException;
-import com.foocmend.commons.CommonException;
-import com.foocmend.commons.CommonProcess;
-import com.foocmend.commons.ScriptExceptionProcess;
+import com.foocmend.commons.*;
+import com.foocmend.controllers.restaurant.RestaurantSearchForm;
+import com.foocmend.entities.Restaurant;
 import com.foocmend.services.restaurant.SaveRestaurantService;
 import com.foocmend.services.restaurant.SearchRestaurantService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,8 +30,12 @@ public class RestaurantAdmin implements CommonProcess, ScriptExceptionProcess {
      *
      */
     @GetMapping
-    public String index(Model model) {
+    public String index(RestaurantSearchForm search, Model model) {
         commonProcess(model, "list");
+        ListData<Restaurant> data = searchService.getList(search);
+
+        model.addAttribute("items", data.getContent());
+        model.addAttribute("pagination", data.getPagination());
 
         return "admin/restaurant/index";
     }
