@@ -13,7 +13,6 @@
                         <option th:each="category, status : ${categories}"
                                 th:value="${category.cateNm}"
                                 th:text="${category.cateNm}"
-                                th:selected="${category.cateNm} == ${categories.size}"
                                 th:id="${'type_' + status.index}" th:field="*{type}">
                         </option>
                     </select>
