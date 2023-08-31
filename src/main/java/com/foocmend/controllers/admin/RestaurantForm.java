@@ -26,6 +26,7 @@ public class RestaurantForm {
     private String ypos;
     private String description;
 
+    private List<Integer> chkNo;
 
     private List<FileInfo> mainImages; // 메인 페이지 이미지
 

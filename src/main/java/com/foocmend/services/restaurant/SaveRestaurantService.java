@@ -43,4 +43,5 @@ public class SaveRestaurantService {
 
         fileInfoRepository.processDone(gid);
     }
+
 }
