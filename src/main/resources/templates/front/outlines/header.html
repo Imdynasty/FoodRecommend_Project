@@ -28,8 +28,15 @@
                 <div class="links">
                     링크 추가
                 </div>
+
             </div>
         </section>
+        <div class="recent_searches">
+            <h3>최근 검색어</h3>
+            <ul>
+                <li th:each="searchTerm : ${recentSearches}" th:text="${searchTerm}"></li>
+            </ul>
+        </div>
         <nav>
             <a th:href="@{/search}">맛집찾기</a>
             <a href="#">테마</a>
