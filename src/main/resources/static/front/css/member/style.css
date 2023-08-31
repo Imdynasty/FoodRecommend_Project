@@ -12,6 +12,7 @@ main { margin: 237px auto 0 auto; width: 920px; }
 #frmMember .links a { font-size: 1.1rem; margin: 0 10px; }
 #frmMember .links a:hover { text-decoration: underline; }
 
+
 .signup_page { width: 860px; }
 .signup_page #frmMember { border:0; border-top: 1px solid #000;  }
 .signup_page #frmMember > .inner { margin: 20px auto; width: 100%; }
