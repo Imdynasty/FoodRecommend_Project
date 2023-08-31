@@ -2,6 +2,8 @@ package com.foocmend.controllers.restaurant;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class RestaurantSearchForm {
     private int page = 1;
@@ -10,4 +12,5 @@ public class RestaurantSearchForm {
     private String sopt;
     private String skey;
     private String sort;
+    private List<String> types;
 }

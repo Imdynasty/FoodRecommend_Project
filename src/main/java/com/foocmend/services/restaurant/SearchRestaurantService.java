@@ -73,12 +73,17 @@ public class SearchRestaurantService {
         String sopt = search.getSopt();
         String skey = search.getSkey();
         String type = search.getType();
+        List<String> types = search.getTypes();
 
         /** 조건 및 키워드 검색 S */
         // 음식점 분류에 따른 목록 조회 */
         if (type != null && !type.isBlank()) {
             type = type.trim();
             andBuilder.and(restaurant.type.eq(type));
+        }
+
+        if (types != null && !types.isEmpty()) {
+            andBuilder.and(restaurant.type.in(types));
         }
 
         if (sopt != null && !sopt.isBlank() && skey != null && !skey.isBlank()) {
