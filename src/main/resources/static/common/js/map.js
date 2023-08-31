@@ -49,19 +49,19 @@ commonLib.map = {
          const markers = [];
          addMarker(position); // 초기 마커
 
-            // 마커를 생성하고 지도위에 표시하는 함수입니다
-            function addMarker(position) {
-                hideMarkers();
+         // 마커를 생성하고 지도위에 표시하는 함수입니다
+         function addMarker(position) {
+            hideMarkers();
 
-                // 마커를 생성합니다
-                var marker = new kakao.maps.Marker({
-                    position: position
-                });
+            // 마커를 생성합니다
+            const marker = new kakao.maps.Marker({
+                position: position
+            });
 
-                // 마커가 지도 위에 표시되도록 설정합니다
-                marker.setMap(map);
+            // 마커가 지도 위에 표시되도록 설정합니다
+            marker.setMap(map);
 
-                // 생성된 마커를 배열에 추가합니다
+            // 생성된 마커를 배열에 추가합니다
                 markers.push(marker);
             }
 
