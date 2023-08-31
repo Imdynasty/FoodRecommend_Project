@@ -4,5 +4,39 @@
     layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
     <h1>음식점 목록</h1>
+
+    <form name="frmList" method="POST" th:action="@{/admin/restaurant}" target="ifrmProcess" autocomplete="off">
+        <table class="table-rows">
+            <thead>
+                <tr>
+                    <th width="40">
+                        <input type="checkbox" class="checkall" id="checkall" data-target-name="chkNo">
+                        <label for="checkall" class="standalone"></label>
+                    </th>
+                    <th width="150">분류</th>
+                    <th width="250">상호명</th>
+                    <th width="350">주소</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${items != null && items.size() > 0}" th:each="item, status : ${items}" th:object="${item}">
+                    <td></td>
+                    <td align="center" th:text="*{type}"></td>
+                    <td align="center" th:text="*{storeName}"></td>
+                    <td th:text="*{roadAddress}"></td>
+                    <td>
+                        <a th:href="@{/admin/restaurant/update/{id}(id=*{id})}" class="sbtn">수정하기</a>
+                    </td>
+                </tr>
+                <tr th:if="${items == null || items.size() == 0}">
+                    <td colspan="5" class="no_data">조회된 목록이 없습니다.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+
+    <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
 </section>
 </html>
