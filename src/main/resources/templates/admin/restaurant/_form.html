@@ -10,7 +10,7 @@
                 <td>
                     <span th:if="${categories != null && categories.size() > 0}">
                         <select name="type" >
-                            <option th:value="all"></option>
+                            <option value="">- 선택하세요 -</option>
                             <option th:each="category, status : ${categories}" th:value="${category.cateNm}" th:text="${category.cateNm}" th:selected="${category.cateNm} == ${categories.size}" th:id="${'type_' + status.index}" th:field="*{type}"></option>
                         </select>
                     </span>
@@ -44,7 +44,7 @@
                 <td>
                     <input type="hidden" name="xpos" th:field="*{xpos}">
                     <input type="hidden" name="ypos" th:field="*{ypos}">
-                    <div id="map" style="width:500px;height:400px;"></div>
+                    <div id="admin_map" style="height:400px;"></div>
                 </td>
             </tr>
             <tr>

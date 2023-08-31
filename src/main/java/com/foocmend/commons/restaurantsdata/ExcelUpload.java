@@ -1,4 +1,4 @@
-package com.foocmend.commons.RestautantData;
+package com.foocmend.commons.restaurantsdata;
 
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xssf.usermodel.XSSFCell;

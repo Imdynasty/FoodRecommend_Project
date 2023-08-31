@@ -99,6 +99,7 @@ public class RestaurantAdmin implements CommonProcess, ScriptExceptionProcess {
             addCommonScript.add("address");
             addCommonScript.add("fileManager");
             addCommonScript.add("ckeditor/ckeditor");
+            addCommonScript.add("map");
             addScript.add("restaurant/form");
         }
 
