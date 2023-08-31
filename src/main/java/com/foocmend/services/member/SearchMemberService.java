@@ -20,8 +20,6 @@ import java.util.List;
 public class SearchMemberService implements UserDetailsService, PasswordValidator {
 
     private final MemberRepository repository;
-    private final GeneratePassword generatePassword;
-    private final EditInfoValidator editInfoValidator;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -47,15 +45,6 @@ public class SearchMemberService implements UserDetailsService, PasswordValidato
 
         if(findEmail != null) {
             return findEmail.getEmail();
-        }
-        return null;
-    }
-
-    public Member findByEmailAndNicknameAndMobile(String email, String nickname, String mobile) {
-        Member findPw = repository.findByEmailAndNicknameAndMobile(email, nickname, mobile);
-
-        if(findPw != null) {
-            return findPw;
         }
         return null;
     }

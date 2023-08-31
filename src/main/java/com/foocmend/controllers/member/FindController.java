@@ -3,7 +3,6 @@ package com.foocmend.controllers.member;
 import com.foocmend.commons.validators.EditInfoValidator;
 import com.foocmend.entities.Member;
 import com.foocmend.repositories.MemberRepository;
-import com.foocmend.services.member.GeneratePassword;
 import com.foocmend.services.member.SearchMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,7 +24,6 @@ public class FindController {
     private final SearchMemberService searchMemberService;
     private final EditInfoValidator editInfoValidator;
     private final MemberRepository repository;
-    private final GeneratePassword generatePassword;
     private final PasswordEncoder encoder;
 
     @GetMapping("/email")
@@ -58,8 +56,7 @@ public class FindController {
             @RequestParam String email,
             @RequestParam String nickname,
             @RequestParam String mobile,
-            Model model
-    ) {
+            Model model) {
         Member member = repository.findByEmail(email);
         if(member.getEmail().equals(email) &&
         member.getNickname().equals(nickname) &&
