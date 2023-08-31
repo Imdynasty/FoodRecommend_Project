@@ -10,4 +10,14 @@ public class VisitService {
 
     private final SiteVisitRepository repository;
 
+    public void addVisit() {
+
+        if(repository.select() == null) {
+            repository.add();
+        } else {
+            repository.update();
+        }
+
+    }
+
 }

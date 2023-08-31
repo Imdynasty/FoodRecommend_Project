@@ -28,7 +28,9 @@ class ProjectApplicationTests {
 	@Test
 	void contextLoads() throws Exception {
 
-		visitRepository.add();
+		long result = visitRepository.count();
+
+		System.out.println(result);
 
 	}
 
