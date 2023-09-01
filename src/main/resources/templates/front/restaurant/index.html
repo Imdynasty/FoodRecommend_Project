@@ -3,6 +3,19 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
-    11111
+    <div th:if="${categories != null && !categories.isEmpty()}" th:each="category : ${categories}" th:object="${category}">
+        <a th:href="@{/restaurant?type={type}(type=*{cateNm})}" th:text="*{cateNm}"></a>
+    </div>
+    <ul>
+        <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:text="*{item}">
+            <img th:src="*{mainImages[0].fileUrl}">
+            [[*{storeName}]]
+
+        </li>
+        <li th:if="${items == null || items.isEmpty()}">
+            조회된 음식점이 없습니다.
+        </li>
+    </ul>
+    <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
 </main>
 </html>
