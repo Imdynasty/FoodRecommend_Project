@@ -1,0 +1,10 @@
+/** 메인 관리자 페이지 */
+.section { margin: 0px; }
+.top_box { padding: 10px 50px 50px; background:#e6e6dd; }
+.main_logo { display:block; height:180px; object-fit:contain; }
+.welcome { text-align:center; font-weight:bold; font-size:15px; }
+
+/** 메인 관리자 페이지 방문자수 */
+.count { display:flex; justify-content: space-around; margin: 10px auto; font-weight: bold; text-align: center; }
+.one_day { width: 200px; border: 1px solid; }
+.total { width: 200px; border: 1px solid; }
