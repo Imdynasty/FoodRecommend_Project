@@ -25,14 +25,12 @@ public class Index {
 
     private final ChartService service;
 
-    List<Long> list = new ArrayList<>();
-
     @GetMapping
     public String index(Model model) {
 
         commonProcess(model);
-        list = service.getMapper();
-        model.addAttribute("list", list);
+
+        model.addAttribute("list", service.getMapper());
 
         return "admin/main/index";
     }

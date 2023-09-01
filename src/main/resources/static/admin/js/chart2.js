@@ -3,8 +3,8 @@
   const list = document.querySelector("#chart").getAttribute("value");
   console.log(list);
 
-  new Chart(ctx, {
-      type: 'bar', // 그래프의 종류
+  const chart2 = new Chart(ctx, {
+      type: 'line', // 그래프의 종류
       data: { //chart에 들어갈 값
           labels: ['한식', '양식', '일식'], // 라벨 값을 대표할 이름
           datasets: [{
