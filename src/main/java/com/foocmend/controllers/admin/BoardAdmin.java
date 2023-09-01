@@ -4,6 +4,7 @@ import com.foocmend.commons.CommonException;
 import com.foocmend.commons.Menu;
 import com.foocmend.commons.MenuDetail;
 import com.foocmend.entities.Board;
+import com.foocmend.services.board.DeleteBoardDataService;
 import com.foocmend.services.board.config.InfoBoardConfigService;
 import com.foocmend.services.board.config.ListBoardConfigService;
 import com.foocmend.services.board.config.SaveBoardConfigService;
@@ -27,6 +28,7 @@ public class BoardAdmin {
     private final SaveBoardConfigService configSaveService;
     private final InfoBoardConfigService boardConfigInfoService;
     private final ListBoardConfigService boardConfigListService;
+    private final DeleteBoardDataService deleteBoardDataService;
 
     /**
      * 게시판 목록
@@ -105,5 +107,15 @@ public class BoardAdmin {
         model.addAttribute("submenus", submenus);
 
         model.addAttribute("pageTitle", title);
+    }
+
+    @PostMapping
+    public String indexPs(BoardForm form, Model model) {
+        commonProcess(model, "list");
+
+        deleteBoardDataService.delete(form);
+
+        model.addAttribute("script", "parent.location.reload();");
+        return "commons/execute_script";
     }
 }
