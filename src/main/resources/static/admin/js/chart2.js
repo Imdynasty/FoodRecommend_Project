@@ -1,8 +1,7 @@
   window.onload = function() {
-  const ctx = document.getElementById('myChart');
+  const ctx = document.getElementById('myChart2');
   const list = document.querySelector("#chart").getAttribute("value");
   console.log(list);
-
 
   new Chart(ctx, {
       type: 'bar', // 그래프의 종류

@@ -6,5 +6,5 @@
 
 /** 메인 관리자 페이지 방문자수 */
 .count { display:flex; justify-content: space-around; margin: 10px auto; font-weight: bold; text-align: center; }
-.one_day { width: 200px; border: 1px solid; }
-.total { width: 200px; border: 1px solid; }
+
+.count > div { width: 200px; border: 1px solid; box-shadow: 3px 3px 10px #566270; border-radius: 5px; }
