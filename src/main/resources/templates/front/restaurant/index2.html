@@ -3,9 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
-    <div th:if="${categories != null && !categories.isEmpty()}" th:each="category : ${categories}">
-        <a th:href="@{/restaurant?type={type}(type=${category.cateNm})}" th:text="${category.cateNm}"></a>
-    </div>
+    <th:block th:replace="~{front/restaurant/_category::category}"></th:block>
+
     <ul class="layout_width">
         <li th:if="${items == null || items.isEmpty()}">
             조회된 음식점이 없습니다.
