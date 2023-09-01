@@ -8,12 +8,12 @@
             <tr>
                 <th>분류</th>
                 <td>
-                    <select name="type">
+                    <select name="type" th:field="*{type}">
                         <option th:value="all"></option>
                         <option th:each="category, status : ${categories}"
                                 th:value="${category.cateNm}"
                                 th:text="${category.cateNm}"
-                                th:id="${'type_' + status.index}" th:field="*{type}">
+                                th:id="${'type_' + status.index}">
                         </option>
                     </select>
                  </td>

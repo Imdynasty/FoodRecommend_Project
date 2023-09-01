@@ -21,7 +21,10 @@
             </thead>
             <tbody>
                 <tr th:if="${items != null && items.size() > 0}" th:each="item, status : ${items}" th:object="${item}">
-                    <td></td>
+                    <td>
+                        <input type="checkbox" id="check">
+                        <label for="check" class="standalone"></label>
+                    </td>
                     <td align="center" th:text="*{type}"></td>
                     <td align="center" th:text="*{storeName}"></td>
                     <td th:text="*{roadAddress}"></td>
