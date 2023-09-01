@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
+<th:block layout:fragment="addCss">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin/css/main.css}">
+</th:block>
 <section layout:fragment="content">
     <div class="top_box">
         <img src="/common/images/adminlogo.png" class="main_logo">
