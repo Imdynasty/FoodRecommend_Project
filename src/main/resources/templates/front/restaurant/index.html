@@ -4,6 +4,7 @@
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
     <section class="product_top">
+        <div>
         <form name="frmSearch" method="GET" th:action="@{/restaurant}" autocomplete="off" th:object="${restaurantSearchForm}">
             <table class="table-cols">
                 <tr>
@@ -22,7 +23,7 @@
                 <tr>
                     <th></th>
                     <td>
-                        <div class="input_grp">
+                        <div class="input_grp" >
                             <select name="sopt" th:field="*{sopt}">
                                 <option value="all">통합검색</option>
                                 <option value="storeName">상호명</option>
@@ -38,27 +39,26 @@
                 <button type="submit" >검색하기</button>
             </div>
         </form>
+        </div>
         <form name="frmList" method="POST" th:action="@{/restaurant}" target="ifrmProcess" autocomplete="off">
             <input type="hidden" name="mode" value="edit">
             <table class="table-rows">
                 <thead>
                 <tr>
                     <th width="40">
-                        <input type="checkbox" class="checkall" id="checkall" data-target-name="chkNo">
-                        <label for="checkall" class="standalone"></label>
+                        <input type="checkbox" class="check" id="check" data-target-name="chkNo">
+                        <label for="check" class="standalone">핫플</label>
                     </th>
                     <th width="150">분류</th>
                     <th width="250">상호명</th>
                     <th width="350">주소</th>
-                    <th></th>
                 </tr>
                 </thead>
                 <div class="table-action">
-                    <button type="button" class="form_action sbtn" data-mode="delete" data-target-name="frmList">리뷰 많은순</button>
-                    <button type="button" class="form_action sbtn" data-mode="delete" data-target-name="frmList">조회수순</button>
+                    <a class="sbtn">리뷰 많은순</a>
+                    <a class="sbtn">조회수순</a>
                 </div>
                 <tbody>
-
                 <tr th:if="${items != null && items.size() > 0}" th:each="item, status : ${items}" th:object="${item}">
                     <td>
                         <input type="checkbox" name="chkNo" th:value="${status.index}" th:id="${'chkNo_' + status.index}">
