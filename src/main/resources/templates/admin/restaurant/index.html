@@ -3,15 +3,18 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
-    <h1>음식점 목록</h1>
     <form name="frmSearch" method="GET" th:action="@{/admin/restaurant}" autocomplete="off" th:object="${restaurantSearchForm}">
         <table class="table-cols">
             <tr>
                 <th>분류</th>
                 <td>
-                    <span th:if="${categories != null && !categories.isEmpty()}" th:each="category, status : ${categories}">
-                        <input type="checkbox" name="types" th:value="${category.cateNm}" th:id="${'id_' + status.index}" th:field="*{types}">
-                        <label th:for="${'id_' + status.index}" th:text="${category.cateNm}"></label>
+                    <span th:if="${categories != null && categories.size() > 0}">
+                        <select name="type" th:field="*{type}">
+                            <option value="">- 선택하세요 -</option>
+                            <option th:each="category, status : ${categories}" th:value="${category.cateNm}"
+                                    th:text="${category.cateNm}" th:selected="${category.cateNm} == ${categories.size}"
+                                    th:id="${'type_' + status.index}" th:field="*{type}"></option>
+                        </select>
                     </span>
                 </td>
             </tr>
