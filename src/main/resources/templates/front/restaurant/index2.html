@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <ul class="layout_width">
+        <li th:if="${items == null || items.isEmpty()}">
+            조회된 음식점이 없습니다.
+        </li>
+        <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
+            <a th:href="@{/restaurant/view/{id}(id=*{id})}">
+                <th:block if="*{mainImages != null && !mainImages.isEmpty()}">
+                    <img th:each="file, status : *{mainImages}" th:if="${status.first}" th:src="${file.thumbsUrl[0]}">
+                </th:block>
+                <th:block unless="*{mainImages != null && !mainImages.isEmpty()}">
+                    <div class="no_image">이미지 없음</div>
+                </th:block>
+                <div class="store_nm" th:text="*{storeName}"></div>
+                <div class="address" th:text="*{address}"></div>
+            </a>
+        </li>
+    </ul>
+    <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
+</main>
+</html>
