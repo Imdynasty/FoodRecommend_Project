@@ -3,19 +3,79 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
-    <div th:if="${categories != null && !categories.isEmpty()}" th:each="category : ${categories}" th:object="${category}">
-        <a th:href="@{/restaurant?type={type}(type=*{cateNm})}" th:text="*{cateNm}"></a>
-    </div>
-    <ul>
-        <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:text="*{item}">
-            <img th:src="*{mainImages[0].fileUrl}">
-            [[*{storeName}]]
-
-        </li>
-        <li th:if="${items == null || items.isEmpty()}">
-            조회된 음식점이 없습니다.
-        </li>
-    </ul>
+    <section class="product_top">
+        <div>
+        <form name="frmSearch" method="GET" th:action="@{/restaurant}" autocomplete="off" th:object="${restaurantSearchForm}">
+            <table class="table-cols">
+                <tr>
+                    <th>분류</th>
+                    <td>
+                    <span th:if="${categories != null && categories.size() > 0}">
+                        <select name="type" th:field="*{type}">
+                            <option value="">- 선택하세요 -</option>
+                            <option th:each="category, status : ${categories}" th:value="${category.cateNm}"
+                                    th:text="${category.cateNm}" th:selected="${category.cateNm} == ${categories.size}"
+                                    th:id="${'type_' + status.index}" th:field="*{type}"></option>
+                        </select>
+                    </span>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <div class="input_grp" >
+                            <select name="sopt" th:field="*{sopt}">
+                                <option value="all">통합검색</option>
+                                <option value="storeName">상호명</option>
+                                <option value="address">주소</option>
+                                <option value="type">분류</option>
+                            </select>
+                            <input type="text" name="skey" th:field="*{skey}">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="search_btn">
+                <button type="submit" >검색하기</button>
+            </div>
+        </form>
+        </div>
+        <form name="frmList" method="POST" th:action="@{/restaurant}" target="ifrmProcess" autocomplete="off">
+            <input type="hidden" name="mode" value="edit">
+            <table class="table-rows">
+                <thead>
+                <tr>
+                    <th width="40">
+                        <input type="checkbox" class="check" id="check" data-target-name="chkNo">
+                        <label for="check" class="standalone">핫플</label>
+                    </th>
+                    <th width="150">분류</th>
+                    <th width="250">상호명</th>
+                    <th width="350">주소</th>
+                </tr>
+                </thead>
+                <div class="table-action">
+                    <a class="sbtn">리뷰 많은순</a>
+                    <a class="sbtn">조회수순</a>
+                </div>
+                <tbody>
+                <tr th:if="${items != null && items.size() > 0}" th:each="item, status : ${items}" th:object="${item}">
+                    <td>
+                        <input type="checkbox" name="chkNo" th:value="${status.index}" th:id="${'chkNo_' + status.index}">
+                        <label th:for="${'chkNo_' + status.index}" class="standalone"></label>
+                        <input type="hidden" th:name="${'id_' + status.index}" th:value="*{id}">
+                    </td>
+                    <td align="center" th:text="*{type}"></td>
+                    <td align="center" th:text="*{storeName}"></td>
+                    <td th:text="*{roadAddress}"></td>
+                </tr>
+                <tr th:if="${items == null || items.size() == 0}">
+                    <td colspan="5" class="no_data">조회된 목록이 없습니다.</td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </section>
     <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
 </main>
 </html>
