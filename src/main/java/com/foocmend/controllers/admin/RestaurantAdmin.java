@@ -117,6 +117,7 @@ public class RestaurantAdmin implements CommonProcess, ScriptExceptionProcess {
             addCommonScript.add("ckeditor/ckeditor");
             addCommonScript.add("map");
             addScript.add("restaurant/form");
+            model.addAttribute("subMenuCode", "register");
         }
 
         model.addAttribute("addCommonScript", addCommonScript);
