@@ -3,6 +3,7 @@ package com.foocmend.controllers.admin;
 import com.foocmend.commons.*;
 import com.foocmend.controllers.restaurant.RestaurantSearchForm;
 import com.foocmend.entities.Restaurant;
+import com.foocmend.services.restaurant.DeleteRestaurantService;
 import com.foocmend.services.restaurant.SaveRestaurantService;
 import com.foocmend.services.restaurant.SearchRestaurantService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import java.util.Objects;
 public class RestaurantAdmin implements CommonProcess, ScriptExceptionProcess {
     private final SearchRestaurantService searchService;
     private final SaveRestaurantService saveService;
+    private final DeleteRestaurantService deleteService;
     private final HttpServletRequest request;
 
     /**
@@ -39,6 +41,17 @@ public class RestaurantAdmin implements CommonProcess, ScriptExceptionProcess {
 
         return "admin/restaurant/index";
     }
+
+    @PostMapping
+    public String indexPs(RestaurantForm form, Model model) {
+        commonProcess(model, "list");
+
+        deleteService.delete(form);
+
+        model.addAttribute("script", "parent.location.reload();");
+        return "commons/execute_script";
+    }
+    
 
     /**
      * 음식점 정보 등록
@@ -104,6 +117,7 @@ public class RestaurantAdmin implements CommonProcess, ScriptExceptionProcess {
             addCommonScript.add("ckeditor/ckeditor");
             addCommonScript.add("map");
             addScript.add("restaurant/form");
+            model.addAttribute("subMenuCode", "register");
         }
 
         model.addAttribute("addCommonScript", addCommonScript);
