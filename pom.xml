@@ -105,6 +105,16 @@
 			<version>5.0.0</version>
 			<classifier>jakarta</classifier>
 		</dependency>
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>0.4.20</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>5.2.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -2,7 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
+<th:block layout:fragment="addCss">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin/css/main.css}">
+</th:block>
 <section layout:fragment="content">
-
+    <div class="top_box">
+        <img src="/common/images/adminlogo.png" class="main_logo">
+        <div class="welcome">foocmend 관리자 페이지에 접속하셨습니다.</div>
+    </div>
+    <form class="count">
+        <div class="one_day">
+            <p>일일 방문자수</p>
+            <span th:text="${count} + '명'"></span>
+        </div>
+        <div class="total">
+            <p>전체 방문자수</p>
+            <span th:text="${count} + '명'"></span>
+        </div>
+    </form>
 </section>
 </html>

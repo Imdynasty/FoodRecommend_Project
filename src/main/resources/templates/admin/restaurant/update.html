@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<th:block layout:fragment="addScript">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ecb744762773804f037af730d26d0ff4&libraries=services"></script>
+</th:block>
+<section layout:fragment="content">
+    <h2>음식점 수정</h2>
+    <form name="frmSave" method="post" th:action="@{/admin/restaurant/save}" autocomplete="off" th:object="${restaurantForm}">
+        <input type="hidden" name="mode" value="update">
+        <input type="hidden" name="id" th:field="*{id}">
+        <th:block th:replace="~{admin/restaurant/_form::form}"></th:block>
+        <div class="btns">
+            <button type="reset">다시입력</button>
+            <button type="submit">수정하기</button>
+        </div>
+    </form>
+</section>
+</html>

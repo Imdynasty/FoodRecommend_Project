@@ -6,7 +6,12 @@ ul, ol { list-style: none; margin:0; padding:0; }
 dl, dt, dd { margin:0; padding: 0; }
 a { text-decoration: none; }
 body { margin: 0; }
-img { border: 0; }
+img {
+  border: 0;
+  width: 100%;
+  height: 71px;
+  object-fit: cover;
+}
 
 /** 기준 너비 */
 .layout_width { max-width: 1300px; min-width: 1100px; margin: 0 auto; padding: 0 10px; }
@@ -24,12 +29,22 @@ select { border: 1px solid #d5d5d5; min-width: 150px; height: 45px; }
 
 /** 기본 스타일 - 체크박스, 라디오 버튼 */
 input[type='checkbox'] { display: none; }
-input[type='checkbox']+label { min-height: 32px; line-height: 1; padding: 3px 0 3px 33px; background:url("../../images/chk-off.png") no-repeat left center; }
-input[type='checkbox']:checked+label { background:url("../../images/chk-on.png") no-repeat left center; }
-
+input[type='checkbox']+label { min-height: 32px; line-height: 1; padding: 3px 0 3px 33px; background:url("../images/chk-off.png") no-repeat left center; margin-right: 13px; cursor: pointer; }
+input[type='checkbox']:checked+label { background:url("../images/chk-on.png") no-repeat left center; }
+input[type='checkbox']+label.standalone { padding: 0; width: 28px; display: inline-block; margin: 0; }
 input[type='radio'] { display: none; }
-input[type='radio']+label { min-height: 24px; line-height: 1; padding: 3px 0 3px 25px; background:url("../../images/radio-off.png") no-repeat left center; }
-input[type='radio']:checked+label { background:url("../../images/radio-on.png") no-repeat left center; }
+input[type='radio']+label { min-height: 24px; line-height: 1; padding: 3px 0 3px 25px; background:url("../images/radio-off.png") no-repeat left center; margin-right: 13px; cursor: pointer; }
+input[type='radio']:checked+label { background:url("../images/radio-on.png") no-repeat left center; }
+input[type='radio']+label.standalone { padding: 0; width: 28px; margin: 0; }
+
+
+span > input[type='checkbox']~label { min-height: 32px; line-height: 1; padding: 3px 0 3px 33px; background:url("../images/chk-off.png") no-repeat left center; margin-right: 13px; cursor: pointer; }
+span > input[type='checkbox']:checked~label { background:url("../images/chk-on.png") no-repeat left center; }
+span > input[type='checkbox']~label.standalone { padding: 0; width: 28px; display: inline-block; margin: 0; }
+
+span > input[type='radio']~label { min-height: 24px; line-height: 1; padding: 3px 0 3px 25px; background:url("../images/radio-off.png") no-repeat left center; margin-right: 13px; cursor: pointer; }
+span > input[type='radio']:checked~label { background:url("../images/radio-on.png") no-repeat left center; }
+span > input[type='radio']~label.standalone { padding: 0; width: 28px; margin: 0; }
 
 .dn { display: none !important; }
 
@@ -40,26 +55,26 @@ header > .left { width: 208px; text-align: center; }
 header > .right { flex-grow: 1; text-align: right; padding: 10px; }
 
 main { min-width: 1100px; min-height: 800px; display: flex; }
-main > aside { width: 208px; background: #596b99; }
-main > section { flex-grow: 1; margin: 50px; }
+main > aside { width: 208px; background: #689a9f; }
+main > section { flex-grow: 1; margin: 0 50px 50px; }
 
-aside li > a { display: block; height: 71px; line-height: 71px; border-top: 1px solid #61729e; color: #dddee4; font-size: 18px; text-align: center; position: relative; }
+aside li > a { display: block; height: 71px; line-height: 71px; border-top: 1px solid #689a9f; color: #dddee4; font-size: 18px; position: relative; padding-left: 35px; }
 aside li > a * { color: #dddee4; font-size: 18px; }
 aside li > a:hover,
-aside li > a.on { background: #3c4e7a; font-weight: bold; }
+aside li > a.on { background: #c5c68a; font-weight: bold; }
 aside li > a:hover:after,
-aside li > a.on:after { content: ''; display: block; position: absolute; width: 8px; height: 100%; right: 0; top: 0; background: #00d0d7; }
+aside li > a.on:after { content: ''; display: block; position: absolute; width: 8px; height: 100%; right: 0; top: 0; background: #808000; }
 
 /** 기본 버튼 스타일 */
-.sbtn { display: inline-block; border: 1px solid #596b99; color: #596b99; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
-.sbtn.blue { color: #fff; background:#596b99; }
+.sbtn { display: inline-block; border: 1px solid #689a9f; color: #689a9f; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
+.sbtn.blue { color: #fff; background:#689a9f; }
 
 .btns { display: flex; width: 400px; margin: 0 auto; }
-.btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 18px; border: 1px solid #000; }
+.btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 15px; border: 1px solid #000; }
 .btns > button:last-of-type { background: #000; color: #fff; }
 
 .search_btn { text-align: center; margin: 20px 0 35px; }
-.search_btn button { text-align: center; height: 45px; line-height: 45px; background: #36466d; color: #fff; padding: 0 30px; border: 0; font-size: 16px; }
+.search_btn button { text-align: center; height: 45px; line-height: 45px; background: #689a9f; color: #fff; padding: 0 30px; border: 0; font-size: 16px; }
 
 
 /** 기본 메세지 상자 스타일 */
@@ -89,5 +104,25 @@ h2 { font-size: 18px; font-weight: bold; margin: 25px 0 10px; line-height: 1; }
 
 /** 공통 서브 메뉴 */
 nav.submenus { background: #fff; box-shadow: 1px 1px 5px #cdced5; margin-bottom: 30px; display: flex; height: 60px; }
-nav.submenus a.on { background: #596b99; color: #fff; }
-nav.submenus a { line-height: 60px; padding: 0 40px; font-size: 18px; }
+nav.submenus a.on { background: #c5c68a; color: #fff; }
+nav.submenus a { line-height: 60px; padding: 0 40px; font-size: 13px; }
+
+/** 공통 파일 첨부 이미지 */
+.uploaded_images .file_images { width: 100px; height: 100px; position: relative; border: 2px solid #000; margin-right: 5px; margin-bottom: 5px; }
+.uploaded_images .file_images .bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+.uploaded_images .file_images .remove { position: absolute; top: 0; right: 0; background: #000; color: #fff; display: block; width: 15px; height: 15px; z-index: 2; background: #000; text-align: center; line-height: 15px; }
+.uploaded_images .file_images .remove * { color: #fff; font-size: 13px; }
+
+.uploaded_images { display: flex; }
+
+.file_items { display: inline-block; border: 1px solid #000; border-radius: 3px; padding: 5px 10px; margin-right: 3px; margin-bottom: 3px; }
+.file_items > a:hover { text-decoration: underline; }
+.file_items .insert_editor { cursor: pointer;  }
+
+/** 조회 데이터 없음 */
+.no_data { height: 200px; text-align: center; font-weight: bold; font-size: 16px; }
+
+/** 페이징 공통 */
+.pagination { text-align: center; margin: 15px 0; }
+.pagination a { display: inline-block; padding: 5px 10px; border: 1px solid #d5d5d5; border-radius: 5px; margin: 0 2px; font-size: 0.9rem; }
+.pagination a.on { background-color: #727272; color: #ffffff; border-color: #727272; }

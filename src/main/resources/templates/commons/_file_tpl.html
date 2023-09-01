@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script id="tpl_image1" type="text/html" th:fragment="tpl_image1">
+    <div class="file_images" id="file_[id]">
+        <a th:href="@{/file/delete/[id]}" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess" class="remove">
+            <i class="xi-close-min"></i>
+        </a>
+        <div class="bg view_image" data-id="[id]" style="background:url('[url]') no-repeat center center; background-size:cover;"></div>
+    </div>
+</script>
+
+<script id="tpl_editor" type="text/html" th:fragment="tpl_editor">
+    <span class="file_items" id="file_[id]">
+            <a th:href="@{/file/download/[id]}">[fileName]</a>
+            <i class="xi-arrow-top insert_editor" data-url="[orgUrl]"></i>
+            <a th:href="@{/file/delete/[id]}" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess" class="remove">
+                <i class="xi-close-min"></i>
+            </a>
+        </span>
+</script>
+<script id="tpl_file" type="text/html" th:fragment="tpl_file">
+    <span class="file_items" id="file_[id]">
+        <a th:href="@{/file/download/[id]}">[fileName]</a>
+        <a th:href="@{/file/delete/[id]}" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess" class="remove">
+            <i class="xi-close-min"></i>
+        </a>
+    </span>
+</script>
+</html>

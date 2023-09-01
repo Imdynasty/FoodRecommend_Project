@@ -1,0 +1,35 @@
+main { margin: 237px auto 0 auto; width: 920px; }
+#frmMember { border: 1px solid #d5d5d5; }
+#frmMember > .inner { width: 540px; margin: 100px auto; }
+#frmMember .msg { font-weight: 700; font-size: 1.4rem; letter-spacing: -.50px; text-align: center; margin-bottom: 40px; }
+#frmMember .msg span { color: #689a9f; }
+
+.login_box { display: flex;  }
+.login_box .rows+.rows { margin-top: 10px; }
+.login_box .input_box { flex-grow: 1; }
+.login_box button[type='submit'] { width: 100px; height: 100px; background: #689a9f; border: 0; cursor: pointer;  color: #fff; font-weight: 700; margin-left: 10px; font-size: 1.15rem; }
+#frmMember .links { text-align: center; margin-top: 50px; }
+#frmMember .links a { font-size: 1.1rem; margin: 0 10px; }
+#frmMember .links a:hover { text-decoration: underline; }
+
+
+.signup_page { width: 860px; }
+.signup_page #frmMember { border:0; border-top: 1px solid #000;  }
+.signup_page #frmMember > .inner { margin: 20px auto; width: 100%; }
+
+.signup_page h1 { margin-bottom: 10px; }
+.signup_page dl { display: flex; align-items: center; }
+.signup_page dl+dl { margin-top: 10px; }
+.signup_page dt { width: 90px; color: #999; }
+.signup_page dd { flex-grow: 1; }
+
+.terms_wrap { border-top: 1px solid #d5d5d5; padding-top: 10px; margin: 20px 0 50px; }
+.terms_wrap .terms { height: 150px; border: 1px solid #d5d5d5; overflow: auto; word-break: break-all; padding: 10px; margin-bottom: 10px; }
+.terms_wrap .terms_check { text-align: center; }
+
+.signup_page button[type='submit'] { width: 300px; height: 60px; border-radius: 5px; color: #fff; font-weight: 700; font-size: 1.5rem; border: 0; background: #689a9f; cursor: pointer; display: block; margin: 0 auto; }
+
+.address_rows:first-of-type { display: flex; margin-bottom: 5px; }
+.address_rows:first-of-type input[type='text'] { width: 150px; margin-right: 5px; }
+.address_rows button { border: 1px solid #689a9f; border-radius: 5px; color: #689a9f; font-weight: 700; background: #fff; padding: 0 25px; cursor: pointer; }
+
