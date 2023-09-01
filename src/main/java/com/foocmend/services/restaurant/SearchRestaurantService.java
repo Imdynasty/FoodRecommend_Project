@@ -138,6 +138,8 @@ public class SearchRestaurantService {
                 .orderBy(orderSpecifiers.toArray(OrderSpecifier[]::new))
                 .fetch();
 
+        items.stream().forEach(this::addFileInfo);
+
         ListData<Restaurant> data = new ListData<>();
         data.setContent(items);
 

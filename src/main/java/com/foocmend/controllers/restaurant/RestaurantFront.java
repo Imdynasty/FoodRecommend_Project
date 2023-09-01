@@ -26,7 +26,7 @@ public class RestaurantFront implements CommonProcess, ScriptExceptionProcess {
         ListData<Restaurant> data = searchService.getList(search);
         model.addAttribute("items", data.getContent());
         model.addAttribute("pagination", data.getPagination());
-        return utils.view("restaurant/index");
+        return utils.view("restaurant/index2");
     }
 
     public void commonProcess(Model model, String mode) {
