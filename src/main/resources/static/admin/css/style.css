@@ -70,11 +70,11 @@ aside li > a.on:after { content: ''; display: block; position: absolute; width: 
 .sbtn.blue { color: #fff; background:#689a9f; }
 
 .btns { display: flex; width: 400px; margin: 0 auto; }
-.btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 15px; border: 1px solid #000; }
+.btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 15px; border: 1px solid #000; border-radius: 5px;}
 .btns > button:last-of-type { background: #000; color: #fff; }
 
-.search_btn { text-align: center; margin: 20px 0 35px; }
-.search_btn button { text-align: center; height: 45px; line-height: 45px; background: #689a9f; color: #fff; padding: 0 30px; border: 0; font-size: 16px; }
+.search_btn { text-align: center; margin: 20px 0 35px;  }
+.search_btn button { text-align: center; height: 45px; line-height: 45px; background: #689a9f; color: #fff; padding: 0 30px; border: 0; font-size: 16px; border-radius: 5px;}
 
 
 /** 기본 메세지 상자 스타일 */
