@@ -1,7 +1,6 @@
 package com.foocmend.controllers.admin;
 
 import com.foocmend.repositories.SiteVisitRepository;
-import com.foocmend.services.visit.VisitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +28,7 @@ public class Index {
 
     public void commonProcess(Model model) {
 
-        model.addAttribute("count", repository.count());
+        //model.addAttribute("count", repository.count());
 
     }
 }

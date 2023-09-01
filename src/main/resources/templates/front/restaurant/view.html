@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<th:block layout:fragment="addScript">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ecb744762773804f037af730d26d0ff4&libraries=services"></script>
+</th:block>
+<main layout:fragment="content">
+
+    <th:block th:replace="~{front/restaurant/_category::category}"></th:block>
+
+    <section class="store" th:object="${item}">
+        <input type="hidden" name="roadAddress" th:value="*{roadAddress}">
+        <input type="hidden" name="isViewPage" th:value="true">
+        <div class="info">
+            <img th:if="*{mainImages != null && !mainImages.isEmpty()}" th:each="image : *{mainImages}" th:src="${image.fileUrl}" class="main_images">
+            <dl>
+                <dt>업체명</dt>
+                <dd th:text="*{storeName}"></dd>
+            </dl>
+            <dl>
+                <dt>주소</dt>
+                <dd>
+                    <div th:text="*{roadAddress}"></div>
+                    <div th:if="*{address != null}" th:text="*{address}"></div>
+                </dd>
+            </dl>
+        </div>
+        <div class="map">
+            <div id="map" style="height:400px;"></div>
+        </div>
+    </section>
+</main>
