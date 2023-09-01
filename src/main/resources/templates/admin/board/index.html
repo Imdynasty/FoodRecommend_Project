@@ -44,8 +44,9 @@
             <tbody>
             <tr th:each="item, status : ${items}" th:object="${item}">
                 <td align="center">
-                    <input type="checkbox" name="bId" th:value="*{bId}" th:id="${'bid_' + status.index}">
+                    <input type="checkbox" name="bId" th:value="${status.index}" th:id="${'bid_' + status.index}">
                     <label th:for="${'bid_' + status.index}"></label>
+                    <input type="hidden" th:name="${'bid_' + status.index}" th:value="*{bId}">
                 </td>
                 <td align="center" th:text="*{bId}"></td>
                 <td align="center" th:text="*{bName}"></td>
@@ -58,9 +59,9 @@
             </tbody>
         </table>
         <div class="table-action">
-            <button type="button" class="sbtn"> 수정하기</button>
-            <button type="button" class="sbtn blue"> 삭제하기</button>
+            <button type="button" class="form_action sbtn" data-mode="delete" data-target-name="frmList">선택 삭제하기</button>
         </div>
     </form>
+    <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
 </section>
 </html>
