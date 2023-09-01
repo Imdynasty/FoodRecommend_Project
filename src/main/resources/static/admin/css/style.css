@@ -70,7 +70,7 @@ aside li > a.on:after { content: ''; display: block; position: absolute; width: 
 .sbtn.blue { color: #fff; background:#689a9f; }
 
 .btns { display: flex; width: 400px; margin: 0 auto; }
-.btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 18px; border: 1px solid #000; }
+.btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 15px; border: 1px solid #000; }
 .btns > button:last-of-type { background: #000; color: #fff; }
 
 .search_btn { text-align: center; margin: 20px 0 35px; }
@@ -105,7 +105,7 @@ h2 { font-size: 18px; font-weight: bold; margin: 25px 0 10px; line-height: 1; }
 /** 공통 서브 메뉴 */
 nav.submenus { background: #fff; box-shadow: 1px 1px 5px #cdced5; margin-bottom: 30px; display: flex; height: 60px; }
 nav.submenus a.on { background: #c5c68a; color: #fff; }
-nav.submenus a { line-height: 60px; padding: 0 40px; font-size: 18px; }
+nav.submenus a { line-height: 60px; padding: 0 40px; font-size: 13px; }
 
 /** 공통 파일 첨부 이미지 */
 .uploaded_images .file_images { width: 100px; height: 100px; position: relative; border: 2px solid #000; margin-right: 5px; margin-bottom: 5px; }
