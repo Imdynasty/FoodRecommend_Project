@@ -30,6 +30,6 @@
             <a th:if="${board.useReply == true}" th:href="@{/board/reply/(id=*{id})}" th:text="#{board.reply}"></a>
             <a th:href="@{/board/list/{bId}(bId=*{board.bId})}" th:text="#{board.list}"></a>
         </div>
-    </div> <!--// board_view -->
+    </ul> <!--// board_view -->
 </th:block>
 </html>
