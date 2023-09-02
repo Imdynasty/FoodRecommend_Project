@@ -5,9 +5,15 @@ import com.foocmend.entities.QMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
+import java.util.List;
+
 public interface MemberRepository extends JpaRepository<Member, String>, QuerydslPredicateExecutor<Member> {
 
     Member findByEmail(String email);
+    List<Member> findAll();
+    Member findByEmailAndNickname(String email, String nickname);
+
+    long countByFavoriteFoodsLike(String food);
 
     default boolean exists(String email) {
         return exists(QMember.member.email.eq(email));
@@ -16,5 +22,7 @@ public interface MemberRepository extends JpaRepository<Member, String>, Queryds
     default boolean existsNickname(String nickname) {
         return exists(QMember.member.nickname.eq(nickname));
     }
+
+
 
 }

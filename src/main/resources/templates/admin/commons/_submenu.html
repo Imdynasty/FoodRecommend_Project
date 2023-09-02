@@ -3,7 +3,7 @@
 <th:block th:fragment="menus">
     <nav class='submenus' th:if="${submenus != null && #lists.size(submenus) > 0}">
         <a th:each="menu : ${submenus}" th:href="@{{url}(url=${menu.url})}" th:text="${menu.name}"
-           th:classappend="${subMenuCode == menu.code} ? 'on'";
+           th:classappend="${subMenuCode == menu.code} ? 'on'"
         ></a>
     </nav>
 </th:block>
