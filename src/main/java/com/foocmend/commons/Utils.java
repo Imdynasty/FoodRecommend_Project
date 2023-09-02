@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -20,6 +21,7 @@ public class Utils {
 
     private final HttpServletRequest request;
     private final HttpSession session;
+    private final MemberUtil memberUtil;
 
     /**
      * 모바일 장비 접속 여부
@@ -92,5 +94,17 @@ public class Utils {
 
     public static int getNumber(int num, int defaultValue) {
         return num <= 0 ? defaultValue : num;
+    }
+
+    /**
+     * 브라우저 ID
+     * @return
+     */
+    public int getBrowserId() {
+        long memNo = memberUtil.isLogin() ? memberUtil.getMember().getMemNo() : 0;
+        String ua = request.getHeader("User-Agent");
+        String ip = request.getRemoteAddr();
+
+        return Objects.hash(memNo, ua, ip);
     }
 }
