@@ -6,10 +6,10 @@ import com.foocmend.entities.SearchHistory;
 import com.foocmend.entities.SearchHistoryId;
 import com.foocmend.repositories.SearchHistoryRepository;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -22,6 +22,8 @@ public class SearchHistoryService {
     private final Utils utils;
     private final SearchHistoryRepository repository;
 
+    @PersistenceContext
+    private EntityManager em;
     public void save(String keyword) {
         int uid = utils.getBrowserId();
         LocalDate today = LocalDate.now();
@@ -51,10 +53,16 @@ public class SearchHistoryService {
         builder.and(searchHistory.uid.eq(utils.getBrowserId()))
                 .and(searchHistory.searchDate.goe(date));
 
-        Pageable pageable = PageRequest.of(0, limit);
-        Page<SearchHistory> data = repository.findAll(builder, pageable);
 
-        return data.getContent();
+        JPAQueryFactory factory = new JPAQueryFactory(em);
+        List<SearchHistory> items = factory.selectFrom(searchHistory)
+                .where(builder)
+                .offset(0)
+                .limit(limit)
+                .groupBy(searchHistory.keyword)
+                .fetch();
+
+        return items;
     }
 
 

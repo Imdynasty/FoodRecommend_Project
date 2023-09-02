@@ -130,7 +130,7 @@ header .logo_search { background: #e6e6dd; }
 header .logo_search > .inner { display: flex; align-items: center; justify-content: space-between; }
 header .logo_search .logo, header .logo_search .links { width: 0; flex-grow: 1; }
 header .logo_search .logo img { height: 100px; }
-header .frm_search { display: flex; width: 450px; border: 1px solid #d5d5d5; }
+header .frm_search { display: flex; width: 550px; border: 1px solid #d5d5d5; }
 header .frm_search input[type='text'] { flex-grow: 1; height: 46px; border: 0; }
 header .frm_search input[type='image'] { border-left: 0; }
 header .logo_search .links { text-align: right; }
@@ -138,7 +138,7 @@ header nav { text-align: center; height: 50px; line-height: 50px; font-size: 1.4
 header nav a+a { margin-left: 150px; }
 /** 헤더 영역 E */
 /** 본문 영역 S */
-main { margin-top: 240px; }
+main { margin-top: 259px; }
 
 /** 본문 영역 E */
 /** 푸터 영역 S */
