@@ -22,7 +22,6 @@ import java.util.Random;
 public class FindController {
 
     private final SearchMemberService searchMemberService;
-    private final EditInfoValidator editInfoValidator;
     private final MemberRepository repository;
     private final PasswordEncoder encoder;
 
