@@ -36,7 +36,8 @@
                     <input type="image" th:src="@{/common/images/search_btn.gif}">
                 </form>
                 <div class="links">
-                    링크 추가
+                    <a th:href="@{/board/list/notice}">공지사항</a>
+                    <a th:href="@{/board/list/qna}">고객센터</a>
                 </div>
 
             </div>
@@ -49,8 +50,8 @@
         </div>
         <nav>
             <a th:href="@{/restaurant}">맛집찾기</a>
-            <a href="#">테마</a>
-            <a href="#">마켓</a>
+            <a th:href="@{/board/list/review}">맛집후기</a>
+            <a th:href="@{/board/list/qna}">고객센터</a>
         </nav>
     </header>
 </html>
