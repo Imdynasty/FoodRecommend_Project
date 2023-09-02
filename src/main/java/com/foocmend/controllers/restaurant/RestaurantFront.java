@@ -4,6 +4,7 @@ import com.foocmend.commons.*;
 import com.foocmend.entities.Restaurant;
 import com.foocmend.services.restaurant.SearchRestaurantService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/restaurant")
 @RequiredArgsConstructor
@@ -41,6 +43,23 @@ public class RestaurantFront implements CommonProcess, ScriptExceptionProcess {
         model.addAttribute("item", item);
 
         return utils.view("restaurant/view");
+    }
+
+    /**
+     * 개인 위치 및 선호 검색어 기준 음식점 목록
+     *
+     * @param search
+     * @param model
+     * @return
+     */
+    @GetMapping("/my")
+    public String my(RestaurantSearchForm search, Model model) {
+        log.info(search.toString());
+        ListData<Restaurant> data = searchService.getList(search);
+
+        model.addAttribute("items", data.getContent());
+
+        return utils.view("restaurant/my");
     }
 
     public void commonProcess(Model model, String mode) {
