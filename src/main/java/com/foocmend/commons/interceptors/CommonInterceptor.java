@@ -1,6 +1,7 @@
 package com.foocmend.commons.interceptors;
 
 import com.foocmend.commons.Utils;
+import com.foocmend.services.search.SearchHistoryService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @RequiredArgsConstructor
 public class CommonInterceptor implements HandlerInterceptor {
     private final HttpServletRequest request;
+    private final SearchHistoryService historyService;
     private final Utils utils;
 
     @Override
@@ -46,5 +48,9 @@ public class CommonInterceptor implements HandlerInterceptor {
         // URL에 ?device=mobile이 있는 경우
         device = _device == null ? device : _device.equals("mobile") ? "mobile" : "pc";
         session.setAttribute("device", device);
+
+        // 검색어 기록 추출
+        request.setAttribute("searchHistories", historyService.getRecents());
+
     }
 }

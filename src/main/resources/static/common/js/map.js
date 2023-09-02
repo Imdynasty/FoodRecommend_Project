@@ -54,9 +54,7 @@ commonLib.map = {
             hideMarkers();
 
             // 마커를 생성합니다
-            const marker = new kakao.maps.Marker({
-                position: position
-            });
+            const marker = new kakao.maps.Marker({ position });
 
             // 마커가 지도 위에 표시되도록 설정합니다
             marker.setMap(map);
