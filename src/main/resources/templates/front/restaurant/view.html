@@ -2,9 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
-<th:block layout:fragment="addScript">
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ecb744762773804f037af730d26d0ff4&libraries=services"></script>
-</th:block>
 <main layout:fragment="content">
 
     <th:block th:replace="~{front/restaurant/_category::category}"></th:block>
