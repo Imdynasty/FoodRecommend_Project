@@ -22,7 +22,17 @@
                 </a>
 
                 <form class='frm_search' name="frmSearch" method="get" th:action="@{/restaurant}" autocomplete="off">
-                    <input type="text" name="skey" placeholder="오늘 뭐 먹지?">
+                    <input type="hidden" name="sopt" value="all">
+                    <input type="hidden" name="type" th:value="${param.type}">
+                    <select name="sido" class="ajax_sido">
+                        <option value="">- 시도 선택 -</option>
+                        <option th:each="sido : ${sidos}" th:value="${sido}" th:text="${sido}" th:selected="${sido == _sido}"></option>
+                    </select>
+                    <select name="sigugun" class="ajax_gigugun">
+                        <option value="">- 시구군 선택 -</option>
+                        <option th:if="${siguguns != null}" th:each="sigugun : ${siguguns}" th:value="${sigugun}" th:text="${sigugun}" th:selected="${sigugun == _sigugun}"></option>
+                    </select>
+                    <input type="text" name="skey" placeholder="오늘 뭐 먹지?" th:value="${param.skey}">
                     <input type="image" th:src="@{/common/images/search_btn.gif}">
                 </form>
                 <div class="links">
@@ -34,7 +44,7 @@
         <div class="recent_searches">
             <h3>최근 검색어</h3>
             <div>
-            <a th:each="item : ${searchHistories}" th:object="${item}" th:href="@{/restaurant?skey=(key=*{keyword})}" th:text="*{keyword}"></a>
+            <a th:each="item : ${searchHistories}" th:object="${item}" th:href="@{/restaurant?skey={key}(key=*{keyword})}" th:text="*{keyword}"></a>
             </div>
         </div>
         <nav>

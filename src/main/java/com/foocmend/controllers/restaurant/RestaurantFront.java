@@ -1,15 +1,13 @@
 package com.foocmend.controllers.restaurant;
 
-import com.foocmend.commons.CommonProcess;
-import com.foocmend.commons.ListData;
-import com.foocmend.commons.ScriptExceptionProcess;
-import com.foocmend.commons.Utils;
+import com.foocmend.commons.*;
 import com.foocmend.entities.Restaurant;
 import com.foocmend.services.restaurant.SearchRestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,9 +22,9 @@ public class RestaurantFront implements CommonProcess, ScriptExceptionProcess {
     private final Utils utils;
 
     @GetMapping
-    public String index(RestaurantSearchForm search, Model model) {
+    public String index(@ModelAttribute RestaurantSearchForm search, Model model) {
         commonProcess(model, "search");
-        String type = search.getType();
+
         ListData<Restaurant> data = searchService.getList(search);
         model.addAttribute("items", data.getContent());
         model.addAttribute("pagination", data.getPagination());
@@ -34,10 +32,12 @@ public class RestaurantFront implements CommonProcess, ScriptExceptionProcess {
     }
 
     @GetMapping("/view/{id}")
-    public String view(@PathVariable Long id, Model model) {
+    public String view(@PathVariable Long id, @ModelAttribute RestaurantSearchForm search, Model model) {
         commonProcess(model, "view");
 
         Restaurant item = searchService.get(id);
+        search.setType(item.getType());
+
         model.addAttribute("item", item);
 
         return utils.view("restaurant/view");

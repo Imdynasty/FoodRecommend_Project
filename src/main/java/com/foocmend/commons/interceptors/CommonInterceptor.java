@@ -1,5 +1,6 @@
 package com.foocmend.commons.interceptors;
 
+import com.foocmend.commons.Areas;
 import com.foocmend.commons.Utils;
 import com.foocmend.services.search.SearchHistoryService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -52,5 +53,13 @@ public class CommonInterceptor implements HandlerInterceptor {
         // 검색어 기록 추출
         request.setAttribute("searchHistories", historyService.getRecents());
 
+        String sido = utils.getParam("sido");
+        String sigugun = utils.getParam("sigugun");
+        request.setAttribute("_sido", sido);
+        request.setAttribute("_sigugun", sigugun);
+        request.setAttribute("sidos", Areas.sido);
+        if (sido != null && !sido.isBlank()) {
+            request.setAttribute("siguguns", Areas.getSigugun(sido));
+        }
     }
 }

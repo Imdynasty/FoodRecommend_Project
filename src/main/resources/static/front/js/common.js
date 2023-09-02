@@ -5,6 +5,31 @@ var commonLib = commonLib || {};
 *
 */
 commonLib.geolocation = {
+    async init() {
+        await this.save();
+        const my = this.getMy();
+        if (frmSearch && frmSearch.sido && frmSearch.sido.value == "") {
+            frmSearch.sido.value = my.sido;
+        }
+
+        if (frmSearch && frmSearch.sigugun && frmSearch.sigugun.value == "") {
+            const { area } = commonLib;
+            const siguguns = await area.getSigugun(my.sido);
+            if (!siguguns) return;
+            const targetEl = frmSearch.sigugun;
+            targetEl.innerHTML = "<option value=''>- 시구군 선택-</option>";
+            for (const sgg of siguguns) {
+                const option = document.createElement("option");
+                option.value = sgg;
+                const optionText = document.createTextNode(sgg);
+                option.appendChild(optionText);
+                if (sgg == my.sigugun) {
+                    option.selected = true;
+                }
+                targetEl.appendChild(option);
+            }
+        }
+    },
     /**
     * 현재 위치 가져오기
     *
@@ -38,6 +63,8 @@ commonLib.geolocation = {
                    pos.sigugun=data.region_2depth_name;
                    pos.dong=data.region_3depth_name;
                    localStorage.setItem("myLocation", JSON.stringify(pos));
+
+                   //if (frmSearch && frmSearch.address) frmSearch.address.value = pos.address;
                 }
             });
         } catch (err) {
@@ -61,6 +88,9 @@ commonLib.geolocation = {
 */
 commonLib.search = {
     hours : 3,
+    init() {
+       this.save();
+    },
     /**
     * 최근 검색어 및 검색어 순위 저장
     *
@@ -122,6 +152,6 @@ commonLib.search = {
 
 window.addEventListener("DOMContentLoaded", function() {
     const { geolocation, search } = commonLib;
-    geolocation.save();
-    search.save();
+    geolocation.init();
+    search.init();
 });
