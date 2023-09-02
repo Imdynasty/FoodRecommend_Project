@@ -21,7 +21,7 @@ public class Areas {
             "울산광역시",
             "제주특별자치도",
     };
-
+    
     /**
      * 시구군 조회
      * @param sido
@@ -67,6 +67,28 @@ public class Areas {
         }
 
         return new String[]{};
+
+    }
+    
+    public static String getShortSido(String sido) {
+        if (sido.contains("서울")) return "서울";
+        else if (sido.contains("인천")) return "인천";
+        else if (sido.contains("강원")) return "강원";
+        else if (sido.contains("충청북도") ||sido.contains("충북")) return "충북";
+        else if (sido.contains("충청남도") || sido.contains("충남")) return "충남";
+        else if (sido.contains("대전")) return "대전";
+        else if (sido.contains("세종")) return "세종";
+        else if (sido.contains("전라북도") || sido.contains("전북")) return "전북";
+        else if (sido.contains("전라남도") || sido.contains("전남")) return "전남";
+        else if (sido.contains("광주")) return "광주";
+        else if (sido.contains("경상북도") || sido.contains("경북")) return "경북";
+        else if (sido.contains("경상남도") || sido.contains("경남")) return "경남";
+        else if (sido.contains("부산")) return "부산";
+        else if (sido.contains("대구")) return "대구";
+        else if (sido.contains("울산")) return "울산";
+        else if (sido.contains("제주")) return "제주";
+
+        return sido;
 
     }
 }

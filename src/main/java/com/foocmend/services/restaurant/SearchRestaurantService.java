@@ -1,5 +1,6 @@
 package com.foocmend.services.restaurant;
 
+import com.foocmend.commons.Areas;
 import com.foocmend.commons.ListData;
 import com.foocmend.commons.Pagination;
 import com.foocmend.commons.Utils;
@@ -74,6 +75,7 @@ public class SearchRestaurantService {
 
         String sido = search.getSido(); // 시도 
         String sigugun = search.getSigugun(); // 시구군
+        String[] keywords = search.getKeywords(); // 키워드 검색
 
         /** 조건 및 키워드 검색 S */
         // 음식점 분류에 따른 목록 조회 */
@@ -84,14 +86,29 @@ public class SearchRestaurantService {
 
         /** 시도, 시구군 검색 S */
         if (sido != null && !sido.isBlank()) {
+            BooleanBuilder orBuilder = new BooleanBuilder();
             sido = sido.trim();
-            andBuilder.and(restaurant.roadAddress.contains(sido));
+            orBuilder.or(restaurant.roadAddress.contains(sido))
+                    .or(restaurant.roadAddress.contains(Areas.getShortSido(sido)));
+            andBuilder.and(orBuilder);
         }
         if (sigugun != null && !sigugun.isBlank()) {
             sigugun = sigugun.trim();
             andBuilder.and(restaurant.roadAddress.contains(sigugun));
         }
         /** 시도, 시구군 검색 S */
+
+        /** 키워드 목록 검색 S */
+        if (keywords != null && keywords.length > 0) {
+            BooleanBuilder orBuilder = new BooleanBuilder();
+            for (String key : keywords) {
+                orBuilder.or(restaurant.storeName.contains(key))
+                        .or(restaurant.type.contains(key))
+                        .or(restaurant.description.contains(key));
+            }
+            andBuilder.and(orBuilder);
+        }
+        /** 키워드 목록 검색 E */
 
         if (types != null && !types.isEmpty()) {
             andBuilder.and(restaurant.type.in(types));

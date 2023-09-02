@@ -44,4 +44,3 @@ commonLib.ajaxLoad = function(method, url, params, responseType) {
         };
     });
 }
-

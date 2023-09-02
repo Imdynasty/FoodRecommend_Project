@@ -90,6 +90,7 @@ commonLib.search = {
     hours : 3,
     init() {
        this.save();
+       this.getMyFavorites(10);
     },
     /**
     * 최근 검색어 및 검색어 순위 저장
@@ -137,15 +138,38 @@ commonLib.search = {
     getRanks() {
         let ranks = localStorage.getItem("searchRanks");
         ranks = ranks ? JSON.parse(ranks):[];
-
         return ranks;
     },
     /**
-    * 검색 순위별, 검색 데이터 조회
+    * 개인 검색 순위별, 현재 위치별 검색 데이터 조회
     *
     */
-    getMyFavorites(limit) {
+    async getMyFavorites(limit) {
+        const myFavoriteEls = document.getElementsByClassName("my_favorite");
+        if (myFavoriteEls.length == 0) return;
 
+        const { geolocation, ajaxLoad } = commonLib;
+        const my = geolocation.getMy();
+
+        limit = limit || 10;
+        const keywords = this.getRanks().map(r => `keywords=${r.key}`).join("&");
+        if (!keywords && !my.sido && !my.sido.trim() && !my.sigugun && !my.sigugun.trim())
+            return;
+
+        let url = `/restaurant/my?limit=${limit}`;
+        if (keywords) url += "&" + keywords;
+        if (my.sido && my.sido.trim()) url += `&sido=${my.sido.trim()}`;
+        if (my.sigugun && my.sigugun.trim()) url += `&sigugun=${my.sigugun.trim()}`;
+
+
+        ajaxLoad("GET", url)
+            .then((res) => {
+
+                for (const el of myFavoriteEls) {
+                    el.innerHTML = res;
+                }
+            })
+            .catch((err) => console.error(err));
     }
 };
 

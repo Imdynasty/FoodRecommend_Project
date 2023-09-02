@@ -3,6 +3,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
+    <h1>My Favorite</h1>
+    <div class="my_favorite"></div>
+
     <th:block th:replace="~{front/restaurant/_category::category}"></th:block>
 
     <ul class="layout_width">
@@ -14,7 +17,7 @@
                 <th:block if="*{mainImages != null && !mainImages.isEmpty()}">
                     <img th:each="file, status : *{mainImages}" th:if="${status.first}" th:src="${file.thumbsUrl[0]}">
                 </th:block>
-                <th:block unless="*{mainImages != null && !mainImages.isEmpty()}">
+                <th:block th:unless="*{mainImages != null && !mainImages.isEmpty()}">
                     <div class="no_image">이미지 없음</div>
                 </th:block>
                 <div class="store_nm" th:text="*{storeName}"></div>

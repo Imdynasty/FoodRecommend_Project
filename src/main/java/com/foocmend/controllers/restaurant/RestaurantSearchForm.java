@@ -16,4 +16,5 @@ public class RestaurantSearchForm {
 
     private String sido;
     private String sigugun;
+    private String[] keywords;
 }
