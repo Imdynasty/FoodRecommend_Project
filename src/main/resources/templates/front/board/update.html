@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
-<main layout:fragment="content">
+<main layout:fragment="content" class="board_main">
 
     <th:block th:if="${board.skin == 'default'}"><th:block th:replace="~{front/board/skins/default/update::skin}"></th:block></th:block>
 

@@ -23,11 +23,14 @@ select { border: 1px solid #d5d5d5; min-width: 150px; height: 45px; }
 .input_grp > * { margin-right: 5px; }
 
 .dn { display: none !important; }
-.mb5 { margin-bottom: 5px; }
+.mt5 { margin-top: 5px !important; }
+.mt10 { margin-top: 10px !important; }
+.mb5 { margin-bottom: 5px !important; }
+.mb10 { margin-bottom: 10px !important; }
 .w150 { width: 150px !important; }
 
 /** 기본 버튼 스타일 */
-.sbtn { display: inline-block; border: 1px solid #596b99; color: #596b99; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
+.sbtn { cursor: pointer; display: inline-block; border: 1px solid #596b99; color: #596b99; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
 .sbtn.blue { color: #fff; background:#596b99; }
 
 .btns { display: flex; width: 400px; margin: 0 auto; }
@@ -62,3 +65,6 @@ h2 { font-size: 18px; font-weight: bold; margin: 25px 0 10px; line-height: 1; }
 .table-rows th:first-of-type, .table-rows td:first-of-type { border-left: 1px solid #d5d5d5; }
 
 .table-action { padding: 10px 0; border-bottom: 1px solid #d5d5d5; }
+.ac { text-align: center;}
+.al { text-align: left; }
+.ar { text-align: right; }

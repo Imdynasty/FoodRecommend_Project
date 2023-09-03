@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="form" th:object="${boardForm}">
     <div class="errors global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
-    <input th:if="${board.useAttachImage && board.useAttachFile }" type="file" id="file" class="dn" multiple>
+    <input th:if="${board.useAttachImage || board.useAttachFile }" type="file" id="file" class="dn" multiple>
     <dl>
         <dt th:text="#{board.poster}"></dt>
         <dd>
@@ -42,7 +42,7 @@
             <div class="errors" th:each="err : ${#fields.errors('content')}" th:text="${err}"></div>
 
             <th:block th:if="${board.useEditor && board.useAttachImage}">
-                <button type="button" class="sbtn upload_files mt10" data-location="editor" data-image-only="true">이미지 추가</button>
+                <button type="button" class="sbtn upload_files mt10 mb10" data-location="editor" data-image-only="true">이미지 추가</button>
                 <div class="attachedFiles" id="attachedFiles_editor">
                     <span th:if="*{editorImages != null}" th:each="file : *{editorImages}" th:object="${file}" class="file_items" th:id="*{'file_' + id}">
                         <a th:href="@{/file/download/{id}(id=*{id})}" th:text="*{fileName}"></a>
@@ -58,7 +58,7 @@
     <dl th:if="${board.useAttachFile == true}">
         <dt th:text="#{board.attach.file}"></dt>
         <dd>
-            <button type="button" class="sbtn upload_files" th:text="#{board.attach.file}"  data-location="attach"></button>
+            <button type="button" class="sbtn mb10 upload_files" th:text="#{board.attach.file}"  data-location="attach"></button>
             <div class="attachedFiles" id="attachedFiles_files">
                 <span th:if="*{attachFiles != null}" th:each="file : *{attachFiles}" th:object="${file}" class="file_items" th:id="*{'file_' + id}"><a th:href="@{/file/download/{id}(id=*{id})}" th:text="*{fileName}"></a><a th:href="@{/file/delete/{id}(id=*{id})}" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess" class="remove">
                             <i class="xi-close-min"></i>
