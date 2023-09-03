@@ -13,6 +13,7 @@
             조회된 음식점이 없습니다.
         </li>
         <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
+            <span class="toggle_wish" th:data-id="*{id}">wish</span>
             <a th:href="@{/restaurant/view/{id}(id=*{id})}">
                 <th:block if="*{listImages != null && !listImages.isEmpty()}">
                     <img th:each="file, status : *{listImages}" th:if="${status.first}" th:src="${file.thumbsUrl[0]}">
