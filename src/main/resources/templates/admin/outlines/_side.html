@@ -3,12 +3,6 @@
 <aside th:fragment="menu">
     <ul>
         <li>
-            <a th:href="@{/admin/config}" th:classappend="${menuCode} == 'config' ? 'on'">
-                <i class="xi-cog"></i>
-                사이트 설정
-            </a>
-        </li>
-        <li>
             <a th:href="@{/admin/member}" th:classappend="${menuCode} == 'member' ? 'on'">
                 <i class="xi-users-o"></i>
                 회원 관리
