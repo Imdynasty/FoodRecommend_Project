@@ -1,5 +1,7 @@
 package com.foocmend.services.member;
 
+import com.foocmend.commons.validators.EditInfoValidator;
+import com.foocmend.commons.validators.PasswordValidator;
 import com.foocmend.entities.Member;
 import com.foocmend.repositories.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +17,8 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class SearchMemberService implements UserDetailsService {
+public class SearchMemberService implements UserDetailsService, PasswordValidator {
+
     private final MemberRepository repository;
 
     @Override
@@ -36,5 +39,13 @@ public class SearchMemberService implements UserDetailsService {
                 .role(member.getRole())
                 .authorities(authorities)
                 .build();
+    }
+    public String findUserIdByEmailAndNickname(String email, String nickname) {
+        Member findEmail = repository.findByEmailAndNickname(email, nickname);
+
+        if(findEmail != null) {
+            return findEmail.getEmail();
+        }
+        return null;
     }
 }

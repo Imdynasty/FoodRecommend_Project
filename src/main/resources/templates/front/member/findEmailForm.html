@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <form th:action="@{/member/find/email}" method="POST" autocomplete="off">
+        <input type="email" name="email" placeholder="Email">
+        <input type="text" name="nickname" placeholder="Nickname">
+        <button type="submit">Find</button>
+    </form>
+</main>
