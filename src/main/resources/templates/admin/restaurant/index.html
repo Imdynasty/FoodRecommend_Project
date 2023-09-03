@@ -57,7 +57,9 @@
             <tbody>
                 <tr th:if="${items != null && items.size() > 0}" th:each="item, status : ${items}" th:object="${item}">
                     <td>
-                        <input type="checkbox" name="chkNo" th:value="${status.index}" th:id="${'chkNo_' + status.index}">
+                        <input type="checkbox" name="
+
+" th:value="${status.index}" th:id="${'chkNo_' + status.index}">
                         <label th:for="${'chkNo_' + status.index}" class="standalone"></label>
                         <input type="hidden" th:name="${'id_' + status.index}" th:value="*{id}">
                     </td>

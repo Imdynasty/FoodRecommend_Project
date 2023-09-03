@@ -19,6 +19,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller("adminBoard")
 @RequestMapping("/admin/board")
@@ -95,6 +96,7 @@ public class BoardAdmin {
 
     private void commonProcess(Model model, String title) {
         String URI = request.getRequestURI();
+        title = Objects.requireNonNullElse(title, "list");
 
         // 서브 메뉴 처리
         String subMenuCode = Menu.getSubMenuCode(request);
