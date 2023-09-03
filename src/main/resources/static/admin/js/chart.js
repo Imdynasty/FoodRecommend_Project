@@ -1,7 +1,7 @@
 
   const ctx = document.getElementById('myChart');
   const ctx2 = document.getElementById('myChart2');
-  const list = document.querySelector("#chart");
+  /** const list = document.querySelector("#chart"); */
   console.log(list);
 
 

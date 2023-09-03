@@ -27,6 +27,9 @@
         <canvas id="myChart"></canvas>
         <canvas id="myChart2"></canvas>
     </div>
+    <script th:inline="javascript">
+        const list = [[${list}]]
+    </script>
     <script type="text/javascript" th:inline="javascript" th:src="@{/admin/js/chart2.js}"></script>
     <script type="text/javascript" th:inline="javascript" th:src="@{/admin/js/chart.js}"></script>
 </section>
