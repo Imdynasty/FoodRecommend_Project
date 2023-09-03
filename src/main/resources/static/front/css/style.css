@@ -64,11 +64,11 @@ h1 { font-size: 1.75rem; padding: 0; margin: 0; margin-bottom: 20px; }
 
 
 /** 기본 버튼 스타일 */
-.sbtn { display: inline-block; border: 1px solid #689a9f; color: #689a9f; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
+.sbtn { display: inline-block; background: #fff; border: 1px solid #689a9f; color: #689a9f; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
 .sbtn.blue { color: #fff; background:#689a9f; }
 
 .btns { display: flex; width: 400px; margin: 0 auto; }
-.btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 15px; border: 1px solid #000; }
+.btns > button { width: 0; background: #fff;  flex-grow: 1; height: 50px; font-size: 15px; border: 1px solid #000; }
 .btns > button:last-of-type { background: #000; color: #fff; }
 
 .search_btn { text-align: center; margin: 20px 0 35px; }
@@ -120,7 +120,7 @@ span > input[type='radio']~label.standalone { padding: 0; width: 28px; margin: 0
 .pagination a.on { background-color: #689a9f; color: #ffffff; border-color: #689a9f; }
 
 /** 헤더 영역 S */
-header { position: fixed; top: 0; left: 0; width: 100%; background: #fff; border-bottom: 1px solid #000; }
+header { position: fixed; z-index: 10; top: 0; left: 0; width: 100%; background: #fff; border-bottom: 1px solid #000; }
 header .top_menus { border-bottom: 1px solid #d7d7d7; height: 32px; }
 header .top_menus > .inner { line-height: 31px; text-align: right;  }
 header .top_menus .login_info { color: #689a9f; font-weight: bold; }
@@ -130,7 +130,7 @@ header .logo_search { background: #e6e6dd; }
 header .logo_search > .inner { display: flex; align-items: center; justify-content: space-between; }
 header .logo_search .logo, header .logo_search .links { width: 0; flex-grow: 1; }
 header .logo_search .logo img { height: 100px; }
-header .frm_search { display: flex; width: 450px; border: 1px solid #d5d5d5; }
+header .frm_search { display: flex; width: 550px; border: 1px solid #d5d5d5; }
 header .frm_search input[type='text'] { flex-grow: 1; height: 46px; border: 0; }
 header .frm_search input[type='image'] { border-left: 0; }
 header .logo_search .links { text-align: right; }
@@ -138,7 +138,7 @@ header nav { text-align: center; height: 50px; line-height: 50px; font-size: 1.4
 header nav a+a { margin-left: 150px; }
 /** 헤더 영역 E */
 /** 본문 영역 S */
-main { margin-top: 240px; }
+main { margin-top: 259px; }
 
 /** 본문 영역 E */
 /** 푸터 영역 S */
@@ -146,3 +146,9 @@ footer { background: #e6e6dd; margin-top: 100px; min-height: 150px; }
 footer > .inner { padding: 20px 10px; }
 
 /** 푸터 영역 E */
+
+
+.file_items { display: inline-block; border: 1px solid #000; border-radius: 3px; padding: 5px 10px; margin-right: 3px; margin-bottom: 3px; }
+.file_items > a:hover { text-decoration: underline; }
+.file_items .insert_editor { cursor: pointer;  }
+.file_items i { font-size: 15px; }

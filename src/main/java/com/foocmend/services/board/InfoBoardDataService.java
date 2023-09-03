@@ -76,8 +76,8 @@ public class InfoBoardDataService {
 
         /* 검색 처리 S */
         BooleanBuilder andBuilder = new BooleanBuilder();
-        andBuilder.and(boardData.board.bId.eq(bId)); // 게시판 아이디
-
+        andBuilder.and(boardData.board.bId.eq(bId)) // 게시판 아이디
+                .and(boardData.deletedDt.isNull()); // 미삭제 게시글만 조회 
         /* 검색 처리 E */
         String sopt = search.getSopt();
         String skey = search.getSkey();

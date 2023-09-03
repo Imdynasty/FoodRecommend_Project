@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Controller("frontBoard")
 @RequestMapping("/board")
 @RequiredArgsConstructor
@@ -52,7 +54,7 @@ public class BoardFront {
     public String list(@PathVariable String bId, @ModelAttribute BoardSearch search, Model model) {
         commonProcess(bId, "list", model);
         ListData<BoardData> data = infoService.getList(bId, search);
-
+        log.info(board.toString());
         model.addAttribute("items", data.getContent());
         model.addAttribute("pagination", data.getPagination());
 
@@ -269,16 +271,12 @@ public class BoardFront {
 
                 throw new GuestPasswordNotCheckedException(); // 비빌번호 확인 페이지 노출
             }
-
         } else { // 글을 작성한 회원쪽만 가능하게 통제
-            if (memberUtil.isLogin()
-                    && memberUtil.getMember().getMemNo() != boardData.getMember().getMemNo()) {
+            if (!memberUtil.isLogin() || (memberUtil.isLogin()
+                    && memberUtil.getMember().getMemNo() != boardData.getMember().getMemNo())) {
                 throw new BoardNotAllowAccessException();
             }
         }
-
-
-
 
     }
 

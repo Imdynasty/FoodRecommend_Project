@@ -65,7 +65,8 @@
                     <td align="center" th:text="*{storeName}"></td>
                     <td th:text="*{roadAddress}"></td>
                     <td>
-                        <a th:href="@{/admin/restaurant/update/{id}(id=*{id})}" class="sbtn">수정하기</a>
+                        <a th:href="@{/restaurant/view/{id}(id=*{id})}" class="sbtn" target="_blank">미리보기</a>
+                        <a th:href="@{/admin/restaurant/update/{id}(id=*{id})}" class="sbtn blue">수정하기</a>
                     </td>
                 </tr>
                 <tr th:if="${items == null || items.size() == 0}">

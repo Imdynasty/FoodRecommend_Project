@@ -3,18 +3,20 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
-    <th:block th:replace="~{front/restaurant/_category::category}"></th:block>
-
+    <div th:if="${categories != null && !categories.isEmpty()}" th:each="category : ${categories}">
+        <a th:href="@{/restaurant?type={type}(type=${category.cateNm})}" th:text="${category.cateNm}"></a>
+    </div>
     <ul class="layout_width">
         <li th:if="${items == null || items.isEmpty()}">
             조회된 음식점이 없습니다.
         </li>
         <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
+            <span class="toggle_wish" th:data-id="*{id}">wish</span>
             <a th:href="@{/restaurant/view/{id}(id=*{id})}">
-                <th:block if="*{mainImages != null && !mainImages.isEmpty()}">
+                <th:block th:if="*{mainImages != null && !mainImages.isEmpty()}">
                     <img th:each="file, status : *{mainImages}" th:if="${status.first}" th:src="${file.thumbsUrl[0]}">
                 </th:block>
-                <th:block unless="*{mainImages != null && !mainImages.isEmpty()}">
+                <th:block th:unless="*{mainImages != null && !mainImages.isEmpty()}">
                     <div class="no_image">이미지 없음</div>
                 </th:block>
                 <div class="store_nm" th:text="*{storeName}"></div>

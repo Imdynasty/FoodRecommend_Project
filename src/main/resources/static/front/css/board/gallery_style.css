@@ -1,0 +1,34 @@
+.board_main { width: 920px; margin: 300px auto 20px auto; }
+.board_main * { box-sizing: border-box; }
+.board_main dl { display: flex; margin-bottom: 10px; }
+.board_main dt { width: 90px; }
+.board_main dd { flex-grow: 1; }
+.board_btns a { display: inline-block; cursor: pointer; border: 1px solid #689a9f; border-radius: 3px; height: 35px; line-height: 33px; padding: 0 15px; color: #689a9f; transition: all 0.5s; }
+.board_btns a * { color: #689a9f; }
+.board_btns a:hover { background: #689a9f; color: #fff; }
+.board_btns a:hover * { color: #fff; }
+
+.board_list { margin: 25px 0; }
+.board_list .no_image { font-size: 11px; background: #f8f8f8; height: 80px; width: 80px; text-align: center; line-height: 80px; border: 1px solid #ccc; border-radius: 3px; }
+
+.board_list li { border-bottom: 1px solid #d5d5d5; display: flex; height: 100px; padding: 10px;  }
+.board_list li:first-of-type { border-top: 1px solid #d5d5d5; }
+.board_list li a { ellipsis; word-break: all; }
+.board_list li a.photo img { height: 80px; }
+.board_list li a.photo { margin-right: 15px; }
+.board_list li a:nth-of-type(2) { flex-grow: 1; }
+.board_list li .post_info { text-align: right; }
+.board_list li.board_search { display: block; padding: 5px 10px; height: auto; }
+.board_list #frmBdSearch { display: flex; justify-content: flex-end; }
+.board_list #frmBdSearch select { height: 30px; width: 100px; }
+.board_list #frmBdSearch input[type='text'] { margin-left: 5px; width: 180px; height: 30px; }
+.board_list #frmBdSearch button { margin-left: 5px; height: 30px; }
+.board_view .subject { padding: 10px 15px; border: 1px solid #d5d5d5; font-size: 14px; font-weight: bold; border-radius: 3px; }
+.board_view .post_info { display: flex; justify-content: space-between; padding: 10px; }
+.board_view .content { min-height: 350px; border: 1px solid #d5d5d5; padding: 15px; border-radius: 3px; margin-bottom: 10px; }
+.board_list .no_data { display: block; padding: 100px; text-align: center; border: 1px solid #d5d5d5; border-left: 0; border-right: 0; }
+.board_view .content img { max-width: 880px; }
+.board_view .downloads { border: 1px solid #d5d5d5; margin-bottom: 10px; padding: 0 15px; background: #f8f8f8; }
+.board_view .downloads li { padding: 10px 0; }
+.board_view .downloads li+li { border-top: 1px dashed #d5d5d5; }
+.board_view .downloads li a:hover { text-decoration: underline; }
