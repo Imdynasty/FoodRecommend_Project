@@ -174,8 +174,27 @@ commonLib.search = {
 };
 
 
+
 window.addEventListener("DOMContentLoaded", function() {
-    const { geolocation, search } = commonLib;
+    const { geolocation, search, ajaxLoad } = commonLib;
     geolocation.init();
     search.init();
+
+    /** 찜하기 버튼 클릭 이벤트 처리 S */
+    const wishToggles = document.getElementsByClassName("toggle_wish");
+    for (const el of wishToggles) {
+        el.addEventListener("click", function() {
+            const id = this.dataset.id;
+            if (!id) return;
+            let url = "/wish/";
+            url = this.classList.contains("on") ? url += "delete"  : url += "save";
+            url += `?id=${id}`;
+            ajaxLoad("GET", url)
+                .then((res) => {
+                    el.classList.contains("on") ? el.classList.remove("on") : el.classList.add("on");
+                })
+                .catch((err) => console.error(err));
+        });
+    }
+    /** 찜하기 버튼 클릭 이벤트 처리 E */
 });

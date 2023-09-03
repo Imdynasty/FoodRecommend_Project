@@ -101,10 +101,12 @@ public class Utils {
      * @return
      */
     public int getBrowserId() {
-        long memNo = memberUtil.isLogin() ? memberUtil.getMember().getMemNo() : 0;
-        String ua = request.getHeader("User-Agent");
-        String ip = request.getRemoteAddr();
+        if (memberUtil.isLogin()) return Objects.hash(memberUtil.getMember().getMemNo());
+        else {
+            String ua = request.getHeader("User-Agent");
+            String ip = request.getRemoteAddr();
 
-        return Objects.hash(memNo, ua, ip);
+            return Objects.hash(ua, ip);
+        }
     }
 }
