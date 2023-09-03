@@ -274,8 +274,6 @@ public class BoardFront {
         } else { // 글을 작성한 회원쪽만 가능하게 통제
             if (!memberUtil.isLogin() || (memberUtil.isLogin()
                     && memberUtil.getMember().getMemNo() != boardData.getMember().getMemNo())) {
-                System.out.println(memberUtil.getMember().getMemNo());
-                System.out.println(boardData.getMember().getMemNo());
                 throw new BoardNotAllowAccessException();
             }
         }
