@@ -17,7 +17,6 @@ public class EditInfoValidator implements Validator, PasswordValidator, MobileVa
     private final MemberRepository repository;
     private final MemberUtil memberUtil;
 
-
     @Override
     public boolean supports(Class<?> clazz) {
         return clazz.isAssignableFrom(SignUpForm.class);
@@ -52,11 +51,14 @@ public class EditInfoValidator implements Validator, PasswordValidator, MobileVa
         }
 
         // 3. 닉네임 중복
-        if (nickName != null && !nickName.isBlank()) { // 닉네임이 null이 아니고 공백이 아닐경우
-            if(repository.existsNickname(nickName) && !nickName.equals(member.getNickname())) { // 회원중 같은 닉네임이 존재하거나 로그인한 유저의 닉네임과 폼의 닉네임이 동일하지 않을 경우
-                errors.rejectValue("nickname", "duplicate");
-            }
+        if(nickName != null && !nickName.isBlank() && repository.existsNickname(nickName)) {
+            errors.rejectValue("nickname", "duplicate");
         }
+//        if (nickName != null && !nickName.isBlank()) { // 닉네임이 null이 아니고 공백이 아닐경우
+//            if(repository.existsNickname(nickName) && !nickName.equals(member.getNickname())) { // 회원중 같은 닉네임이 존재하거나 로그인한 유저의 닉네임과 폼의 닉네임이 동일하지 않을 경우
+//                errors.rejectValue("nickname", "duplicate");
+//            }
+//        }
 
         // 4. 휴대전화번호 형식 체크
         if (mobile != null && !mobile.isBlank()) {
