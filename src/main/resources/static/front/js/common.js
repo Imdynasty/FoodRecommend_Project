@@ -8,7 +8,7 @@ commonLib.geolocation = {
     async init() {
         await this.save();
         const my = this.getMy();
-        if (frmSearch && frmSearch.sido && frmSearch.sido.value == "") {
+        if (frmSearch && frmSearch.sido && frmSearch.sido.value == "" && my.sido && my.sido.trim()) {
             frmSearch.sido.value = my.sido;
         }
 
