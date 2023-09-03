@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <form th:action="@{/member/withdraw}" method="POST">
+        <div>
+            <span>회원 탈퇴를 할 경우 모든 회원 정보가 삭제 되며 복구 할 수 없습니다.</span>
+        </div>
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">탈퇴하기</button>
+    </form>
+</main>
