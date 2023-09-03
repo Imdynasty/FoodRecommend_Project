@@ -9,11 +9,15 @@
 .board_btns a:hover * { color: #fff; }
 
 .board_list { margin: 25px 0; }
+.board_list .no_image { font-size: 11px; background: #f8f8f8; height: 80px; width: 80px; text-align: center; line-height: 80px; border: 1px solid #ccc; border-radius: 3px; }
 
-.board_list li { border-bottom: 1px solid #d5d5d5; display: flex; height: 50px; }
+.board_list li { border-bottom: 1px solid #d5d5d5; display: flex; height: 100px; padding: 10px;  }
 .board_list li:first-of-type { border-top: 1px solid #d5d5d5; }
-.board_list li a { flex-grow: 1; line-height: 48px; padding: 0 10px; text-overflow: ellipsis; word-break: all; overflow: hidden; }
-.board_list li .post_info { width: 400px; display: flex; align-items: center; justify-content: right; }
+.board_list li a { ellipsis; word-break: all; }
+.board_list li a.photo img { height: 80px; }
+.board_list li a.photo { margin-right: 15px; }
+.board_list li a:nth-of-type(2) { flex-grow: 1; }
+.board_list li .post_info { text-align: right; }
 .board_list li.board_search { display: block; padding: 5px 10px; height: auto; }
 .board_list #frmBdSearch { display: flex; justify-content: flex-end; }
 .board_list #frmBdSearch select { height: 30px; width: 100px; }

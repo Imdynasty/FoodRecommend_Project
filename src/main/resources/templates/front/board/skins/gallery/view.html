@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="skin">
     <th:block th:replace="~{front/board/skins/default/_board_title::title}"></th:block>
-    <div class="board_view" th:object="${boardData}">
+    <ul class="board_view" th:object="${boardData}">
         <div class="subject" th:text="*{subject}"></div>
         <div class="post_info">
             <div class="left">
                 [[#{board.poster}]] : [[*{poster}]]
-                <th:block th:if="*{member != null}" th:text="*{'(' + member.userId + ')'}"></th:block>
+                <th:block th:if="*{member != null}" th:text="*{'(' + member.email + ')'}"></th:block>
                 / [[#{board.datetime}]] : [[*{#temporals.format(createdDt, 'yyyy.MM.dd HH:mm')}]]
             </div>
             <div class="right">
@@ -18,13 +18,18 @@
             </div>
         </div> <!--// post_info -->
         <div class="content" th:utext="*{content}"></div>
-        <div class="btns">
+        <ul class="downloads" th:if="*{attachFiles != null}">
+            <li th:each="file, status : *{attachFiles}" th:object="${file}">DOWNLOAD[[${status.count}]] :
+                <a th:href="@{/file/download/{id}(id=*{id})}" th:text="*{fileName}"></a>
+            </li>
+        </ul>
+        <div class="board_btns">
             <a th:href="@{/board/{id}/update(id=*{id})}" th:text="#{board.update}"></a>
             <a th:href="@{/board/delete/{id}(id=*{id})}" th:text="#{board.delete}" onclick="return confirm('정말 삭제 하시겠습니까?');"></a>
             <a th:href="@{/board/write/{bId}(bId=*{board.bId})}" th:text="#{board.write}"></a>
             <a th:if="${board.useReply == true}" th:href="@{/board/reply/(id=*{id})}" th:text="#{board.reply}"></a>
             <a th:href="@{/board/list/{bId}(bId=*{board.bId})}" th:text="#{board.list}"></a>
         </div>
-    </div> <!--// board_view -->
+    </ul> <!--// board_view -->
 </th:block>
 </html>

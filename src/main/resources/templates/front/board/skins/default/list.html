@@ -2,22 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="skin">
     <th:block th:replace="~{front/board/skins/default/_board_title::title}"></th:block>
-    <ul>
-        <li th:if="${items != null && items.size() > 0}" th:each="item : ${items}" th:object="${item}">
-            <a th:href="@{/board/view/{id}(id=*{id})}" th:text="*{subject}"></a>
+    <div class="board_btns ar">
+        <a th:href="@{/board/write/{bId}(bId=${board.bId})}">
+            <i class="xi-pen"></i>글작성
+        </a>
+    </div>
+    <ul class="board_list">
+        <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
+            <a th:href="@{/board/view/{id}(id=*{id})}" th:text="*{subject}" class="subject"></a>
             <span class="post_info">
                 <span class="poster">
-                    <th:block th:text="*{'작성자:' + poster}"></th:block>
+                    <th:block th:text="*{poster}"></th:block>
                     <th:block th:if="*{member != null}" th:text="*{'(' + member.email + ')'}"></th:block>
                 </span>
-                <span class="hit" th:if="*{hit > 0 && hit < 1000}" th:text="*{'조회수:' + hit}"></span>
-                <span class="hit" th:if="*{hit > 1000}" th:text="*{'조회수:' + #numbers.formatInteger(hit, 3, 'COMMA')}"></span>
-                <span class="created_dt" th:text="*{'작성일시:' + #temporals.format(createdDt, 'yyyy.MM.dd HH:mm')}"></span>
+                <span class="hit" th:if="*{hit > 0 && hit < 1000}" th:text="*{' / HIT:' + hit}"></span>
+                <span class="hit" th:if="*{hit > 1000}" th:text="*{' / HIT:' + #numbers.formatInteger(hit, 3, 'COMMA')}"></span>
+                <span class="created_dt" th:text="*{' / DATE:' + #temporals.format(createdDt, 'yyyy.MM.dd HH:mm')}"></span>
 
             </span>
         </li>
-        <li th:unless="${items != null && items.size() > 0}" class="no_data">
+        <li th:unless="${items != null && !items.isEmpty()}" class="no_data">
             등록된 게시글이 없습니다.
+        </li>
+        <li class="board_search">
+            <form id="frmBdSearch" name="frmBdSearch" method="GET" th:action="@{/board/list/{id}(id=${board.bId})}" autocomplete="off" th:object="${boardSearch}">
+                <input type="hidden" name="page" value="1">
+                <select name="sopt" th:field="*{sopt}">
+                    <option value="all">통합검색</option>
+                    <option value="subject">제목</option>
+                    <option value="content">내용</option>
+                    <option value="subject_content">제목+내용</option>
+                    <option value="subject_content">제목+내용</option>
+                    <option value="poster">작성자</option>
+                </select>
+                <input type="text" name="skey" th:field="*{skey}" placeholder="게시글 검색">
+                <button type="submit" class="sbtn blue">조회하기</button>
+            </form>
         </li>
     </ul>
     <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
