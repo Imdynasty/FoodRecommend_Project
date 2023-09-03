@@ -1,4 +1,4 @@
-  window.onload = function() {
+/**  window.onload = function() {
   const ctx = document.getElementById('myChart2');
   const list = document.querySelector("#chart").getAttribute("value");
   console.log(list);
@@ -34,3 +34,4 @@
       }
   })
   }
+  */

@@ -6,9 +6,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/admin/css/main.css}">
 </th:block>
 <th:block layout:fragment="addScript">
-    <script type="text/javascript" th:src="@{https://cdn.jsdelivr.net/npm/chart.js@4.3.3/dist/chart.umd.min.js}"></script>
-    <script th:src="@{/admin/js/chart2.js}"></script>
-    <script th:src="@{/admin/js/chart.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </th:block>
 <section layout:fragment="content">
     <div class="top_box">
@@ -25,11 +23,11 @@
             <p th:text="${total} + '명'"></p>
         </div>
     </form>
-    <form class="charts">
-        <div id="chart" th:value="${list}">
-            <canvas id="myChart" ></canvas>
-            <canvas id="myChart2"></canvas>
-        </div>
-    </form>
+    <div id="chart" th:value="${list}">
+        <canvas id="myChart"></canvas>
+        <canvas id="myChart2"></canvas>
+    </div>
+    <script type="text/javascript" th:inline="javascript" th:src="@{/admin/js/chart2.js}"></script>
+    <script type="text/javascript" th:inline="javascript" th:src="@{/admin/js/chart.js}"></script>
 </section>
 </html>

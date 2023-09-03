@@ -1,7 +1,7 @@
-  window.onload = function() {
+
   const ctx = document.getElementById('myChart');
   const ctx2 = document.getElementById('myChart2');
-  const list = document.querySelector("#chart").getAttribute("value");
+  const list = document.querySelector("#chart");
   console.log(list);
 
 
@@ -28,6 +28,13 @@
           }]
       },
       options: {
+            responsive: false,
+            legend: {
+            		labels: {
+            				fontColor: "red",
+            				fontSize: 15
+           			}
+          },
           scales: {
               y: {
                   beginAtZero: true
@@ -37,7 +44,7 @@
   })
 
   const chart2 = new Chart(ctx2, {
-        type: 'line', // 그래프의 종류
+        type: 'bar', // 그래프의 종류
         data: { //chart에 들어갈 값
             labels: ['한식', '양식', '일식'], // 라벨 값을 대표할 이름
             datasets: [{
@@ -59,6 +66,7 @@
             }]
         },
         options: {
+                responsive: false,
             scales: {
                 y: {
                     beginAtZero: true
@@ -67,4 +75,3 @@
         }
     })
 
-  }
