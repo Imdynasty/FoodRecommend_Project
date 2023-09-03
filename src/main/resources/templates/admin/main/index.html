@@ -5,6 +5,9 @@
 <th:block layout:fragment="addCss">
     <link rel="stylesheet" type="text/css" th:href="@{/admin/css/main.css}">
 </th:block>
+<th:block layout:fragment="addScript">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</th:block>
 <section layout:fragment="content">
     <div class="top_box">
         <img src="/common/images/adminlogo.png" class="main_logo">
@@ -13,12 +16,21 @@
     <form class="count">
         <div class="one_day">
             <p>일일 방문자수</p>
-            <span th:text="${count} + '명'"></span>
+            <p th:text="${count} + '명'"></p>
         </div>
         <div class="total">
             <p>전체 방문자수</p>
-            <span th:text="${count} + '명'"></span>
+            <p th:text="${total} + '명'"></p>
         </div>
     </form>
+    <div id="chart" th:value="${list}">
+        <canvas id="myChart"></canvas>
+        <canvas id="myChart2"></canvas>
+    </div>
+    <script th:inline="javascript">
+        const list = [[${list}]]
+    </script>
+    <script type="text/javascript" th:inline="javascript" th:src="@{/admin/js/chart2.js}"></script>
+    <script type="text/javascript" th:inline="javascript" th:src="@{/admin/js/chart.js}"></script>
 </section>
 </html>

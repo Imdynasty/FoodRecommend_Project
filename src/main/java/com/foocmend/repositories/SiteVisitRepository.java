@@ -34,4 +34,7 @@ public interface SiteVisitRepository extends JpaRepository<SiteVisit, Long>, Que
             "date_format(now(), '%y%m%d')", nativeQuery = true)
     long count();
 
+    @Query(value = "select sum(number) from sitevisit", nativeQuery = true)
+    long total();
+
 }

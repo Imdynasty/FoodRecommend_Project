@@ -10,7 +10,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name="restaurants")
+@Table(name="restaurants",
+    indexes = {
+        @Index(name="idx_restaurant_wishcnt", columnList = "wishCnt DESC, createdDt DESC")
+    }
+)
 @Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class Restaurant extends BaseMember {
     @Id
@@ -34,6 +38,8 @@ public class Restaurant extends BaseMember {
     private String xpos;
     @Column(length=40)
     private String ypos;
+
+    private int wishCnt;
 
     @Lob
     private String description;
