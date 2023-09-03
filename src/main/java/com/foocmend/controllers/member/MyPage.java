@@ -14,6 +14,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -98,6 +100,7 @@ public class MyPage {
 
                 Member loggedInMember = repository.findByEmail(Email);
 
+                signUpForm.setMode("edit");
                 signUpForm.setEmail(loggedInMember.getEmail());
                 signUpForm.setNickname(loggedInMember.getNickname());
                 signUpForm.setGender(loggedInMember.getGender().toString());
@@ -105,8 +108,6 @@ public class MyPage {
                 signUpForm.setAddress(loggedInMember.getAddress());
                 signUpForm.setBirthDate(loggedInMember.getBirthDate());
                 signUpForm.setMobile(loggedInMember.getMobile());
-
-                signUpForm.setMode("edit");
             }
         }
         return "front/member/editInfo";
@@ -127,7 +128,6 @@ public class MyPage {
 
         return "redirect:/member/mypage";
     }
-
 
     private void commonProcess(Model model) {
         model.addAttribute("foods", Foods.getList());

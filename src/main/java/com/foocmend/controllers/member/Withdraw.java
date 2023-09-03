@@ -42,7 +42,7 @@ public class Withdraw {
         Member currMember = memberUtil.getEntity();
         Member member = repository.findByEmail(email);
 
-        if(currMember != null && currMember.getEmail().equals(email)/** && currMember.getPassword().equals(password)*/) {
+        if(currMember != null && currMember.getEmail().equals(email)&& passwordMatches(currMember.getPassword(), password)) {
 
             repository.delete(member);
             repository.flush();
@@ -57,9 +57,9 @@ public class Withdraw {
 
     private boolean passwordMatches(String encodedPassword, String password) {
 
-         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-         passwordEncoder.matches(password, encodedPassword);
-        return encodedPassword.equals(password);
+         PasswordEncoder encoder = new BCryptPasswordEncoder();
+         boolean matches = encoder.matches(password, encodedPassword);
+        return matches;
     }
 
 
