@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <h1>회원관리</h1>
+    <div>
+    <form method="get">
+        <table>
+            <tbody>
+                <tr>
+                    <th>가입일자</th>
+                    <td>
+                        <input type="date" name="createdSdt">
+                        "~"
+                        <input type="date" name="createdEdt">
+                    </td>
+                </tr>
+                <tr>
+                    <th>닉네임</th>
+                    <input type="text">
+                </tr>
+                <tr>
+                    <th>개인정보</th>
+                    <td>
+                        <input type="checkbox" name="algorithm" value="" id="address"><label for="address">주소</label>
+                        <input type="checkbox" name="algorithm" value="" id="gender"><label for="gender">성별</label>
+                        <input type="checkbox" name="algorithm" value="" id="birthDt"><label for="birthDt">연령대</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>선호음식</th>
+                    <td>
+                        <input type="checkbox" name="algorithm" value="" id="korean"><label for="korean">한식</label>
+                        <input type="checkbox" name="algorithm" value="" id="american"><label for="american">중식</label>
+                        <input type="checkbox" name="algorithm" value="" id="japan"><label for="japan">일식</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">검색</button>
+    </form>
+    </div>
+    <div>
+        <th:block th:replace="~{admin/basic/member_list::memberlist}"></th:block>
+    </div>
+</section>
+</html>

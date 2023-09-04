@@ -23,9 +23,9 @@ public class SaveMemberService {
 
     private final MemberUtil memberUtil;
 
-    public void save(SignUpForm form) { 
+    public void save(SignUpForm form) {
         Member member = null;
-        if (memberUtil.isLogin() && form.getMode().equals("edit")) { // 회원정보 수정
+        if (memberUtil.isLogin() && form.getMode().contains("edit")) { // 회원정보 수정
             member = memberUtil.getEntity();
         } else { // 가입
             member = new Member();
@@ -39,7 +39,7 @@ public class SaveMemberService {
         member.setAddress(form.getAddress());
         member.setBirthDate(form.getBirthDate());
         member.setMobile(form.getMobile());
-        
+
         /** 비밀번호 해시화 처리 */
         String password = form.getPassword();
         if (password != null && !password.isBlank()) {
