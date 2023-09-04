@@ -1,12 +1,16 @@
 package com.foocmend.controllers.admin;
 
 import com.foocmend.repositories.SiteVisitRepository;
+import com.foocmend.services.ChartService;
 import com.foocmend.services.visit.VisitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 관리자 페이지 메인
@@ -19,10 +23,14 @@ public class Index {
 
     private final SiteVisitRepository repository;
 
+    private final ChartService service;
+
     @GetMapping
     public String index(Model model) {
 
         commonProcess(model);
+
+        model.addAttribute("list", service.getMapper());
 
         return "admin/main/index";
     }
@@ -30,6 +38,7 @@ public class Index {
     public void commonProcess(Model model) {
 
         model.addAttribute("count", repository.count());
+        model.addAttribute("total", repository.total());
 
     }
 }

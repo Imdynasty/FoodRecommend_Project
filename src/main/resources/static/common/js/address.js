@@ -15,6 +15,7 @@ commonLib.address = {
         const addressName = dataset.addressName;
         new daum.Postcode({
                oncomplete: function(data) {
+                console.log(data);
                    document.querySelector(`input[name='${zipcodeName}']`).value = data.zonecode;
                    document.querySelector(`input[name='${addressName}']`).value = data.address;
                }

@@ -38,7 +38,7 @@ commonLib.map = {
     loadMap(id, xpos, ypos) {
         const mapApi = this;
         const position = new kakao.maps.LatLng(xpos, ypos);
-        const mapContainer = mapApi.getMapContainer("admin_map"), // 지도를 표시할 div
+        const mapContainer = mapApi.getMapContainer("map"), // 지도를 표시할 div
             mapOption = {
                center: position, // 지도의 중심좌표
                level: mapApi.level // 지도의 확대 레벨
@@ -54,9 +54,7 @@ commonLib.map = {
             hideMarkers();
 
             // 마커를 생성합니다
-            const marker = new kakao.maps.Marker({
-                position: position
-            });
+            const marker = new kakao.maps.Marker({ position });
 
             // 마커가 지도 위에 표시되도록 설정합니다
             marker.setMap(map);
@@ -83,18 +81,23 @@ commonLib.map = {
             }
 
             // 지도를 클릭했을때 클릭한 위치에 마커를 추가하도록 지도에 클릭이벤트를 등록합니다
-            kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-                    const latLng = mouseEvent.latLng;
-                    // 클릭한 위치에 마커를 표시합니다
-                    console.log(latLng);
-                    addMarker(latLng);
+            const isViewPageEl = document.querySelector("input[name='isViewPage']");
+            const isViewPage = isViewPageEl && isViewPageEl.value == 'true' ? true : false;
+            // 보기 페이지가 아닌 경우는 클릭 이벤트 추가, 보기페이지 인 경우는 클릭 이벤트 제한
+            if (!isViewPage) {
+                kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+                        const latLng = mouseEvent.latLng;
+                        // 클릭한 위치에 마커를 표시합니다
+                        console.log(latLng);
+                        addMarker(latLng);
 
-                    const ypos = latLng.La;
-                    const xpos = latLng.Ma;
+                        const ypos = latLng.La;
+                        const xpos = latLng.Ma;
 
-                    xposEl.value = xpos;
-                    yposEl.value = ypos;
-                });
+                        xposEl.value = xpos;
+                        yposEl.value = ypos;
+                    });
+            }
     }
 }
 
