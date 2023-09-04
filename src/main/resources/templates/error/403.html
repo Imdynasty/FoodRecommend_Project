@@ -3,6 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
-    <th:block th:replace="~{error/_message::message}"></th:block>
+    <div>
+        <img class="main_errors" th:src="@{/common/images/error/403.png}">
+    </div>
 </main>
 </html>
