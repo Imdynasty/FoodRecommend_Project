@@ -1,21 +1,13 @@
 package com.foocmend.controllers.member;
 
-import com.foocmend.commons.MemberUtil;
-import com.foocmend.commons.Utils;
 import com.foocmend.commons.constants.Foods;
 import com.foocmend.commons.validators.EditInfoValidator;
-import com.foocmend.commons.validators.SignUpValidator;
 import com.foocmend.entities.Member;
 import com.foocmend.repositories.MemberRepository;
-import com.foocmend.services.member.DetailMember;
 import com.foocmend.services.member.SaveMemberService;
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -30,62 +22,12 @@ public class MyPage {
     private final MemberRepository repository;
     private final SaveMemberService saveMemberService;
     private final EditInfoValidator editInfoValidator;
-    private final MemberUtil memberUtil;
-    private final HttpSession session;
 
     @GetMapping
     public String myPageView() {
 
         return "front/member/mypage";
     }
-
-    @GetMapping("/withdraw")
-    public String withdraw() {
-
-        return "front/member/withdraw";
-    }
-
-    @PostMapping("/withdraw")
-    public String withdrawPs(@RequestParam String email, @RequestParam String password) {
-
-
-        if (!memberUtil.isLogin()) {
-            return "redirect:/member/login";
-        }
-
-        Member currMember = memberUtil.getEntity();
-
-
-        if (currMember != null && currMember.getEmail().equals(email) && currMember.getPassword().equals(password)) {
-            Member member = repository.findByEmail(email);
-
-            if (member != null) {
-                repository.delete(member);
-                repository.flush();
-                session.invalidate();
-                return "redirect:/";
-            }
-        }
-        return "redirect:/member/mypage/withdraw";
-//        if(!memberUtil.isLogin()) {
-//            return "redirect:/member/login";
-//        }
-//
-//        Member currMember = memberUtil.getEntity();
-//
-//        if(currMember != null && currMember.getEmail().equals(email) && currMember.getPassword().equals(password)) {
-//            Member member = repository.findByEmail(email);
-//
-//            repository.deleteById(email);
-//            repository.flush();
-//
-//            session.invalidate();
-//            return "redirect:/";
-//        } else {
-//            return "redirect:/member/mypage/withdraw";
-//        }
-    }
-
 
     @GetMapping("/edit")
     public String editInfo(@ModelAttribute SignUpForm signUpForm, Model model) {
@@ -115,7 +57,7 @@ public class MyPage {
 
 
     @PostMapping("/edit")
-    public String editInfoPs(@Valid SignUpForm signUpForm, Errors errors, Model model) {
+    public String editInfoPs(SignUpForm signUpForm, Errors errors, Model model) {
         commonProcess(model);
 
         editInfoValidator.validate(signUpForm, errors);
