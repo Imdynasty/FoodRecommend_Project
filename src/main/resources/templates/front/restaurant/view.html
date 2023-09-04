@@ -4,19 +4,17 @@
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
 
-    <th:block th:replace="~{front/restaurant/_category::category}"></th:block>
-
     <section class="store" th:object="${item}">
         <input type="hidden" name="roadAddress" th:value="*{roadAddress}">
         <input type="hidden" name="isViewPage" th:value="true">
         <div class="info">
             <img th:if="*{mainImages != null && !mainImages.isEmpty()}" th:each="image : *{mainImages}" th:src="${image.fileUrl}" class="main_images">
             <dl>
-                <dt>업체명</dt>
+                <dt style="font-size: 20px; font-weight: bold;">업체명</dt>
                 <dd th:text="*{storeName}"></dd>
             </dl>
             <dl>
-                <dt>주소</dt>
+                <dt style="font-size: 20px; font-weight: bold;">주소</dt>
                 <dd>
                     <div th:text="*{roadAddress}"></div>
                     <div th:if="*{address != null}" th:text="*{address}"></div>
