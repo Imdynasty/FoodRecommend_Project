@@ -31,13 +31,13 @@ public class FindController {
     }
 
     @PostMapping("/email")
-    public String findUserEmail(Model model, @RequestParam String email, @RequestParam String nickname) {
-        String findEmail = searchMemberService.findUserIdByEmailAndNickname(email, nickname);
+    public String findUserEmail(Model model, @RequestParam String nickname, @RequestParam String mobile) {
+        String findEmail = searchMemberService.findEmailByNicknameAndMobile(nickname,mobile);
 
         if(findEmail != null) {
             model.addAttribute("findEmail", findEmail);
         } else {
-            model.addAttribute("error", new UsernameNotFoundException(email));
+            model.addAttribute("error", new UsernameNotFoundException(nickname));
         }
 
         return "front/member/findEmailResult";

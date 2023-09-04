@@ -40,8 +40,8 @@ public class SearchMemberService implements UserDetailsService, PasswordValidato
                 .authorities(authorities)
                 .build();
     }
-    public String findUserIdByEmailAndNickname(String email, String nickname) {
-        Member findEmail = repository.findByEmailAndNickname(email, nickname);
+    public String findEmailByNicknameAndMobile(String nickname,String mobile) {
+        Member findEmail = repository.findEmailByNicknameAndMobile(nickname,mobile);
 
         if(findEmail != null) {
             return findEmail.getEmail();

@@ -2,10 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
-<main layout:fragment="content">
-    <form th:action="@{/member/find/email}" method="POST" autocomplete="off">
-        <input type="email" name="email" placeholder="Email">
-        <input type="text" name="nickname" placeholder="Nickname">
-        <button type="submit">Find</button>
+<main layout:fragment="content" class="find_page">
+    <form th:action="@{/member/find/email}" id="frmMember" method="POST" autocomplete="off">
+        <div class="inner">
+            <div class="msg">가입하신 <span>이메일</span>로 로그인 하세요.</div>
+            <input type="text" name="nickname" placeholder="Nickname">
+            <input type="text" name="mobile" placeholder="Mobile">
+            <button type="submit" th:text="#{member.find.email}"></button>
+        </div>
     </form>
+
 </main>
