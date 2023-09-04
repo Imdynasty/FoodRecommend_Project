@@ -3,6 +3,10 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content" class="board_main">
-   마이페이지!
+
+    <form th:action="@{/member/mypage/delete}" method="POST" autocomplete="off">
+        <input type="password" name="password" placeholder="password">
+        <button type="submit">탈퇴하기</button>
+    </form>
 </main>
 </html>
