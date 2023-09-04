@@ -31,7 +31,7 @@ public class Withdraw {
     }
 
     @PostMapping
-    public String withdrawPs(@RequestParam String email, @RequestParam String password, Model model) {
+    public String withdrawPs(@RequestParam String email, @RequestParam String password, Model model, Error error) {
 
         if(!memberUtil.isLogin()) {
             return "redirect:/member/login";
@@ -50,7 +50,8 @@ public class Withdraw {
 
             return "redirect:/";
         } else {
-            return "redirect:/member/withdraw";
+            model.addAttribute("withdrawFailed","아이디와 비밀번호를 확인해주세요.");
+            return "front/member/withdrawResult";
         }
     }
 

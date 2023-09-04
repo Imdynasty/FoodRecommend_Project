@@ -6,8 +6,9 @@
     <div th:if="${withdrawSuccess}">
         <p>Your UserID: <span th:text="${withdrawSuccess}"></span></p>
     </div>
-    <div th:if="${error}">
-        <p th:text="${error}"></p>
+    <div th:if="${withdrawFailed}">
+        <p th:text="${withdrawFailed}"></p>
+        <button type="submit" th:onclick="|location.href='@{/member/withdraw}'|">돌아가기</button>
     </div>
 </main>
 </html>
