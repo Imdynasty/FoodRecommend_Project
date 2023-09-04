@@ -31,7 +31,7 @@ public class Withdraw {
     }
 
     @PostMapping
-    public String withdrawPs(@RequestParam String email, @RequestParam String password, Model model, Error error) {
+    public String withdrawPs(@RequestParam String email, @RequestParam String password, Model model) {
 
         if(!memberUtil.isLogin()) {
             return "redirect:/member/login";
