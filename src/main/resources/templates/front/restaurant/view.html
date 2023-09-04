@@ -4,8 +4,6 @@
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
 
-    <th:block th:replace="~{front/restaurant/_category::category}"></th:block>
-
     <section class="store" th:object="${item}">
         <input type="hidden" name="roadAddress" th:value="*{roadAddress}">
         <input type="hidden" name="isViewPage" th:value="true">
