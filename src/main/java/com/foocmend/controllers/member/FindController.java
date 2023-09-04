@@ -5,7 +5,6 @@ import com.foocmend.entities.Member;
 import com.foocmend.repositories.MemberRepository;
 import com.foocmend.services.member.SearchMemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,10 +40,10 @@ public class FindController {
         if(findEmail != null) {
             model.addAttribute("findEmail", findEmail);
         } else {
-            model.addAttribute("error", new UsernameNotFoundException(nickname));
+            model.addAttribute("error", "닉네임과 휴대폰번호를 확인해주세요.");
         }
 
-        return "front/member/findEmailResult";
+        return utils.view("/member/findEmailResult");
     }
 
     @GetMapping("/password")
@@ -61,6 +60,7 @@ public class FindController {
             @RequestParam String nickname,
             @RequestParam String mobile,
             Model model) {
+        commonProcess(model);
         Member member = repository.findByEmail(email);
         if(member.getEmail().equals(email) &&
         member.getNickname().equals(nickname) &&

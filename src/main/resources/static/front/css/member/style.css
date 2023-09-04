@@ -4,7 +4,7 @@ main { margin: 300px auto 0 auto; width: 920px; }
 #frmMember .msg { font-weight: 700; font-size: 1.4rem; letter-spacing: -.50px; text-align: center; margin-bottom: 40px; }
 #frmMember .msg span { color: #689a9f; }
 
-.login_box { display: flex;  }
+.login_box { display: flex; }
 .login_box .rows+.rows { margin-top: 10px; }
 .login_box .input_box { flex-grow: 1; }
 .login_box button[type='submit'] { width: 100px; height: 100px; background: #689a9f; border: 0; cursor: pointer;  color: #fff; font-weight: 700; margin-left: 10px; font-size: 1.15rem; }
@@ -16,11 +16,14 @@ main { margin: 300px auto 0 auto; width: 920px; }
 .find_box .rows+.rows { margin-top: 10px; }
 .find_box .input_box { flex-grow: 1; }
 .find_box button[type='submit'] { width: 100px; height: 100px; background: #689a9f; border: 0; cursor: pointer;  color: #fff; font-weight: 700; margin-left: 10px; font-size: 1.15rem; }
-#findEmailString { font-weight:bold; }
 .find_box .msg { float:both; }
 .msg > p { text-align:center; }
 .find_box_h1 { text-align:center; }
-
+.find_box .msg { font-weight: 700; font-size: 1.4rem; letter-spacing: -.50px; text-align: center; margin-bottom: 40px; }
+.find_box .msg span { color: #689a9f; }
+#findEmailString { font-weight:bold; }
+#find_box_button { width: 100px; height: 155px; background: #689a9f; border: 0; cursor: pointer;  color: #fff; font-weight: 700; margin-left: 10px; font-size: 1.15rem; letter-spacing:3px; }
+.button_box { padding:30px 0px; }
 
 .signup_page { width: 860px; }
 .signup_page #frmMember { border:0; border-top: 1px solid #000;  }

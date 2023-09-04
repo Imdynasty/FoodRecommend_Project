@@ -73,6 +73,7 @@ public class MyPage {
 
     private void commonProcess(Model model) {
         model.addAttribute("foods", Foods.getList());
+        model.addAttribute("addCss", new String[] { "member/style"});
         model.addAttribute("addCommonScript", new String[] {"address"});
     }
 
