@@ -23,14 +23,13 @@
             <p th:text="${total} + '명'"></p>
         </div>
     </form>
-    <div id="chart" th:value="${list}">
+    <div id="chart">
         <canvas id="myChart"></canvas>
         <canvas id="myChart2"></canvas>
     </div>
     <script th:inline="javascript">
         const list = [[${list}]]
     </script>
-    <script type="text/javascript" th:inline="javascript" th:src="@{/admin/js/chart2.js}"></script>
-    <script type="text/javascript" th:inline="javascript" th:src="@{/admin/js/chart.js}"></script>
+    <script th:src="@{/admin/js/chart.js}"></script>
 </section>
 </html>
