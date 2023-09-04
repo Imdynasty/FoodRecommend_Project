@@ -1,6 +1,6 @@
 package com.foocmend.controllers.member;
 
-import com.foocmend.commons.validators.EditInfoValidator;
+import com.foocmend.commons.Utils;
 import com.foocmend.entities.Member;
 import com.foocmend.repositories.MemberRepository;
 import com.foocmend.services.member.SearchMemberService;
@@ -24,14 +24,18 @@ public class FindController {
     private final SearchMemberService searchMemberService;
     private final MemberRepository repository;
     private final PasswordEncoder encoder;
+    private final Utils utils;
 
     @GetMapping("/email")
-    public String findEmailForm() {
-        return "front/member/findEmailForm";
+    public String findEmailForm(Model model) {
+        commonProcess(model);
+        return utils.view("member/findEmailForm");
+        //"front/member/findEmailForm";
     }
 
     @PostMapping("/email")
     public String findUserEmail(Model model, @RequestParam String nickname, @RequestParam String mobile) {
+        commonProcess(model);
         String findEmail = searchMemberService.findEmailByNicknameAndMobile(nickname,mobile);
 
         if(findEmail != null) {
@@ -44,7 +48,8 @@ public class FindController {
     }
 
     @GetMapping("/password")
-    public String resetPasswordForm() {
+    public String resetPasswordForm(Model model) {
+        commonProcess(model);
 
         return "front/member/resetPasswordForm";
     }
@@ -85,6 +90,10 @@ public class FindController {
             }
         }
         return sb.toString();
+    }
+
+    private void commonProcess(Model model) {
+        model.addAttribute("addCss", new String[] { "member/style"} );
     }
 
 }

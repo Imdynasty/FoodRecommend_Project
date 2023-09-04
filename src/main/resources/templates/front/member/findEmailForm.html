@@ -3,13 +3,20 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content" class="find_page">
-    <form th:action="@{/member/find/email}" id="frmMember" method="POST" autocomplete="off">
+    <form name="frmLogin" id="frmMember" method="POST" th:action="@{/member/find/email}" autocomplete="off">
         <div class="inner">
-            <div class="msg">가입하신 <span>이메일</span>로 로그인 하세요.</div>
-            <input type="text" name="nickname" placeholder="Nickname">
-            <input type="text" name="mobile" placeholder="Mobile">
-            <button type="submit" th:text="#{member.find.email}"></button>
+            <h1 th:text="#{member.find.email}"></h1>
+            <div class="login_box">
+                <div class="input_box">
+                    <div class="rows">
+                        <input type="text" name="nickname" th:placeholder="#{nickname}">
+                    </div>
+                    <div class="rows">
+                        <input type="text" name="mobile" th:placeholder="#{mobile}">
+                    </div>
+                </div> <!-- input_box -->
+                <button type="submit" th:text="#{member.find.email}"></button>
+            </div> <!-- login_box -->
         </div>
     </form>
-
 </main>

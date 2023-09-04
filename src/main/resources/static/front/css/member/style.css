@@ -12,6 +12,15 @@ main { margin: 300px auto 0 auto; width: 920px; }
 #frmMember .links a { font-size: 1.1rem; margin: 0 10px; }
 #frmMember .links a:hover { text-decoration: underline; }
 
+.find_box { align-items :center; }
+.find_box .rows+.rows { margin-top: 10px; }
+.find_box .input_box { flex-grow: 1; }
+.find_box button[type='submit'] { width: 100px; height: 100px; background: #689a9f; border: 0; cursor: pointer;  color: #fff; font-weight: 700; margin-left: 10px; font-size: 1.15rem; }
+#findEmailString { font-weight:bold; }
+.find_box .msg { float:both; }
+.msg > p { text-align:center; }
+.find_box_h1 { text-align:center; }
+
 
 .signup_page { width: 860px; }
 .signup_page #frmMember { border:0; border-top: 1px solid #000;  }
