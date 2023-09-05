@@ -22,7 +22,7 @@ public class ExcelUpload {
         String url = "jdbc:mysql://localhost:3306/foocmend";
         String username = "foocmend";
         String password = "_aA123456";
-        String sql = "INSERT INTO RESTAURANTS (zipcode, address, roadAddress, zonecode, storeName, type, xpos, ypos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO RESTAURANTS (zipcode, address, roadAddress, zonecode, storeName, type, xpos, ypos, wishCnt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0)";
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql);
              BufferedInputStream bis = new BufferedInputStream(new FileInputStream("서울_인천.xlsx"));
@@ -61,9 +61,11 @@ public class ExcelUpload {
                             System.out.println("---------------------------------------------------");
                             pstmt.executeUpdate();
                         } catch (Exception e) {
+                            e.printStackTrace();
                             break root;
                         }
                     } catch (Exception e) {
+                        e.printStackTrace();
                         break;
 
                     }

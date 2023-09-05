@@ -5,12 +5,10 @@ import com.foocmend.entities.Member;
 import com.foocmend.repositories.MemberRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +31,7 @@ public class Withdraw {
     }
 
     @PostMapping
-    public String withdrawPs(@RequestParam String email, @RequestParam String password) {
+    public String withdrawPs(@RequestParam String email, @RequestParam String password, Model model) {
 
         if(!memberUtil.isLogin()) {
             return "redirect:/member/login";
@@ -48,9 +46,12 @@ public class Withdraw {
             repository.flush();
             session.invalidate();
 
+            model.addAttribute("withdrawSuccess","회원탈퇴가 완료 되었습니다.");
+
             return "redirect:/";
         } else {
-            return "redirect:/member/withdraw";
+            model.addAttribute("withdrawFailed","아이디와 비밀번호를 확인해주세요.");
+            return "front/member/withdrawResult";
         }
     }
 

@@ -3,11 +3,19 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
-    <div th:if="${findEmail}">
-        <p>Your UserID: <span th:text="${findEmail}"></span></p>
-    </div>
-    <div th:if="${error}">
-        <p th:text="${error}"></p>
+    <h1 th:text="#{member.find.email}"></h1>
+    <div name="frmLogin" id="frmMember">
+        <div class="inner">
+            <h1 class="find_box_h1" th:text="#{member.find.email.result}"></h1>
+            <div class="find_box">
+                <div class="msg" th:if="${findEmail}">
+                    <p>찾으시는 이메일은 <span id="findEmailString" th:text="${findEmail}"></span> 입니다</p>
+                </div>
+                <div class="msg" th:if="${error}">
+                    <p th:text="${error}"></p>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 </html>
