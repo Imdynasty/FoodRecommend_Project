@@ -188,8 +188,9 @@ window.addEventListener("DOMContentLoaded", function() {
             const id = this.dataset.id;
             if (!id) return;
             let url = "/wish/";
-            url = this.classList.contains("on") ? url += "delete"  : url += "save";
+            url = this.checked ?  url += "save" : url += "delete";
             url += `?id=${id}`;
+            console.log(this.checked, url);
             ajaxLoad("GET", url)
                 .then((res) => {
                     el.classList.contains("on") ? el.classList.remove("on") : el.classList.add("on");
