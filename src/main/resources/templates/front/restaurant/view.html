@@ -5,7 +5,9 @@
 <main layout:fragment="content">
 
     <section class="store" th:object="${item}">
-        <input type="hidden" name="roadAddress" th:value="*{roadAddress}">
+        <input type="hidden" th:value="*{storeName}" id='map_info_title'>
+        <input type="hidden" name="roadAddress" th:value="*{roadAddress}" id='map_info_address'>
+        <input type="hidden" th:value="*{homepage}" id="map_info_homepage">
         <input type="hidden" name="isViewPage" th:value="true">
         <div class="info">
             <img th:if="*{mainImages != null && !mainImages.isEmpty()}" th:each="image : *{mainImages}" th:src="${image.fileUrl}" class="main_images">

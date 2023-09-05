@@ -6,6 +6,7 @@ var commonLib = commonLib || {};
 commonLib.map = {
    level : 2, // 지도 확대 레벨
    container : null,
+   overlay : null,
    /**
    * 지도를 표시할 dom 생성
    *
@@ -58,39 +59,46 @@ commonLib.map = {
 
             // 마커가 지도 위에 표시되도록 설정합니다
             marker.setMap(map);
-
-            const content = '<div class="wrap">' +
-                        '    <div class="info">' +
-                        '        <div class="title">' +
-                        '            카카오 스페이스닷원' +
-                        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-                        '        </div>' +
-                        '        <div class="body">' +
-                        '            <div class="desc">' +
-                        '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
-                        '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
-                        '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">move detailed info</a></div>' +
-                        '            </div>' +
-                        '        </div>' +
-                        '    </div>' +
-                        '</div>';
-
-            // 마커 위에 커스텀오버레이를 표시합니다
-            // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-            const overlay = new kakao.maps.CustomOverlay({
-                content: content,
-                position: marker.getPosition()
-            });
-
-
-            // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-            kakao.maps.event.addListener(marker, 'click', function() {
-                overlay.setMap(map);
-            });
-             // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-            function closeOverlay(map){
-                overlay.setMap(null);
+            const infoTitle = document.getElementById("map_info_title");
+            const infoAddress = document.getElementById("map_info_address");
+            const infoHomepage = document.getElementById("map_info_homepage");
+            if (infoTitle && infoTitle.value.trim() && infoAddress && infoAddress.value.trim()) {
+            let homePageHtml = "";
+            if (infoHomepage && infoHomepage.value.trim()) {
+                homePageHtml = `<div><a href="${infoHomepage.value}" target="_blank" class="link">${infoTitle.value}</a></div>`;
             }
+            const content = `<div class="wrap">
+                          <div class="info">
+                               <div class="title">
+                                   ${infoTitle.value}
+                                   <div class="close" onclick="closeOverlay()" title="닫기"></div>
+                              </div>
+                              <div class="body">
+                                  <div class="desc">
+                                       <div class="ellipsis">${infoAddress.value}</div>
+                                       ${homePageHtml}
+                                    </div>
+                               </div>
+                           </div>
+                        </div>`;
+
+                // 마커 위에 커스텀오버레이를 표시합니다
+                // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+                const overlay = new kakao.maps.CustomOverlay({
+                    content: content,
+                    position: marker.getPosition()
+                });
+
+                commonLib.map.overlay = overlay;
+
+                 // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+                 kakao.maps.event.addListener(marker, 'click', function() {
+                    overlay.setMap(map);
+                 });
+
+            }
+
+
 
             // 생성된 마커를 배열에 추가합니다
             markers.push(marker);
@@ -164,5 +172,8 @@ window.addEventListener("DOMContentLoaded", function() {
 });
 
 
-
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+function closeOverlay(map){
+    commonLib.map.overlay.setMap(null);
+}
 

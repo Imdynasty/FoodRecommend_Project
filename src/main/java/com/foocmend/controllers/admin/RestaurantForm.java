@@ -21,6 +21,7 @@ public class RestaurantForm {
     private String zonecode;
     @NotBlank(message="상호명을 입력하세요.")
     private String storeName;
+    private String homepage;
     private String type;
     private String xpos;
     private String ypos;

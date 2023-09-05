@@ -36,7 +36,7 @@ public class SaveRestaurantService {
         restaurant.setStoreName(form.getStoreName());
         restaurant.setXpos(form.getXpos());
         restaurant.setYpos(form.getYpos());
-
+        restaurant.setHomepage(form.getHomepage());
         repository.saveAndFlush(restaurant);
 
         form.setId(restaurant.getId());
