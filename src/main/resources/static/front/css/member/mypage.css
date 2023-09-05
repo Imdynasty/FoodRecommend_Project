@@ -1,0 +1,6 @@
+.mypage_content { width: 850px; margin: 0 auto; }
+.mypage_content .tabs { display: flex; border-bottom: 2px solid #000; }
+.mypage_content .tabs a { width: 0; flex-grow: 1; text-align: center; padding: 10px; font-size: 14px; font-weight: 500; }
+.mypage_content .tabs a.on { background: #000; color: #fff; }
+
+

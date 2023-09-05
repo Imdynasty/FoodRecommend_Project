@@ -3,7 +3,6 @@ package com.foocmend.commons.interceptors;
 import com.foocmend.commons.Areas;
 import com.foocmend.commons.Utils;
 import com.foocmend.services.search.SearchHistoryService;
-import com.foocmend.services.wishlist.SearchWishListService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -22,7 +21,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class CommonInterceptor implements HandlerInterceptor {
     private final HttpServletRequest request;
     private final SearchHistoryService historyService;
-    private final SearchWishListService wishListService;
     private final Utils utils;
 
     @Override
@@ -63,8 +61,5 @@ public class CommonInterceptor implements HandlerInterceptor {
         if (sido != null && !sido.isBlank()) {
             request.setAttribute("siguguns", Areas.getSigugun(sido));
         }
-
-        /** 찜하기 번호 추출 */
-        request.setAttribute("wishIds",wishListService.getMyIds());
     }
 }
