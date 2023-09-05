@@ -27,6 +27,7 @@ public class DeleteBoardDataService {
      *
      * @param id 게시글 번호
      * @param isComplete : false - 소프트 삭제, true - 완전 삭제
+     *
      */
     public void delete(Long id, boolean isComplete) {
         BoardData boardData = repository.findById(id).orElseThrow(BoardDataNotExistsException::new);
@@ -44,20 +45,5 @@ public class DeleteBoardDataService {
         delete(id, false);
     }
 
-    public void delete(BoardForm form) {
-        List<Integer> chkNos = form.getChkNo();
-        List<Board> items = new ArrayList<>();
-        for (int chkNo : chkNos) {
-            Long bid = Long.valueOf(utils.getParam("bid_" + chkNo));
-            Board item = boardRepository.findById(String.valueOf(bid)).orElse(null);
-            if (item == null) {
 
-                continue;
-            }
-            items.add(item);
-        }
-
-        boardRepository.deleteAll(items);
-        boardRepository.flush();
-    }
 }
