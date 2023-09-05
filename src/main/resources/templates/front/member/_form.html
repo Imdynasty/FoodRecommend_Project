@@ -79,7 +79,7 @@
         </dl>
         <dl>
             <dt th:text="#{favorite.food}"></dt>
-            <dd>
+            <dd class="favorite_select">
                 <th:block th:each="food, status : ${foods}">
                     <span>
                         <input type="checkbox" name="favoriteFoods" th:value="${food[0]}" th:id="${'favoriteFoods' + status.index}" th:field="*{favoriteFoods}">
