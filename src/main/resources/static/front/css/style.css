@@ -147,12 +147,10 @@ main h1 { margin: 20px 20px; }
 
 /** 본문 영역 E */
 /** 푸터 영역 S */
-footer { background: #e6e6dd; margin-top: 100px; min-height: 150px; }
+footer { background: #e6e6dd; margin-top: 100px; min-height: 150px;}
 footer > .inner { padding: 20px 10px; }
 
 /** 푸터 영역 E */
-
-
 .file_items { display: inline-block; border: 1px solid #000; border-radius: 3px; padding: 5px 10px; margin-right: 3px; margin-bottom: 3px; }
 .file_items > a:hover { text-decoration: underline; }
 .file_items .insert_editor { cursor: pointer;  }
