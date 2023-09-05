@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="content">
+    <form name="frmSave" id="frmMember" method="POST" th:action="@{/member/mypage/edit}" th:object="${signUpForm}" autocomplete="off">
+        <div class="inner">
+            <div class="errors global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+            <dl>
+                <dt th:text="#{email}"></dt>
+                <dd>
+                    <input type="text" name="email" th:field="*{email}">
+                    <div class="errors" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+            <dl>
+                <dt th:text="#{password}"></dt>
+                <dd>
+                    <input type="password" name="password" th:field="*{password}">
+                    <div class="errors" th:each="err : ${#fields.errors('password')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+            <dl>
+                <dt th:text="#{password.confirm}"></dt>
+                <dd>
+                    <input type="password" name="passwordRe" th:field="*{passwordRe}">
+                    <div class="errors" th:each="err : ${#fields.errors('passwordRe')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+            <dl>
+                <dt th:text="#{nickname}"></dt>
+                <dd>
+                    <input type="text" name="email" th:field="*{nickname}">
+                    <div class="errors" th:each="err : ${#fields.errors('nickname')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+            <dl>
+                <dt th:text="#{mobile}"></dt>
+                <dd>
+                    <input type="text" name="mobile" th:field="*{mobile}">
+                    <div class="errors" th:each="err : ${#fields.errors('mobile')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+            <dl>
+                <dt th:text="#{address}"></dt>
+                <dd>
+                    <div class="address_rows">
+                        <input type="text" name="zipcode" th:field="*{zipcode}" readonly th:placeholder="#{zipcode}">
+                        <button type="button" class="search_address" th:text="#{search.address}" data-zipcode-name="zipcode" data-address-name="address"></button>
+                    </div>
+                    <div class="address_rows">
+                        <input type="text" name="address" th:field="*{address}" readonly th:placeholder="#{address}">
+                    </div>
+                    <div class="errors" th:each="err : ${#fields.errors('zipcode')}" th:text="${err}"></div>
+                    <div class="errors" th:each="err : ${#fields.errors('address')}" th:text="${err}"></div>
+
+                </dd>
+            </dl>
+            <dl>
+                <dt th:text="#{gender}"></dt>
+                <dd>
+                <span>
+                    <input type="radio" name="gender" value="FEMALE" th:field="*{gender}" id="gender1">
+                    <label for="gender1" th:text="#{female}"></label>
+                </span>
+                    <span>
+                    <input type="radio" name="gender" value="MALE" th:field="*{gender}" id="gender2">
+                    <label for="gender2" th:text="#{male}"></label>
+                </span>
+                    <span>
+                    <input type="radio" name="gender" value="ETC" th:field="*{gender}" id="gender3">
+                    <label for="gender3" th:text="#{etc}"></label>
+                </span>
+                    <div class="errors" th:each="err : ${#fields.errors('gender')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+            <dl>
+                <dt th:text="#{birthDate}"></dt>
+                <dd>
+                    <input type="text" name="email" th:field="*{birthDate}">
+                    <div class="errors" th:each="err : ${#fields.errors('birthDate')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+            <dl>
+                <dt th:text="#{favorite.food}"></dt>
+                <dd>
+                    <th:block th:each="food, status : ${foods}">
+                    <span>
+                        <input type="checkbox" name="favoriteFoods" th:value="${food[0]}" th:id="${'favoriteFoods' + status.index}" th:field="*{favoriteFoods}">
+                        <label th:for="${'favoriteFoods' + status.index}" th:text="${food[1]}"></label>
+                    </span>
+                    </th:block>
+                </dd>
+            </dl>
+            <div class="button_box">
+                <button type="submit" th:text="#{edit}"></button>
+            </div>
+        </div>
+    </form>
+</th:block>
+</html>

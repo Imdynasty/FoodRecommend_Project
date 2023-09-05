@@ -1,5 +1,6 @@
 package com.foocmend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,6 +33,9 @@ public class Restaurant extends BaseMember {
     private String zonecode;
     @Column(length=100)
     private String storeName;
+
+    @Column(length=100)
+    private String homepage;
     @Column(length=40)
     private String type;
     @Column(length=40)
@@ -44,12 +48,15 @@ public class Restaurant extends BaseMember {
     @Lob
     private String description;
 
+    @JsonIgnore
     @Transient
     private List<FileInfo> mainImages; // 메인 페이지 이미지
 
+    @JsonIgnore
     @Transient
     private List<FileInfo> listImages; // 목록 페이지 이미지
 
+    @JsonIgnore
     @Transient
     private List<FileInfo> editorImages; // 에디터 이미지
 
