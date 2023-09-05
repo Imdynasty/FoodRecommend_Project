@@ -44,7 +44,24 @@ public class ExcelUpload {
                         cells[2] = row.getCell(2); // 도로명 전체 주소
                         cells[3] = row.getCell(3); // 도로명 우편번호
                         cells[4] = row.getCell(4); // 사업장명
+
                         cells[5] = row.getCell(5); // 업태구분명
+                        if(getString(cells[5]).equals("호프/통닭")
+                                || getString(cells[5]).equals("정종/대포집/소주방") || getString(cells[5]).equals("감성주점") ){cells[5].setCellValue("술집");}
+
+                        if(getString(cells[5]).equals("패밀리레스토랑")
+                                || getString(cells[5]).equals("외국음식전문점(인도,태국등)") || getString(cells[5]).equals("경양식")) {cells[5].setCellValue("양식");}
+
+                        if(getString(cells[5]).equals("까페")
+                                || getString(cells[5]).equals("키즈카페") || getString(cells[5]).equals("커피숍") || getString(cells[5]).equals("전통찻집") || getString(cells[5]).equals("라이브카페")) {cells[5].setCellValue("카페");}
+
+                        if(getString(cells[5]).equals("통닭(치킨)")
+                                || getString(cells[5]).equals("탕류(보신용)") || getString(cells[5]).equals("출장조리") || getString(cells[5]).equals("이동조리") || getString(cells[5]).equals("식육(숯불구이)") || getString(cells[5]).equals("복어취급") || getString(cells[5]).equals("냉면집") || getString(cells[5]).equals("김밥(도시락)")) {cells[5].setCellValue("한식");}
+
+                        if(getString(cells[5]).equals("중국식")) {cells[5].setCellValue("중식");}
+                        if(getString(cells[5]).equals("뷔페식")) {cells[5].setCellValue("뷔페");}
+                        if(getString(cells[5]).isBlank()) {cells[5].setCellValue("기타");}
+
                         cells[6] = row.getCell(6); // 좌표(x)
                         cells[7] = row.getCell(7); // 좌표(y)
                         if (getString(cells[0]).isBlank() || getString(cells[1]).isBlank())
@@ -53,7 +70,7 @@ public class ExcelUpload {
                         }
                         try {
                             for (int j = 1; j <= cells.length; j++) {
-                                pstmt.setString(j, getString(cells[j-1]));
+                                 pstmt.setString(j, getString(cells[j-1]));
                             }
                             System.out.println("--------------------------------------------------");
                             System.out.printf("%s,%s,%s,%s,%s,%s,%s,%s %n", getString(cells[0]), getString(cells[1]), getString(cells[2]), getString(cells[3]), getString(cells[4]), getString(cells[5]), getString(cells[6]), getString(cells[7]));
@@ -76,10 +93,11 @@ public class ExcelUpload {
             e.printStackTrace();
         }
     }
-
     public static String getString(XSSFCell cell) {
         if (cell == null) return "";
         return cell.getStringCellValue().trim();
     }
+
+
 
 }
