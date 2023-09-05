@@ -13,12 +13,22 @@ public class ChartService {
 
     private final MemberRepository repository;
 
-    public List<Long> getMapper() {
+    public List<Long> maleCount() {
         List<Long> list = new ArrayList<>();
 
-        list.add(repository.countByFavoriteFoodsLike("%korea%"));
-        list.add(repository.countByFavoriteFoodsLike("%america%"));
-        list.add(repository.countByFavoriteFoodsLike("%japan%"));
+        list.add(repository.countByMale("%korea%"));
+        list.add(repository.countByMale("%america%"));
+        list.add(repository.countByMale("%japan%"));
+
+        return list;
+    }
+
+    public List<Long> femaleCount() {
+        List<Long> list = new ArrayList<>();
+
+        list.add(repository.countByFemale("%korea%"));
+        list.add(repository.countByFemale("%america%"));
+        list.add(repository.countByFemale("%japan%"));
 
         return list;
     }

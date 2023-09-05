@@ -9,5 +9,5 @@
 .count > div { width: 200px; box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.24); border-radius: 5px; }
 
 /** 메인 관리자 페이지 차트 */
-#chart { display: grid; grid-template-columns: 1fr 1fr; padding: 10px; justify-content: space-around; align-items: center; }
+#chart { display: flex; justify-content: space-around; align-items: center; }
 #myChart, #myChart2 { height: 400px; width: 40vw; box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.24); padding: 20px; border-radius: 5px; }
