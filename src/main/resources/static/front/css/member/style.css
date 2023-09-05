@@ -25,6 +25,17 @@ main { margin: 300px auto 0 auto; width: 920px; }
 #find_box_button { width: 100px; height: 155px; background: #689a9f; border: 0; cursor: pointer;  color: #fff; font-weight: 700; margin-left: 10px; font-size: 1.15rem; letter-spacing:3px; }
 .button_box { padding:30px 0px; }
 
+.mypage_content h1 { margin-bottom: 10px; }
+.mypage_content dl { display: flex; align-items: center; }
+.mypage_content dl+dl { margin-top: 10px; }
+.mypage_content dt { width: 90px; color: #999; }
+.mypage_content dd { flex-grow: 1; }
+.mypage_content > #frmMember { border: none; }
+.mypage_content button[type='submit'] { width: 300px; height: 60px; border-radius: 5px; color: #fff; font-weight: 700; font-size: 1.5rem; border: 0; background: #689a9f; cursor: pointer; display: block; margin: 0 auto; }
+.mypage_content .msg { font-weight: 700; font-size: 1.4rem; letter-spacing: -.50px; text-align: center; margin: 40px; }
+.mypage_content > .login_box button[type='submit'] { width: 100px; height: 100px; background: #689a9f; border: 0; cursor: pointer;  color: #fff; font-weight: 700; margin-left: 10px; font-size: 1.15rem; }
+.mypage_content > .login_box { width:540px; margin:auto; }
+
 .signup_page { width: 860px; }
 .signup_page #frmMember { border:0; border-top: 1px solid #000;  }
 .signup_page #frmMember > .inner { margin: 20px auto; width: 100%; }

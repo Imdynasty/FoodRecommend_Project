@@ -3,12 +3,21 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
-    <form th:action="@{/member/withdraw}" method="POST">
-        <div>
-            <span>회원 탈퇴를 할 경우 모든 회원 정보가 삭제 되며 복구 할 수 없습니다.</span>
+    <h1 th:text="#{member.withdraw}"></h1>
+    <form name="frmLogin" id="frmMember" method="POST" th:action="@{/member/withdraw}" autocomplete="off">
+        <div class="inner">
+            <div class="msg">회원 탈퇴를 할 경우 모든 회원 정보가 삭제 되며 복구 할 수 없습니다.</div>
+            <div class="login_box">
+                <div class="input_box">
+                    <div class="rows">
+                        <input type="email" name="email" th:placeholder="#{email}">
+                    </div>
+                    <div class="rows">
+                        <input type="password" name="password" th:placeholder="#{password}">
+                    </div>
+                </div>
+                <button type="submit" th:text="#{member.withdraw}"></button>
+            </div>
         </div>
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit" th:text="#{member.withdraw}"></button>
     </form>
 </main>

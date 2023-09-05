@@ -60,9 +60,9 @@ public class InfoBoardDataService {
     }
 
     /*
-    * 게시글 목록 조회
-    *
-    */
+     * 게시글 목록 조회
+     *
+     */
     public ListData<BoardData> getList(String bId, BoardSearch search) {
 
         // 게시판 설정 조회 + 접근 권한체크
@@ -128,7 +128,7 @@ public class InfoBoardDataService {
         }
 
         List<String[]> sorts = Arrays.stream(sort.trim().split(","))
-                    .map(s -> s.split("_")).toList();
+                .map(s -> s.split("_")).toList();
         PathBuilder pathBuilder = new PathBuilder(BoardData.class, "boardData");
         for (String[] _sort : sorts) {
             Order direction = Order.valueOf(_sort[1].toUpperCase()); // 정렬 방향

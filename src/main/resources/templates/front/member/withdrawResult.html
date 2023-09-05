@@ -3,12 +3,33 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
-    <div th:if="${withdrawSuccess}">
-        <p>Your UserID: <span th:text="${withdrawSuccess}"></span></p>
+    <h1 th:text="#{member.find.email}"></h1>
+    <div name="frmLogin" id="frmMember">
+        <div class="inner">
+            <h1 class="find_box_h1" th:text="#{member.find.email.result}"></h1>
+            <div class="find_box">
+                <div class="msg" th:if="${findEmail}">
+                    <p>찾으시는 이메일은 <span id="findEmailString" th:text="${findEmail}"></span> 입니다</p>
+                </div>
+                <div class="msg" th:if="${error}">
+                    <p th:text="${error}"></p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div th:if="${withdrawFailed}">
-        <p th:text="${withdrawFailed}"></p>
-        <button type="submit" th:onclick="|location.href='@{/member/withdraw}'|">돌아가기</button>
+
+    <div class="frmMember">
+        <div class="inner">
+            <div class="find_box">
+            <div class="msg" th:if="${withdrawSuccess}">
+                <p><span th:text="${withdrawSuccess}"></span></p>
+            </div>
+            <div class="mypage_content,msg" th:if="${withdrawFailed}">
+                <p th:text="${withdrawFailed}"></p>
+                <button type="submit" th:onclick="|location.href='@{/member/withdraw}'|">돌아가기</button>
+            </div>
+            </div>
+        </div>
     </div>
 </main>
 </html>
