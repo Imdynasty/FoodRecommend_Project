@@ -29,6 +29,7 @@
       },
       options: {
             responsive: false,
+            maintainAspectRatio :false,
             legend: {
             		labels: {
             				fontColor: "red",
@@ -67,6 +68,7 @@
         },
         options: {
                 responsive: false,
+                maintainAspectRatio :false,
             scales: {
                 y: {
                     beginAtZero: true

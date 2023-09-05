@@ -8,6 +8,7 @@
             <a th:href="@{/restaurant?type={type}(type=${category.cateNm})}" th:text="${category.cateNm}"></a>
         </span>
     </div>
+    <h1>맛집 찾기</h1>
     <ul class="layout_width">
         <li th:if="${items == null || items.isEmpty()}">
             조회된 음식점이 없습니다.
