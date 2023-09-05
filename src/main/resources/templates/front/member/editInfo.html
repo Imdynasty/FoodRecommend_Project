@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
-    <h1 th:text="#{signUp}"></h1>
+    <h1>회원 정보 수정</h1>
     <form name="frmSave" id="frmSave" method="POST" th:action="@{/member/mypage/edit}" th:object="${signUpForm}" autocomplete="off">
         <th:block th:replace="~{front/member/_form::form}"></th:block>
         <button type="submit" th:text="#{edit}"></button>
