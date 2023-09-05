@@ -24,7 +24,8 @@ public class MyPage {
     private final EditInfoValidator editInfoValidator;
 
     @GetMapping
-    public String myPageView() {
+    public String myPageView(Model model) {
+        commonProcess(model);
 
         return "front/member/mypage";
     }
