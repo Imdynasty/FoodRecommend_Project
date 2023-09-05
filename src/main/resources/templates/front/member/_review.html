@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <th:block th:fragment="content">
-        <ul class="board_list">
-            <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
+        <ul class="board_list" >
+            <li class="abc" th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
                 <a th:href="@{/board/view/{id}(id=*{id})}" class="photo">
                     <th:block if="*{editorImages != null && !editorImages.isEmpty()}">
                         <img th:each="file, status : *{editorImages}" th:if="${status.first}" th:src="${file.thumbsUrl[0]}">
@@ -10,6 +10,7 @@
                     <th:block th:unless="*{editorImages != null && !editorImages.isEmpty()}">
                         <div class="no_image">이미지 없음</div>
                     </th:block>
+
                 </a>
                 <a th:href="@{/board/view/{id}(id=*{id})}" th:text="*{subject}" class="subject"></a>
                 <div class="post_info">
