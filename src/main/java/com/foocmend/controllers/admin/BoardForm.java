@@ -65,5 +65,4 @@ public class BoardForm {
     // 게시판 스킨
     private String skin = "default";
 
-    private List<Integer> chkNo;
 }

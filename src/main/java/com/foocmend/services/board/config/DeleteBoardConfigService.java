@@ -20,13 +20,16 @@ public class DeleteBoardConfigService {
     public void delete(String[] bIds) {
         QBoard board = QBoard.board;
         QBoardData boardData = QBoardData.boardData;
-        List<Board> items = (List<Board>)repository.findAll(board.bId.in(bIds));
-        repository.deleteAll(items);
-        repository.flush();
 
         List<BoardData> dataItems = (List<BoardData>)dataRepository.findAll(boardData.board.bId.in(bIds));
         dataRepository.deleteAll(dataItems);
         dataRepository.flush();
+
+        List<Board> items = (List<Board>)repository.findAll(board.bId.in(bIds));
+        repository.deleteAll(items);
+        repository.flush();
+
+
 
     }
 }
