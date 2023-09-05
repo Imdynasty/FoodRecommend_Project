@@ -3,6 +3,7 @@ package com.foocmend.controllers.restaurant;
 import com.foocmend.commons.*;
 import com.foocmend.entities.Restaurant;
 import com.foocmend.services.restaurant.SearchRestaurantService;
+import com.foocmend.services.wishlist.SearchWishListService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RestaurantFront implements CommonProcess, ScriptExceptionProcess {
     private final SearchRestaurantService searchService;
+    private final SearchWishListService wishListService;
     private final Utils utils;
 
     @GetMapping
@@ -73,5 +75,8 @@ public class RestaurantFront implements CommonProcess, ScriptExceptionProcess {
         model.addAttribute("addCommonScript", addCommonScript);
         model.addAttribute("categories", searchService.getCategories());
         model.addAttribute("pageTitle", pageTitle);
+
+        /** 찜하기 번호 추출 */
+        model.addAttribute("wishIds",wishListService.getMyIds());
     }
 }
