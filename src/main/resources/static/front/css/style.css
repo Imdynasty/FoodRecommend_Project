@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
 * { box-sizing: border-box; font-family: 'Noto Sans KR', sans-serif; color: #000; outline: none; }
 html { font-size: 13px; }
 ul, ol, li { list-style: none; margin:0; padding:0; }
@@ -121,6 +122,7 @@ span > input[type='radio']~label.standalone { padding: 0; width: 28px; margin: 0
 
 /** 헤더 영역 S */
 header { position: fixed; z-index: 10; top: 0; left: 0; width: 100%; background: #fff; }
+header .recent_searches { display: flex; align-items: center; gap: 15px; margin-left: 15px; }
 header .top_menus { border-bottom: 1px solid #d7d7d7; height: 32px; }
 header .top_menus > .inner { line-height: 31px; text-align: right;  }
 header .top_menus .login_info { color: #689a9f; font-weight: bold; }
@@ -139,11 +141,11 @@ header nav a+a { margin-left: 150px; }
 /** 헤더 영역 E */
 /** 본문 영역 S */
 main { margin-top: 259px; }
-main h1 { margin: 20px 20px; }
-.my_favorite { margin: 0px 20px; display: grid; grid-template-columns: repeat(5, 1fr); grid-auto-rows: minmax(100px, auto); gap: 20px; }
-.my_favorite li { box-shadow: 0px 0px 3px 0px; padding: 10px; background: #fffffb; }
+main h1 { margin: 20px auto; min-width: 1100px; max-width: 1300px; padding: 0 10px; font-family: 'Dongle', sans-serif; font-size: 50px; color: #d3d3c5; text-shadow: 1px 1px 2px #313030a1; }
+.my_favorite { display: grid; grid-template-columns: repeat(5, 1fr); grid-auto-rows: minmax(100px, auto); gap: 20px; max-width: 1300px; min-width: 1100px; margin: 0 auto; padding: 0 10px; }
+.my_favorite li { display: grid; box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.24); padding: 10px; background: #fffffb; border-radius: 15px }
 .my_favorite li a { display: grid; grid-template-rows: repeat(1, 3fr); grid-auto-rows: minmax(30px, auto); gap: 10px; }
-.my_favorite li a img { width: 100%; }
+.my_favorite li a img { width: 100%; border-radius: 15px }
 
 /** 본문 영역 E */
 /** 푸터 영역 S */
@@ -151,8 +153,6 @@ footer { background: #e6e6dd; margin-top: 100px; min-height: 150px;}
 footer > .inner { padding: 20px 10px; }
 
 /** 푸터 영역 E */
-
-
 .file_items { display: inline-block; border: 1px solid #000; border-radius: 3px; padding: 5px 10px; margin-right: 3px; margin-bottom: 3px; }
 .file_items > a:hover { text-decoration: underline; }
 .file_items .insert_editor { cursor: pointer;  }
@@ -160,15 +160,29 @@ footer > .inner { padding: 20px 10px; }
 
 /** 맛집찾기 */
 main .layout_width { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
-main .layout_width li { display: grid; grid-template-rows: repeat(1, 3fr); grid-auto-rows: minmax(30px, auto); gap: 10px; box-shadow: 0px 0px 3px 0px; padding: 15px; background: #fffffb; }
-main .layout_width li label { line-height: 2; }
-.categories { margin-bottom: 15px; display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
-.categories span { box-shadow: 0px 0px 1px 0px; padding: 2px; }
+main .layout_width li { display: grid; grid-template-rows: repeat(1, 3fr); grid-auto-rows: minmax(30px, auto); gap: 10px; box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.24); padding: 10px; background: #fffffb; font-family: 'Dongle', sans-serif; border-radius: 15px; }
+main .layout_width li label { font-family: 'Dongle', sans-serif; font-size: 26px }
+main .layout_width img { width: 100%; border-radius: 15px; }
+main .layout_width span > input[type='checkbox']~label { display: inline-block; height: 32px; line-height: 32px; padding-left: 33px; background:url("../../admin/images/star-off.png") no-repeat left center; margin-right: 13px; cursor: pointer; }
+main .layout_width span > input[type='checkbox']:checked~label { background:url("../../admin/images/star-on.png") no-repeat left center; }
+main .layout_width span > input[type='checkbox']~label.standalone { padding: 0; width: 28px; display: inline-block; margin: 0; }
+.store_nm { font-weight: bold; font-size: 28px; font-family: 'Dongle', sans-serif; }
+.address { font-size: 20px; font-family: 'Dongle', sans-serif; }
+.categories { margin: 0px auto; margin-bottom: 15px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; min-width: 1100px; max-width: 1300px; }
+.categories span { font-size: 14px; background-color: #fffffb; border-radius: 5px; box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.24); cursor: pointer; transition: 0.2s all; padding: 2px; }
+.categories span a:hover { transform: scale(1.5); }
 
 /** 맛집 상세 페이지 */
-.store { box-shadow: 0px 0px 5px 0px; padding: 15px; border-radius: 5px; width: 50%; height: 50%; display: flex; flex-direction: column; margin: auto;}
+.store { box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.24); padding: 10px; border-radius: 15px; width: 50%; height: 50%; display: flex; flex-direction: column; margin: auto; gap: 10px; background: #fffffb; }
+.store span label { font-family: 'Dongle', sans-serif; font-size: 26px }
+.store span input[type='checkbox']~label { display: inline-block; height: 32px; line-height: 32px; padding-left: 33px; background:url("../../admin/images/star-off.png") no-repeat left center; margin-right: 13px; cursor: pointer; }
+.store span input[type='checkbox']:checked~label { background:url("../../admin/images/star-on.png") no-repeat left center; }
+.store span input[type='checkbox']~label.standalone { padding: 0; width: 28px; display: inline-block; margin: 0; }
 .info { margin: 0px 0px 15px 0px; }
-.main_images { width: 100%; height: 100%; }
+.info dl dt { font-family: 'Dongle', sans-serif; font-size: 35px; font-weight: bold; }
+.info dl dd { font-family: 'Dongle', sans-serif; font-size: 26px; }
+.info dl dd div { font-family: 'Dongle', sans-serif; font-size: 26px; }
+.main_images { width: 100%; height: 100%; border-radius: 15px; }
 
 /**front main error 페이지*/
 .main_errors {width:100%;}

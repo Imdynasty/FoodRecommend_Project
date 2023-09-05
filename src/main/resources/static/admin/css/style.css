@@ -55,7 +55,7 @@ header > .left { width: 208px; text-align: center; }
 header > .right { flex-grow: 1; text-align: right; padding: 10px; }
 
 main { min-width: 1100px; min-height: 800px; display: flex; }
-main > aside { width: 208px; background: #689a9f; }
+main > aside { min-width: 208px; background: #689a9f; }
 main > section { flex-grow: 1; margin: 0 50px 50px; }
 
 aside li > a { display: block; height: 71px; line-height: 71px; border-top: 1px solid #689a9f; color: #dddee4; font-size: 18px; position: relative; padding-left: 35px; }

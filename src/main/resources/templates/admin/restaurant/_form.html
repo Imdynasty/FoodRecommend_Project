@@ -26,6 +26,13 @@
                 </td>
             </tr>
             <tr>
+                <th>홈페이지</th>
+                <td>
+                    <input type="text" name="homepage" th:field="*{homepage}">
+                    <div class="errors" th:each="err : ${#fields.errors('homepage')}" th:text="${err}"></div>
+                </td>
+            </tr>
+            <tr>
                 <th>주소</th>
                 <td>
                     <div class="address_rows input_grp mb5">
