@@ -42,7 +42,7 @@ public class SearchWishListService {
 
     public List<Long> getMyIds() {
         List<WishList> items = getMine();
-        if (items == null || items.isEmpty()) return null;
+        if (items == null && items.isEmpty()) return null;
 
         return items.stream().map(i -> i.getRestaurant().getId()).toList();
     }
