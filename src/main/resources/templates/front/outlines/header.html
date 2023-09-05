@@ -9,7 +9,7 @@
                     <a th:href="@{/member/login}" th:text="#{login}"></a>
                 </th:block>
                 <th:block sec:authorize="isAuthenticated()">
-                    <span class="login_info" th:text="${#messages.msg('member.login.status', session.detailMember.nickname, session.detailMember.email)}"></span>
+                    <a th:href="@{/member/mypage}" class="login_info" th:text="${#messages.msg('member.login.status', session.detailMember.nickname, session.detailMember.email)}"></a>
                     <a th:href="@{/member/logout}" th:text="#{logout}"></a>
                     <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}" th:text="#{admin.site.management}" target="_blank"></a>
                 </th:block>

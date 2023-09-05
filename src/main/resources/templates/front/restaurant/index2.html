@@ -14,7 +14,9 @@
         </li>
         <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
             <span>
-                <input type="checkbox" class="toggle_wish" th:id="*{id}" th:data-id="*{id}">
+                <input type="checkbox" class="toggle_wish" th:id="*{id}" th:data-id="*{id}"
+                    th:checked="${#lists.contains(wishIds, item.id)}"
+                >
                 <label th:for="*{id}">HotPlace</label>
             </span>
             <a th:href="@{/restaurant/view/{id}(id=*{id})}">

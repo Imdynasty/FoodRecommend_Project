@@ -1,18 +1,22 @@
 package com.foocmend.controllers.member;
 
+import com.foocmend.commons.Utils;
 import com.foocmend.commons.constants.Foods;
 import com.foocmend.commons.validators.EditInfoValidator;
 import com.foocmend.entities.Member;
 import com.foocmend.repositories.MemberRepository;
 import com.foocmend.services.member.SaveMemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/member/mypage")
@@ -22,11 +26,11 @@ public class MyPage {
     private final MemberRepository repository;
     private final SaveMemberService saveMemberService;
     private final EditInfoValidator editInfoValidator;
-
+    private final Utils utils;
     @GetMapping
     public String myPageView() {
 
-        return "front/member/mypage";
+        return utils.view("member/mypage");
     }
 
     @GetMapping("/edit")
@@ -52,7 +56,7 @@ public class MyPage {
                 signUpForm.setMobile(loggedInMember.getMobile());
             }
         }
-        return "front/member/editInfo";
+        return utils.view("member/editInfo");
     }
 
 
