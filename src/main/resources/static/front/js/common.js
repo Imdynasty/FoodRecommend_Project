@@ -153,7 +153,8 @@ commonLib.search = {
 
         limit = limit || 10;
         const keywords = this.getRanks().map(r => `keywords=${r.key}`).join("&");
-        if (!keywords && !my.sido && !my.sido.trim() && !my.sigugun && !my.sigugun.trim())
+
+        if (!keywords || !my.sido || !my.sido.trim() || !my.sigugun || !my.sigugun.trim())
             return;
 
         let url = `/restaurant/my?limit=${limit}`;

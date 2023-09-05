@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+
+<section layout:fragment="content">
+    <h1 th:text="${title}"></h1>
+
+    <th:block th:replace="~{admin/commons/message::message}"></th:block>
+
+    <form name="frmSave" method="post" th:action="@{/admin/basic/write_review}" autocomplete="off" th:object="${writeReviewForm}">
+        <table class="table-cols">
+            <tr>
+                <th>리뷰 제목</th>
+                <td>
+                    <input type="text" name="reviewTitle"> <!--th:field="*{reviewTitle}"-->
+                </td>
+            </tr>
+            <tr>
+                <th>식당명</th>
+                <td>
+                    <input type="number" name="RestaurantName" ><!--th:field="*{RestaurantName}"-->
+                </td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td>
+                    <textarea name="reviewContent" ></textarea><!--th:field="*{reviewContent}"-->
+                </td>
+            </tr>
+        </table>
+        <div class="btns">
+            <button type="reset">다시입력</button>
+            <button type="submit">저장하기</button>
+        </div>
+    </form>
+</section>
+</html>

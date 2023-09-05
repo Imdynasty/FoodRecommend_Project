@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="memberlist">
+    <div>
+        <form action="/" method="POST">
+            <table class="table" id="table">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>이메일</th>
+                    <th>닉네임</th>
+                    <th>주소</th>
+                    <th>성별</th>
+                    <th>연령대</th>
+                    <th>선호음식</th>
+                    <th>가입일자</th>
+                    <th>작성리뷰수</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="memberList :${memberList}" class="member">
+                    <td th:text="${memberList.memNo}" class="memberCenter"></td>
+                    <td th:text="${memberList.email}" class="memberCenter"></td>
+                    <td th:text="${memberList.nickname}" class="memberCenter"></td>
+                    <td th:text="${memberList.address}" class="memberCenter"></td>
+                    <td th:text="${memberList.gender}" class="memberCenter"></td>
+                    <td th:text="${memberList.birthDate}" class="memberCenter"></td>
+                    <td th:text="${memberList.favoriteFoods}" class="memberCenter"></td>
+                    <td th:text="${memberList.createdDt}" class="memberCenter"></td>
+                    <td th:text="작성리뷰수" class="memberCenter"></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    </th:block>
+</html>
