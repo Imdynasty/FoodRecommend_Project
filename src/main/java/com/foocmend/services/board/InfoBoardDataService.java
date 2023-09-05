@@ -60,9 +60,9 @@ public class InfoBoardDataService {
     }
 
     /*
-    * 게시글 목록 조회
-    *
-    */
+     * 게시글 목록 조회
+     *
+     */
     public ListData<BoardData> getList(String bId, BoardSearch search) {
 
         // 게시판 설정 조회 + 접근 권한체크
@@ -70,6 +70,8 @@ public class InfoBoardDataService {
 
         int page = Utils.getNumber(search.getPage(), 1);
         int limit = Utils.getNumber(board.getRowsOfPage(), 20);
+        if (search.getLimit() > 0) limit = search.getLimit();
+
         int offset = (page - 1) * limit;
 
         QBoardData boardData = QBoardData.boardData;
@@ -77,7 +79,14 @@ public class InfoBoardDataService {
         /* 검색 처리 S */
         BooleanBuilder andBuilder = new BooleanBuilder();
         andBuilder.and(boardData.board.bId.eq(bId)) // 게시판 아이디
-                .and(boardData.deletedDt.isNull()); // 미삭제 게시글만 조회 
+                .and(boardData.deletedDt.isNull()); // 미삭제 게시글만 조회
+
+        /** 회원이 작성한 게시글 조회 */
+        String email = search.getEmail();
+        if (email != null && !email.isBlank()) {
+            andBuilder.and(boardData.member.email.eq(email));
+        }
+
         /* 검색 처리 E */
         String sopt = search.getSopt();
         String skey = search.getSkey();
@@ -119,7 +128,7 @@ public class InfoBoardDataService {
         }
 
         List<String[]> sorts = Arrays.stream(sort.trim().split(","))
-                    .map(s -> s.split("_")).toList();
+                .map(s -> s.split("_")).toList();
         PathBuilder pathBuilder = new PathBuilder(BoardData.class, "boardData");
         for (String[] _sort : sorts) {
             Order direction = Order.valueOf(_sort[1].toUpperCase()); // 정렬 방향
@@ -167,5 +176,28 @@ public class InfoBoardDataService {
 
         boardData.setEditorImages(editorImages);
         boardData.setAttachFiles(attachFiles);
+    }
+
+    /**
+     * 로그인한 회원이 작성한 게시글 조회
+     *
+     * @param bId
+     * @param page
+     * @param limit
+     * @return
+     */
+    public ListData<BoardData> getMine(String bId, int page, int limit) {
+        if (!memberUtil.isLogin()) {
+            return null;
+        }
+
+        BoardSearch search = new BoardSearch();
+        page = Utils.getNumber(page, 1);
+        limit = Utils.getNumber(limit, 20);
+        search.setPage(page);
+        search.setLimit(limit);
+        search.setEmail(memberUtil.getMember().getEmail());
+
+        return getList(bId, search);
     }
 }

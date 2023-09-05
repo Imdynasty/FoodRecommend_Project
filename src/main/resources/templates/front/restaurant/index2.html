@@ -8,13 +8,16 @@
             <a th:href="@{/restaurant?type={type}(type=${category.cateNm})}" th:text="${category.cateNm}"></a>
         </span>
     </div>
+    <h1>맛집 찾기</h1>
     <ul class="layout_width">
         <li th:if="${items == null || items.isEmpty()}">
             조회된 음식점이 없습니다.
         </li>
         <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
             <span>
-                <input type="checkbox" class="toggle_wish" th:id="*{id}" th:data-id="*{id}">
+                <input type="checkbox" class="toggle_wish" th:id="*{id}" th:data-id="*{id}"
+                    th:checked="${#lists.contains(wishIds, item.id)}"
+                >
                 <label th:for="*{id}">HotPlace</label>
             </span>
             <a th:href="@{/restaurant/view/{id}(id=*{id})}">

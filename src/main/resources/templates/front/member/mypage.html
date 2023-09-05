@@ -3,6 +3,22 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
-    마이페이지!
+    <div class="mypage_content">
+        <div class="tabs">
+            <a th:href="@{/member/mypage(type='review')}" th:classappend="${type == 'review'} ? 'on'">작성 리뷰</a>
+            <a th:href="@{/member/mypage(type='wishlist')}" th:classappend="${type == 'wishlist'} ? 'on'">좋아요</a>
+            <a th:href="@{/member/mypage(type='myinfo')}" th:classappend="${type == 'myinfo'} ? 'on'">회원정보수정</a>
+            <a th:href="@{/member/withdraw}">회원탈퇴</a>
+        </div>
+        <th:block th:if="${type == 'review'}">
+            <th:block th:replace="~{front/member/_review::content}"></th:block>
+        </th:block>
+        <th:block th:if="${type == 'wishlist'}">
+            <th:block th:replace="~{front/member/_wishlist::content}"></th:block>
+        </th:block>
+        <th:block th:if="${type == 'myinfo'}">
+            <th:block th:replace="~{front/member/_myinfo::content}"></th:block>
+        </th:block>
+    </div>
 </main>
 </html>

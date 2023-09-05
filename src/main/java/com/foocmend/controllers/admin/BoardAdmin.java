@@ -4,6 +4,7 @@ import com.foocmend.commons.CommonException;
 import com.foocmend.commons.Menu;
 import com.foocmend.commons.MenuDetail;
 import com.foocmend.entities.Board;
+import com.foocmend.services.board.config.DeleteBoardConfigService;
 import com.foocmend.services.board.config.InfoBoardConfigService;
 import com.foocmend.services.board.config.ListBoardConfigService;
 import com.foocmend.services.board.config.SaveBoardConfigService;
@@ -18,6 +19,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller("adminBoard")
 @RequestMapping("/admin/board")
@@ -27,6 +29,7 @@ public class BoardAdmin {
     private final SaveBoardConfigService configSaveService;
     private final InfoBoardConfigService boardConfigInfoService;
     private final ListBoardConfigService boardConfigListService;
+    private final DeleteBoardConfigService deleteBoardConfigService;
 
     /**
      * 게시판 목록
@@ -93,6 +96,7 @@ public class BoardAdmin {
 
     private void commonProcess(Model model, String title) {
         String URI = request.getRequestURI();
+        title = Objects.requireNonNullElse(title, "list");
 
         // 서브 메뉴 처리
         String subMenuCode = Menu.getSubMenuCode(request);
@@ -105,5 +109,15 @@ public class BoardAdmin {
         model.addAttribute("submenus", submenus);
 
         model.addAttribute("pageTitle", title);
+    }
+
+    @PostMapping
+    public String indexPs(String[] bId, Model model) {
+        commonProcess(model, "list");
+
+        deleteBoardConfigService.delete(bId);
+
+        model.addAttribute("script", "parent.location.reload();");
+        return "commons/execute_script";
     }
 }
