@@ -7,7 +7,7 @@
             <dl>
                 <dt th:text="#{email}"></dt>
                 <dd>
-                    <input type="text" name="email" th:field="*{email}">
+                    <input type="text" name="email" th:field="*{email}" readonly>
                     <div class="errors" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
                 </dd>
             </dl>
@@ -75,13 +75,13 @@
             <dl>
                 <dt th:text="#{birthDate}"></dt>
                 <dd>
-                    <input type="text" name="email" th:field="*{birthDate}">
+                    <input type="text" name="email" th:field="*{birthDate}" readonly>
                     <div class="errors" th:each="err : ${#fields.errors('birthDate')}" th:text="${err}"></div>
                 </dd>
             </dl>
             <dl>
                 <dt th:text="#{favorite.food}"></dt>
-                <dd>
+                <dd class="favorite_select">
                     <th:block th:each="food, status : ${foods}">
                     <span>
                         <input type="checkbox" name="favoriteFoods" th:value="${food[0]}" th:id="${'favoriteFoods' + status.index}" th:field="*{favoriteFoods}">

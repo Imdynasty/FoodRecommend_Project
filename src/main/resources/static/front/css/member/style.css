@@ -24,6 +24,7 @@ main { margin: 300px auto 0 auto; width: 920px; }
 #findEmailString { font-weight:bold; }
 #find_box_button { width: 100px; height: 155px; background: #689a9f; border: 0; cursor: pointer;  color: #fff; font-weight: 700; margin-left: 10px; font-size: 1.15rem; letter-spacing:3px; }
 .button_box { padding:30px 0px; }
+.withdraw_button { width: 300px; height: 60px; border-radius: 5px; color: #fff; font-weight: 700; font-size: 1.5rem; border: 0; background: #689a9f; cursor: pointer; display: block; margin: 0 auto; !important; }
 
 .mypage_content h1 { margin-bottom: 10px; }
 .mypage_content dl { display: flex; align-items: center; }
@@ -45,6 +46,9 @@ main { margin: 300px auto 0 auto; width: 920px; }
 .signup_page dl+dl { margin-top: 10px; }
 .signup_page dt { width: 90px; color: #999; }
 .signup_page dd { flex-grow: 1; }
+.signup_page dd span { display:inline-block; }
+.favorite_select { margin-left:50px; }
+.favorite_select span { width:140px; }
 
 .terms_wrap { border-top: 1px solid #d5d5d5; padding-top: 10px; margin: 20px 0 50px; }
 .terms_wrap .terms { height: 150px; border: 1px solid #d5d5d5; overflow: auto; word-break: break-all; padding: 10px; margin-bottom: 10px; }
