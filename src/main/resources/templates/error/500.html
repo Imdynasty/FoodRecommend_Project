@@ -1,4 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<img th:src="@{/error/images/500.png}">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <div>
+        <img class="main_errors" th:src="@{/error/images/500.png}">
+    </div>
+</main>
 </html>
