@@ -78,8 +78,9 @@ public class MyPage {
                     signUpForm.setMobile(loggedInMember.getMobile());
                 }
             }
-        }
+        } else if (type.equals("withdraw")) {
 
+        }
 
         return utils.view("member/mypage");
     }

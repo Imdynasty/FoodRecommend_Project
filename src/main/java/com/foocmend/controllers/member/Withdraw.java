@@ -1,6 +1,7 @@
 package com.foocmend.controllers.member;
 
 import com.foocmend.commons.MemberUtil;
+import com.foocmend.commons.constants.Foods;
 import com.foocmend.entities.Member;
 import com.foocmend.repositories.MemberRepository;
 import jakarta.servlet.http.HttpSession;
@@ -24,14 +25,15 @@ public class Withdraw {
     private final HttpSession session;
 
     @GetMapping
-    public String withdraw() {
-
+    public String withdraw(Model model) {
+        commonProcess(model);
 
         return "front/member/withdraw";
     }
 
     @PostMapping
     public String withdrawPs(@RequestParam String email, @RequestParam String password, Model model) {
+        commonProcess(model);
 
         if(!memberUtil.isLogin()) {
             return "redirect:/member/login";
@@ -48,11 +50,16 @@ public class Withdraw {
 
             model.addAttribute("withdrawSuccess","회원탈퇴가 완료 되었습니다.");
 
-            return "redirect:/";
+            return "front/member/withdrawResult";
         } else {
             model.addAttribute("withdrawFailed","아이디와 비밀번호를 확인해주세요.");
             return "front/member/withdrawResult";
         }
+    }
+
+    private void commonProcess(Model model) {
+        model.addAttribute("pageTitle", "회원탈퇴");
+        model.addAttribute("addCss", new String[] { "member/style"});
     }
 
 

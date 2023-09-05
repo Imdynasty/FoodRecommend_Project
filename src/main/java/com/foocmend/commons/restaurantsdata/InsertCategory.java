@@ -20,9 +20,7 @@ public class InsertCategory {
             List<String> types = new ArrayList<>();
             while(rs.next()) {
                 String type = rs.getString("type");
-                if(type.isBlank()){
-                    type = "기타2";
-                }
+
                 types.add(type);
             }
             rs.close();
