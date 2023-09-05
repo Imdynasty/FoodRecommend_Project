@@ -8,7 +8,7 @@
         </a>
     </div>
     <ul class="board_list">
-        <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
+        <li class="abc" th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
             <a th:href="@{/board/view/{id}(id=*{id})}" th:text="*{subject}" class="subject"></a>
             <span class="post_info">
                 <span class="poster">
