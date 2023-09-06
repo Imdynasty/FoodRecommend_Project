@@ -99,7 +99,7 @@ commonLib.search = {
     save() {
         const { ajaxLoad } = commonLib;
         const params = new URLSearchParams(location.search);
-        const skey = params.get('skey');
+        const skey = params.get('key');
         /** 최근 검색어 DB 저장처리 S */
         if (skey) {
             const formData = new FormData();

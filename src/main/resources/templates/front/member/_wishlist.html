@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="content">
     <ul>
-    <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
+    <li class=def th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
         <a th:href="@{/restaurant/view/{id}(id=*{id})}">
             <th:block if="*{mainImages != null && !mainImages.isEmpty()}">
                 <img th:each="file, status : *{mainImages}" th:if="${status.first}" th:src="${file.thumbsUrl[0]}">
@@ -14,6 +14,9 @@
             <div class="address" th:text="*{address}"></div>
         </a>
     </li>
+        <li th:unless="${items != null && !items.isEmpty()}" class="no_data">
+         등록된 좋아요가 없습니다!
+        </li>
     </ul>
 </th:block>
 </html>
