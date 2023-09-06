@@ -9,7 +9,7 @@
                 <th>분류</th>
                 <td>
                     <select name="type" th:field="*{type}">
-                        <option th:value="all"></option>
+                        <option th:value="all">- 선택하세요 -</option>
                         <option th:each="category, status : ${categories}"
                                 th:value="${category.cateNm}"
                                 th:text="${category.cateNm}"
