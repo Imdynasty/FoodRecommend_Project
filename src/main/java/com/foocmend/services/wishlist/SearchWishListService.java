@@ -35,7 +35,7 @@ public class SearchWishListService {
 
     public List<Restaurant> getRestaurants() {
         List<WishList> items = getMine();
-        if (items == null || items.isEmpty()) return null;
+        if (items == null && items.isEmpty()) return null;
 
         return items.stream().map(WishList::getRestaurant).toList();
     }
