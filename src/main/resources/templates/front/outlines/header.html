@@ -4,6 +4,8 @@
     <header th:fragment="common">
         <section class="top_menus">
             <div class="inner layout_width">
+                <a th:href="@{/board/list/notice}"> 공지사항</a>
+                <a th:href="@{/board/list/qna}">고객센터</a>
                 <th:block sec:authorize="isAnonymous()">
                     <a th:href="@{/member/signup}" th:text="#{signUp}"></a>
                     <a th:href="@{/member/login}" th:text="#{login}"></a>
@@ -32,12 +34,13 @@
                         <option value="">- 시구군 선택 -</option>
                         <option th:if="${siguguns != null}" th:each="sigugun : ${siguguns}" th:value="${sigugun}" th:text="${sigugun}" th:selected="${sigugun == _sigugun}"></option>
                     </select>
-                    <input type="text" name="skey" placeholder="오늘 뭐 먹지?" th:value="${param.skey}">
-                    <input type="image" th:src="@{/common/images/search_btn.gif}">
+                    <!--button class="btn-search"><i class="xi-search"></i></button-->
+                    <input class="input-search" type="text" name="skey" placeholder="오늘 뭐 먹지?" th:value="${param.skey}">
+                    <!--input type="image" th:src="@{/common/images/search_btn.gif}"-->
+                    <button class="btn-search"><i class="xi-search" type="image"></i></button>
                 </form>
                 <div class="links">
-                    <a th:href="@{/board/list/notice}">공지사항</a>
-                    <a th:href="@{/board/list/qna}">고객센터</a>
+
                 </div>
 
             </div>

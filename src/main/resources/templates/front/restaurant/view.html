@@ -5,6 +5,12 @@
 <main layout:fragment="content">
 
     <section class="store" th:object="${item}">
+        <span>
+            <input type="checkbox" class="toggle_wish" th:id="*{id}" th:data-id="*{id}"
+                   th:checked="${#lists.contains(wishIds, item.id)}"
+            >
+            <label th:for="*{id}">HotPlace</label>
+            </span>
         <input type="hidden" th:value="*{storeName}" id='map_info_title'>
         <input type="hidden" name="roadAddress" th:value="*{roadAddress}" id='map_info_address'>
         <input type="hidden" th:value="*{homepage}" id="map_info_homepage">
@@ -12,11 +18,11 @@
         <div class="info">
             <img th:if="*{mainImages != null && !mainImages.isEmpty()}" th:each="image : *{mainImages}" th:src="${image.fileUrl}" class="main_images">
             <dl>
-                <dt style="font-size: 20px; font-weight: bold;">업체명</dt>
+                <dt style="font-weight: bold;">업체명</dt>
                 <dd th:text="*{storeName}"></dd>
             </dl>
             <dl>
-                <dt style="font-size: 20px; font-weight: bold;">주소</dt>
+                <dt style="font-weight: bold;">주소</dt>
                 <dd>
                     <div th:text="*{roadAddress}"></div>
                     <div th:if="*{address != null}" th:text="*{address}"></div>

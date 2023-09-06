@@ -45,7 +45,6 @@ public class BoardData extends Base {
     private String content; // 내용
     private int hit; // 조회수
 
-    @Column(length=125)
     private String ua; // User-Agent : 브라우저 정보
 
     @Column(length=20)

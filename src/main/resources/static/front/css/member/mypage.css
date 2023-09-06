@@ -1,6 +1,16 @@
-.mypage_content { width: 850px; margin: 0 auto; }
-.mypage_content .tabs { display: flex; border-bottom: 2px solid #000; }
+/* 상단 탭 S */
+.mypage_content { width: 920px; margin: 300px auto 20px auto; }
+.mypage_content .tabs { display: flex; border-bottom: 2px solid #689a9f; }
 .mypage_content .tabs a { width: 0; flex-grow: 1; text-align: center; padding: 10px; font-size: 14px; font-weight: 500; }
-.mypage_content .tabs a.on { background: #000; color: #fff; }
+.mypage_content .tabs a.on { background: #689a9f; color: #fff; }
+/* 상단 탭 E */
+
+/* 리뷰 S */
+.abc { display:inline-block; border-right: 1px solid #d5d5d5;}
+.subject {font-weight: bold; font-size: 14px; padding:10px; display:flex; justify-content: space-evenly;}
+.post_info { width: 100%; display: flex; align-items: center; float: right;
+    border-bottom: 1px solid #d5d5d5; height: 60px; align-items: flex-end; flex-direction: column-reverse; flex-grow: 1}
+/* 리뷰 E */
+
 
 
