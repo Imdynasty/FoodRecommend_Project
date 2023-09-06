@@ -22,6 +22,7 @@ public class SaveCommentService {
 
     private final BoardCommentRepository commentRepository;
     private final BoardDataRepository boardDataRepository;
+    private final UpdateCommentCountService updateCommentCountService;
     private final PasswordEncoder encoder;
     private final HttpServletRequest request;
     private final MemberUtil memberUtil;
@@ -53,6 +54,6 @@ public class SaveCommentService {
         commentRepository.saveAndFlush(comment);
 
         /** 댓글 갯수 업데이트 */
-
+        updateCommentCountService.update(boardDataId);
     }
 }
