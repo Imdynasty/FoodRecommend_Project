@@ -46,7 +46,13 @@ public class SaveCommentService {
         comment.setContent(form.getContent());
 
         String guestPw = comment.getGuestPw();
+        if (guestPw != null && !guestPw.isBlank()) {
+            comment.setGuestPw(encoder.encode(guestPw));
+        }
 
+        commentRepository.saveAndFlush(comment);
+
+        /** 댓글 갯수 업데이트 */
 
     }
 }

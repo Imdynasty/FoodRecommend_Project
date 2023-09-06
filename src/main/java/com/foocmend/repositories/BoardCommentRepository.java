@@ -6,4 +6,9 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 public interface BoardCommentRepository extends JpaRepository<BoardComment, Long>, QuerydslPredicateExecutor<BoardComment> {
 
+    default int getTotalComments(Long boardDataId) {
+
+        return 0;
+
+    }
 }
