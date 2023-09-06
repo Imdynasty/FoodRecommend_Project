@@ -20,6 +20,5 @@
 .def a img { height: 130px; width: 100%; padding: 5px;}
 .def no_image { height: 130px; width: 90%; }
 .def .store_nm {padding:10px;}
-.no_data_ {background-color: rgba( 230, 230, 221, 0.3 ); height: 100px; font-weight: bold; font-size: 30px;}
 
 /* 좋아요 E */
