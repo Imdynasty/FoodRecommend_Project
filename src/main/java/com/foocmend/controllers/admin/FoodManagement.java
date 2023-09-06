@@ -22,7 +22,7 @@ public class FoodManagement {
     @GetMapping
     public String food(Model model) {
         commonProcess(model);
-        list = service.getMapper();
+        list = service.maleCount();
         model.addAttribute("list", list);
 
         return "admin/basic/food";
