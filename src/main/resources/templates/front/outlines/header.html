@@ -22,7 +22,6 @@
                 <a th:href="@{/}" class="logo">
                     <img th:src="@{/common/images/logo.png}">
                 </a>
-
                 <form class='frm_search' name="frmSearch" method="get" th:action="@{/restaurant}" autocomplete="off">
                     <input type="hidden" name="sopt" value="all">
                     <input type="hidden" name="type" th:value="${param.type}">
@@ -40,7 +39,14 @@
                     <button class="btn-search"><i class="xi-search" type="image"></i></button>
                 </form>
                 <div class="links">
-
+                    <a th:href="@{/restaurant}">
+                        <i class="xi-restaurant"></i>
+                        맛집찾기
+                    </a>
+                    <a th:href="@{/}">
+                        <i class="xi-hand-pointing"></i>
+                        추천
+                    </a>
                 </div>
 
             </div>
@@ -51,10 +57,5 @@
             <a th:each="item : ${searchHistories}" th:object="${item}" th:href="@{/restaurant?skey={key}(key=*{keyword})}" th:text="*{keyword}"></a>
             </div>
         </div>
-        <nav>
-            <a th:href="@{/restaurant}">맛집찾기</a>
-            <a th:href="@{/board/list/review}">맛집후기</a>
-            <a th:href="@{/board/list/qna}">고객센터</a>
-        </nav>
     </header>
 </html>

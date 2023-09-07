@@ -1,5 +1,6 @@
 package com.foocmend;
 
+import com.foocmend.commons.constants.Foods;
 import com.foocmend.repositories.MemberRepository;
 import com.foocmend.repositories.SiteVisitRepository;
 import com.foocmend.services.ChartService;
@@ -8,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -28,9 +28,12 @@ class ProjectApplicationTests {
 	@Test
 	void contextLoads() throws Exception {
 
-		long result = visitRepository.count();
+		List<String[]> result = Foods.getList();
 
-		System.out.println(result);
+		String[] list = (String[]) result.stream().toArray();
+
+		System.out.println(list);
+
 
 	}
 
