@@ -265,4 +265,8 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
     /** 키워드 입력시 자동 완성 처리 E */
+
+    /** 클릭 색 변경 이벤트*/
+
+
 });

@@ -137,39 +137,42 @@ header .logo_search { background: #e6e6dd; }
 header .logo_search > .inner { max-width:1800px; display: flex; align-items: center; justify-content: space-between; }
 header .logo_search .logo, header .logo_search .links { width: 0; flex-grow: 1; }
 header .logo_search .logo img { height: 100px; }
-header .frm_search { width: 550px; position: relative;  }
+header .frm_search  { width: 550px; position: relative;  }
 header .frm_search > .inner { display: flex; color: #689a9f;
 width: fit-content; height: fit-content; }
-header .frm_search input[type='text'] { flex-grow: 1; border: 0; border-radius: 0px; height: 50px;
-width: 50px;height: 50px;border-style: none;padding: 10px;
+header .frm_search .inner input[type='text'] { flex-grow: 1; border: 0; border-radius: 0px; height: 50px;
+border-style: none;padding: 10px;
 letter-spacing: 2px;outline: none; border-radius: 10px;transition: all .5s ease-in-out;
 background-color: #EDEDED; padding-right: 40px; color:#000;}
-header .frm_search input[type='text']::placeholder{
+header .frm_search .inner input[type='text']9::placeholder{
 color:rgba(255,255,255,.5); font-size: 18px; color: #000; letter-spacing: 2px; font-weight: 100; border-radius: 10px;
 }
-header .frm_search .btn-search { width: 50px; height: 50px; border-style: none; font-size: 20px;
+header .frm_search .inner .btn-search { width: 50px; height: 50px; border-style: none; font-size: 20px;
 font-weight: bold; outline: none; cursor: pointer; border-radius: 50%; position: absolute; right: 0px;
 color:#ffffff ; background-color:transparent; pointer-events: painted; }
 
-header .frm_search .search_dropdown { position: absolute; min-height: 250px; width: 550px; background: #fff; top: 48px; left: 0; padding: 10px; border: 1px solid #d5d5d5; border-top: 0; z-index: 10; }
+header .frm_search .search_dropdown { position: absolute; min-height: 250px; width: 550px; background: #fff; top: 48px;
+ left: 0; padding: 10px; border: 1px solid #d5d5d5; border-top: 0; z-index: 10; margin-top:4px; border-radius: 10px 10px 0px 0px; }
 header .frm_search .search_dropdown label { background-image: none; padding: 0; }
-header .frm_search .search_dropdown .tab { display: flex; }
-header .frm_search .search_dropdown .tab li { width: 0; flex-grow: 1; }
+header .frm_search .search_dropdown .tab { display: flex;  font-size:15px; border-bottom: solid #000 1px; height:40px; line-height: 35px; }
+header .frm_search .search_dropdown .tab li { width: 0; flex-grow: 1; text-align:center; }
 header .frm_search .search_dropdown .tab li input[type='radio']+label { width: 100%; }
-header .frm_search .search_dropdown .tab li input[type='radio']:checked+label { border-bottom: 2px solid #000; }
+header .frm_search .search_dropdown .tab li input[type='radio']:checked+label { border-bottom: 2px solid #7CBBBF; color: #7CBBBF; }
 
-header .frm_search > select { height: 45px; border-left: 0; border-radius: 0px 5px 5px 0px; box-shadow: 0px 0px 1px 0px;
+header .frm_search .search_dropdown .keywords li { padding: 5px; color:#7CBBBF; font-size:15px; }
+
+header .frm_search .inner > select { height: 45px; border-left: 0; border-radius: 0px 5px 5px 0px; box-shadow: 0px 0px 1px 0px;
 margin-right:3px; height: 50px; width: 30px; border-style: none; padding: 10px; font-size: 15px; letter-spacing: 2px;
 outline: none; border-radius: 10px; transition: all .5s ease-in-out; background-color: #7CBBBF; padding-right: 40px; color:#000;}
 
 header .frm_search > select option { background:#8DD4D9;}
 
-header .frm_search > select:focus ~ header .frm_search input[type='text']{ width: 300px;
+header .frm_search > select:focus ~ header .frm_search .inner input[type='text'] { width: 300px;
 border-radius: 0px; background-color: transparent; border-bottom:1px solid rgba(255,255,255,.5);
 transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2); }
 
-header .frm_search input[type='text']:focus{
-width: 300px; border-radius: 10px; background-color: #fff; border-bottom:1px solid rgba(255,255,255,.5);
+header .frm_search .inner input[type='text']:focus{
+/*width: 300px;*/ border-radius: 10px; background-color: #fff; border-bottom:1px solid rgba(255,255,255,.5);
  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2); }
 
 header .logo_search .links { text-align: center; }
