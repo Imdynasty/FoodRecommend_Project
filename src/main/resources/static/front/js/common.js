@@ -8,8 +8,10 @@ commonLib.geolocation = {
     async init() {
         await this.save();
         const my = this.getMy();
+        let searchRestauranLinkQs = "?";
         if (frmSearch && frmSearch.sido && frmSearch.sido.value == "" && my.sido && my.sido.trim()) {
             frmSearch.sido.value = my.sido;
+            searchRestauranLinkQs += `sido=${my.sido}`;
         }
 
         if (frmSearch && frmSearch.sigugun && frmSearch.sigugun.value == "") {
@@ -28,7 +30,12 @@ commonLib.geolocation = {
                 }
                 targetEl.appendChild(option);
             }
+
+            if (my.sigugun) searchRestauranLinkQs += `&sigugun=${my.sigugun}`;
         }
+
+        const el = document.querySelector(".search_restaurant_link");
+        if (el) el.href = el.href + searchRestauranLinkQs;
     },
     /**
     * 현재 위치 가져오기
