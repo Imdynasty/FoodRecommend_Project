@@ -43,14 +43,14 @@ public class SearchMemberService implements UserDetailsService, PasswordValidato
                 .build();
     }
 
-    public Member get(String email) {
-        Member member = repository.findByEmail(email);
+    public Member get(String nickname) {
+        Member member = repository.findByNickname(nickname);
 
         return member;
     }
 
-    public SignUpForm getMemberForm(String email) {
-        Member member = get(email);
+    public SignUpForm getMemberForm(String nickname) {
+        Member member = get(nickname);
         return new ModelMapper().map(member, SignUpForm.class);
     }
 

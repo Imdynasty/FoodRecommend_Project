@@ -1,12 +1,16 @@
 package com.foocmend.controllers.admin;
 
 import com.foocmend.commons.*;
+import com.foocmend.commons.constants.Foods;
 import com.foocmend.commons.constants.Role;
 import com.foocmend.controllers.member.SignUpForm;
+import com.foocmend.entities.BoardData;
 import com.foocmend.entities.Member;
+import com.foocmend.entities.QMember;
 import com.foocmend.repositories.MemberRepository;
 import com.foocmend.services.admin.MemberSearch;
 import com.foocmend.services.admin.SearchMemberList;
+import com.foocmend.services.board.InfoBoardDataService;
 import com.foocmend.services.member.SaveMemberService;
 import com.foocmend.services.member.SearchMemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller("adminBasicMemberManage")
+@Controller
 @RequestMapping("/admin/member")
 @RequiredArgsConstructor
 public class MemberManage {
@@ -38,10 +42,11 @@ public class MemberManage {
     public String index(@ModelAttribute MemberSearch search, Model model) {
         commonProcess(model, "list");
         ListData<Member> data = listService.getList(search);
+
         model.addAttribute("items", data.getContent());
         model.addAttribute("pagination", data.getPagination());
 
-        return tplCommon + "member";
+        return "admin/basic/member";
     }
     @PostMapping
     public String indexPs(SignUpForm form , Model model) {
@@ -64,17 +69,21 @@ public class MemberManage {
 
 
 
-    @GetMapping("/edit/{email}")
-    public String edit(@PathVariable String email, Model model) {
+    @GetMapping("/edit/{nickname}")
+    public String edit(@PathVariable String nickname, Model model) {
         commonProcess(model, "edit");
-        SignUpForm signUpForm = infoService.getMemberForm(email);
-        model.addAttribute("memberForm", signUpForm);
+        SignUpForm memberForm = infoService.getMemberForm(nickname);
+        model.addAttribute("memberForm", memberForm);
+        model.addAttribute("foods", Foods.getList());
+        model.addAttribute("addCommonScript", new String[] {"address"});
+
         return tplCommon + "edit2";
     }
 
     @PostMapping("/save")
-    public String save(@Valid SignUpForm signUpForm, Errors errors, Model model) {
+    public String save(SignUpForm signUpForm, Errors errors, Model model) {
         commonProcess(model, "edit");
+        signUpForm.setMode("edit");
         saveService.save(signUpForm);
 
         if (errors.hasErrors()) {
@@ -86,7 +95,7 @@ public class MemberManage {
 
     public void commonProcess(Model model, String mode) {
         String pageTitle = "회원 목록";
-        if (mode.equals("edit")) {
+        if (mode.contains("edit")) {
             pageTitle = "정보 수정";
         }
 
@@ -97,6 +106,7 @@ public class MemberManage {
         model.addAttribute("menuCode", "member");
         model.addAttribute("addCommonScript", addCommonScript);
         model.addAttribute("addScript", addScript);
+        model.addAttribute("addCss", new String[] { "member/style", "member/mypage"});
 
         // 서브 메뉴 처리
         String subMenuCode = Menu.getSubMenuCode(request);

@@ -4,8 +4,11 @@ import com.foocmend.commons.ListData;
 import com.foocmend.commons.Pagination;
 import com.foocmend.commons.Utils;
 import com.foocmend.commons.constants.Role;
+import com.foocmend.entities.BoardData;
 import com.foocmend.entities.Member;
+import com.foocmend.entities.QBoardData;
 import com.foocmend.entities.QMember;
+import com.foocmend.repositories.BoardDataRepository;
 import com.foocmend.repositories.MemberRepository;
 import com.querydsl.core.BooleanBuilder;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,6 +29,7 @@ public class SearchMemberList {
 
     private final MemberRepository memberRepository;
     private final HttpServletRequest request;
+    private final BoardDataRepository boardDataRepository;
 
     public ListData<Member> getList(MemberSearch search) {
         QMember member = QMember.member;
@@ -35,28 +39,30 @@ public class SearchMemberList {
         int page = search.getPage();
         page = Utils.getNumber(page, 1);
 
+
         /** 검색 처리 S*/
         BooleanBuilder andBuilder = new BooleanBuilder();
-        String sopt = search.getSopt();
-        String skey = search.getSkey();
+        String soption = search.getSoption();
+        String searchkey = search.getSearchkey();
         List<Role> roles = search.getRoles();
-        if (sopt != null && !sopt.isBlank() && skey != null && !skey.isBlank()) {
-            skey = skey.trim();
-            if (sopt.equals("all")) { // 통합검색
+
+        if (soption != null && !soption.isBlank() && searchkey != null && !searchkey.isBlank()) {
+            searchkey = searchkey.trim();
+            if (soption.equals("all")) { // 통합검색
                 BooleanBuilder orBuilder = new BooleanBuilder();
-                orBuilder.or(member.email.contains(skey))
-                        .or(member.nickname.contains(skey))
-                        .or(member.address.contains(skey))
-                        .or(member.favoriteFoods.contains(skey));
+                orBuilder.or(member.email.contains(searchkey))
+                        .or(member.nickname.contains(searchkey))
+                        .or(member.address.contains(searchkey))
+                        .or(member.favoriteFoods.contains(searchkey));
                 andBuilder.and(orBuilder);
-            } else if (sopt.equals("email")) {
-                andBuilder.and(member.email.contains(skey));
-            } else if (sopt.equals("nickname")) {
-                andBuilder.and(member.nickname.contains(skey));
-            } else if (sopt.equals("address")) {
-                andBuilder.and(member.address.contains(skey));
-            } else if (sopt.equals("favoriteFoods")) {
-                andBuilder.and(member.favoriteFoods.contains(skey));
+            } else if (soption.equals("email")) {
+                andBuilder.and(member.email.contains(searchkey));
+            } else if (soption.equals("nickname")) {
+                andBuilder.and(member.nickname.contains(searchkey));
+            } else if (soption.equals("address")) {
+                andBuilder.and(member.address.contains(searchkey));
+            } else if (soption.equals("favoriteFoods")) {
+                andBuilder.and(member.favoriteFoods.contains(searchkey));
             }
         }
 
@@ -75,6 +81,8 @@ public class SearchMemberList {
         int total = (int)pData.getTotalElements();
         Pagination pagination = new Pagination(page, total, 10, limit, request);
         data.setPagination(pagination);
+
+
 
 
         return data;

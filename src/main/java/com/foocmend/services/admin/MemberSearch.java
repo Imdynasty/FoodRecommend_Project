@@ -19,7 +19,7 @@ public class MemberSearch {
 
     private List<Role> roles;
 
-    private String sopt;    // 검색 옵션
-    private String skey;    // 검색 키워드
+    private String soption;    // 검색 옵션
+    private String searchkey;    // 검색 키워드
 
 }

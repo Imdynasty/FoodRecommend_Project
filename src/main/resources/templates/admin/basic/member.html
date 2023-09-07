@@ -4,28 +4,21 @@
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
     <h1 th:text="${pageTitle}"></h1>
-    <form method="get" th:action="@{/admin/member}" th:object="${memberSearch}">
+    <form name="frmSearch" method="get" th:action="@{/admin/member}" th:object="${memberSearch}">
         <table class="table-cols">
             <tr>
                 <th>키워드 검색</th>
                 <td>
                     <div class="input_grp">
-                        <select name="sopt" th:field="*{sopt}">
+                        <select name="soption" th:field="*{soption}">
                             <option value="all">통합검색</option>
-                            <option value="userId">이메일</option>
-                            <option value="userNm">닉네임</option>
-                            <option value="email">지역</option>
-                            <option value="mobile">취향</option>
+                            <option value="email">이메일</option>
+                            <option value="nickname">닉네임</option>
+                            <option value="address">지역</option>
+                            <option value="favoriteFoods">취향</option>
                         </select>
-                        <input type="text" name="skey" th:field="*{skey}">
+                        <input type="text" name="searchkey" th:field="*{searchkey}">
                     </div>
-                </td>
-                <th>회원구분</th>
-                <td>
-                   <span th:each="role, status : ${roles}">
-                       <input type="checkbox" name="roles" th:value="${role[0]}" th:id="${'role_' + status.index}" th:field="*{roles}">
-                       <label th:for="${'role_' + status.index}" th:text="${role[1]}"></label>
-                   </span>
                 </td>
             </tr>
         </table>
@@ -36,6 +29,7 @@
     <table class="table-rows">
         <thead>
         <tr>
+            <th>수정</th>
             <th>No</th>
             <th>이메일</th>
             <th>닉네임</th>
@@ -44,29 +38,36 @@
             <th>연령대</th>
             <th>선호음식</th>
             <th>가입일자</th>
+            <th>수정일자</th>
             <th>작성리뷰수</th>
         </tr>
         </thead>
-        <tbody>
-        <tr th:if="${items != null && items.size() > 0}" th:each="item, status : ${items}" th:object="${item}">
-            <td align="center">
-                <a class="user-edit-clk" th:href="@{/admin/member/edit/{email}(email=*{email})}">수정</a>
-            </td>
-            <td th:text="*{memNo}"></td>
-            <td th:text="*{email}"></td>
-            <td th:text="*{nickname}"></td>
-            <td th:text="*{address}"></td>
-            <td th:text="*{gender}"></td>
-            <td th:text="*{birthDate}"></td>
-            <td th:text="*{favoriteFoods}"></td>
-            <td th:text="${#temporals.format(item.createdDt, 'yy-MM-dd')}"></td>
-            <td th:text="${#temporals.format(item.modifiedDt, 'yy-MM-dd')}"></td>
-        </tr>
-        <tr th:unless="${items != null && items.size() > 0}">
-            <td colspan="9" class="no_data">조회된 목록이 없습니다.</td>
-        </tr>
-        </tbody>
-    </table>
-    <th:block th:replace="~{common/_pagination::pagination}"></th:block>
+
+                <tbody>
+                <tr th:if="${items != null && items.size() > 0}" th:each="item, status : ${items}" th:object="${item}">
+                    <td align="center">
+                        <a class="user-edit-clk" th:href="@{/admin/member/edit/{nickname}(nickname=*{nickname})}">수정</a>
+                    </td>
+                    <td th:text="*{memNo}"></td>
+                    <td th:text="*{email}"></td>
+                    <td th:text="*{nickname}"></td>
+                    <td th:text="*{address}"></td>
+                    <td th:text="*{gender}"></td>
+                    <td th:text="*{birthDate}"></td>
+                    <td th:text="*{favoriteFoods}"></td>
+                    <td th:text="${#temporals.format(item.createdDt, 'yy-MM-dd')}"></td>
+                    <td th:text="${#temporals.format(item.modifiedDt, 'yy-MM-dd')}"></td>
+                    <td></td>
+                </tr>
+                <tr th:unless="${items != null && items.size() > 0}">
+                    <td colspan="9" class="no_data">조회된 목록이 없습니다.</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
+
+
 </section>
 </html>
