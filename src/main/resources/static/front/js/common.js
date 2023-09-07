@@ -205,7 +205,26 @@ commonLib.search = {
         } catch (err) {
             console.error(err);
         }
+    },
+    /**
+    * 드롭 다운 메뉴 보이기
+    */
+    showDropDown() {
+        const searchDropdown = document.querySelector(".search_dropdown");
+        if (!searchDropdown) return;
+        searchDropdown.classList.remove("dn");
 
+        commonLib.search.loadRecentKeywords();
+    },
+    /**
+    * 드롭다운 메뉴 감추기
+    *
+    */
+    closeDropDown() {
+        const searchDropdown = document.querySelector(".search_dropdown");
+        if (!searchDropdown) return;
+        searchDropdown.classList.remove("dn");
+        searchDropdown.classList.add("dn");
     }
 };
 
@@ -238,25 +257,8 @@ window.addEventListener("DOMContentLoaded", function() {
     /** 키워드 입력시 자동 완성 처리 S */
     const skeyEl = document.querySelector(".frm_search input[name='skey']");
     if (skeyEl) {
-        skeyEl.addEventListener("focus", function() {
-
-            const searchDropdown = document.querySelector(".search_dropdown");
-            if (!searchDropdown) return;
-            searchDropdown.classList.remove("dn");
-
-            search.loadRecentKeywords();
-
-        });
-
-        skeyEl.addEventListener("keyup", function() {
-
-                    const searchDropdown = document.querySelector(".search_dropdown");
-                    if (!searchDropdown) return;
-                    searchDropdown.classList.remove("dn");
-
-                    search.loadRecentKeywords();
-
-                });
+        skeyEl.addEventListener("focus", search.showDropDown);
+        skeyEl.addEventListener("keyup", search.showDropDown);
     }
 
     const searchTypeEls = document.querySelectorAll(".frm_search input[name='searchType']");
@@ -264,5 +266,10 @@ window.addEventListener("DOMContentLoaded", function() {
         el.addEventListener("click", search.loadRecentKeywords);
     }
 
+
+    const closePopupEl = document.querySelector(".close_popup");
+    if (closePopupEl) {
+        closePopupEl.addEventListener("click", search.closeDropDown);
+    }
     /** 키워드 입력시 자동 완성 처리 E */
 });
