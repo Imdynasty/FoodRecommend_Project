@@ -7,10 +7,11 @@
     <section class="store" th:object="${item}">
         <span>
             <input type="checkbox" class="toggle_wish" th:id="*{id}" th:data-id="*{id}"
-                   th:checked="${#lists.contains(wishIds, item.id)}"
-            >
+                   th:checked="${#lists.contains(wishIds, item.id)}">
             <label th:for="*{id}">HotPlace</label>
-            </span>
+            <span th:if="*{wishCnt > 0 && wishCnt < 1000}" th:text="*{'좋아요 :' + wishCnt}"></span>
+            <i class="xi-heart"></i>
+        </span>
         <input type="hidden" th:value="*{storeName}" id='map_info_title'>
         <input type="hidden" name="roadAddress" th:value="*{roadAddress}" id='map_info_address'>
         <input type="hidden" th:value="*{homepage}" id="map_info_homepage">
