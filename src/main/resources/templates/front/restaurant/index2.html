@@ -3,8 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
+    <h1>맛집 찾기</h1>
     <div class="categories">
-        <h1>맛집 찾기</h1>
         <span th:if="${categories != null && !categories.isEmpty()}" th:each="category : ${categories}">
             <a th:href="@{/restaurant?type={type}(type=${category.cateNm})}" th:text="${category.cateNm}"></a>
         </span>
