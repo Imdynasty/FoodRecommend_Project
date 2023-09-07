@@ -25,18 +25,38 @@
                 <form class='frm_search' name="frmSearch" method="get" th:action="@{/restaurant}" autocomplete="off">
                     <input type="hidden" name="sopt" value="all">
                     <input type="hidden" name="type" th:value="${param.type}">
-                    <select name="sido" class="ajax_sido">
-                        <option value="">- 시도 선택 -</option>
-                        <option th:each="sido : ${sidos}" th:value="${sido}" th:text="${sido}" th:selected="${sido == _sido}"></option>
-                    </select>
-                    <select name="sigugun" class="ajax_gigugun">
-                        <option value="">- 시구군 선택 -</option>
-                        <option th:if="${siguguns != null}" th:each="sigugun : ${siguguns}" th:value="${sigugun}" th:text="${sigugun}" th:selected="${sigugun == _sigugun}"></option>
-                    </select>
-                    <!--button class="btn-search"><i class="xi-search"></i></button-->
-                    <input class="input-search" type="text" name="skey" placeholder="오늘 뭐 먹지?" th:value="${param.skey}">
-                    <!--input type="image" th:src="@{/common/images/search_btn.gif}"-->
-                    <button class="btn-search"><i class="xi-search" type="image"></i></button>
+                    <div class="inner">
+                        <select name="sido" class="ajax_sido">
+                            <option value="">- 시도 선택 -</option>
+                            <option th:each="sido : ${sidos}" th:value="${sido}" th:text="${sido}" th:selected="${sido == _sido}"></option>
+                        </select>
+                        <select name="sigugun" class="ajax_gigugun">
+                            <option value="">- 시구군 선택 -</option>
+                            <option th:if="${siguguns != null}" th:each="sigugun : ${siguguns}" th:value="${sigugun}" th:text="${sigugun}" th:selected="${sigugun == _sigugun}"></option>
+                        </select>
+                        <!--button class="btn-search"><i class="xi-search"></i></button-->
+                        <input class="input-search" type="text" name="skey" placeholder="오늘 뭐 먹지?" th:value="${param.skey}">
+                        <!--input type="image" th:src="@{/common/images/search_btn.gif}"-->
+                        <button class="btn-search"><i class="xi-search" type="image"></i></button>
+                    </div>
+
+                    <div class="search_dropdown dn">
+                        <ul class="tab">
+                            <li>
+                                <input type="radio" name="searchType" value="popular" id="search_type_poplular" checked>
+                                <label for="search_type_poplular" checked>인기 검색</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="searchType" value="recent" id="search_type_recent">
+                                <label for="search_type_recent">최근 검색</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="searchType" value="recommend" id="search_type_recommend">
+                                <label for="search_type_recommend">추천 검색</label>
+                            </li>
+                        </ul>
+                        <ul class="keywords"></ul>
+                    </div>
                 </form>
                 <div class="links">
                     <a th:href="@{/restaurant}" class="search_restaurant_link">
@@ -57,5 +77,6 @@
             <a th:each="item : ${searchHistories}" th:object="${item}" th:href="@{/restaurant?skey={key}(key=*{keyword})}" th:text="*{keyword}"></a>
             </div>
         </div>
+
     </header>
 </html>

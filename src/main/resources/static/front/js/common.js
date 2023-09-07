@@ -98,6 +98,7 @@ commonLib.search = {
     init() {
        this.save();
        this.getMyFavorites(10);
+       this.loadRecentKeywords();
     },
     /**
     * 최근 검색어 및 검색어 순위 저장
@@ -178,6 +179,33 @@ commonLib.search = {
                 }
             })
             .catch((err) => console.error(err));
+    },
+    async loadRecentKeywords(e) {
+        const { ajaxLoad } = commonLib;
+        const formData = new FormData(frmSearch);
+        const targetEl = document.querySelector(".frm_search .keywords");
+        if (!targetEl) return;
+        targetEl.innerHTML = "";
+        try {
+            let url = '/search/keywords';
+            const list = await ajaxLoad("POST", url, formData, "json");
+            if (!list) return;
+
+            for (const key of list) {
+                const liEl = document.createElement("li");
+                const textNode = document.createTextNode(key);
+                liEl.appendChild(textNode);
+                targetEl.appendChild(liEl);
+
+                liEl.addEventListener("click", function() {
+                    frmSearch.skey.value = key;
+                    frmSearch.submit();
+                });
+            }
+        } catch (err) {
+            console.error(err);
+        }
+
     }
 };
 
@@ -206,4 +234,35 @@ window.addEventListener("DOMContentLoaded", function() {
         });
     }
     /** 찜하기 버튼 클릭 이벤트 처리 E */
+
+    /** 키워드 입력시 자동 완성 처리 S */
+    const skeyEl = document.querySelector(".frm_search input[name='skey']");
+    if (skeyEl) {
+        skeyEl.addEventListener("focus", function() {
+
+            const searchDropdown = document.querySelector(".search_dropdown");
+            if (!searchDropdown) return;
+            searchDropdown.classList.remove("dn");
+
+            search.loadRecentKeywords();
+
+        });
+
+        skeyEl.addEventListener("keyup", function() {
+
+                    const searchDropdown = document.querySelector(".search_dropdown");
+                    if (!searchDropdown) return;
+                    searchDropdown.classList.remove("dn");
+
+                    search.loadRecentKeywords();
+
+                });
+    }
+
+    const searchTypeEls = document.querySelectorAll(".frm_search input[name='searchType']");
+    for (const el of searchTypeEls) {
+        el.addEventListener("click", search.loadRecentKeywords);
+    }
+
+    /** 키워드 입력시 자동 완성 처리 E */
 });

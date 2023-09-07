@@ -33,6 +33,5 @@ public class SearchHistory {
     private int searchCnt;
 
     @LastModifiedDate
-    @Column(insertable = false)
     private LocalDateTime updateDt;
 }
