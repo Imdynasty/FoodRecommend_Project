@@ -17,9 +17,12 @@
         <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
             <span>
                 <input type="checkbox" class="toggle_wish" th:id="*{id}" th:data-id="*{id}"
-                    th:checked="${#lists.contains(wishIds, item.id)}"
+                       th:checked="${#lists.contains(wishIds, item.id)}"
                 >
                 <label th:for="*{id}">HotPlace</label>
+
+                <span th:if="*{wishCnt > 0 && wishCnt < 1000}" th:text="*{'좋아요 :' + wishCnt}">
+                </span><i class="xi-heart"></i>
             </span>
             <a th:href="@{/restaurant/view/{id}(id=*{id})}">
                 <th:block th:if="*{mainImages != null && !mainImages.isEmpty()}">

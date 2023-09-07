@@ -44,7 +44,7 @@ public class Member extends Base {
     @Column(nullable = false)
     private LocalDate birthDate;
 
-    @Column(length=60, nullable = false)
+    @Column(length=200, nullable = false)
     private String favoriteFoods;
 
     @Enumerated(EnumType.STRING)

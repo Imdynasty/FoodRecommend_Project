@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/admin/css/main.css}">
 </th:block>
 <th:block layout:fragment="addScript">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </th:block>
 <section layout:fragment="content">
     <div class="top_box">
@@ -24,11 +24,12 @@
         </div>
     </form>
     <div id="chart">
-        <canvas id="myChart"></canvas>
-        <canvas id="myChart2"></canvas>
+        <canvas id="myChart" style="height:35vh; width:40vw"></canvas>
+        <canvas id="myChart2" style="height:35vh; width:40vw"></canvas>
     </div>
     <script th:inline="javascript">
         const list = [[${list}]]
+        const list2 = [[${list2}]]
     </script>
     <script th:src="@{/admin/js/chart.js}"></script>
 </section>
