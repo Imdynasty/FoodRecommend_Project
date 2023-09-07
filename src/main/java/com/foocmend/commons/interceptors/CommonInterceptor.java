@@ -51,7 +51,7 @@ public class CommonInterceptor implements HandlerInterceptor {
         session.setAttribute("device", device);
 
         // 검색어 기록 추출
-        request.setAttribute("searchHistories", historyService.getRecents());
+        request.setAttribute("searchHistories", historyService.getRecents(7));
 
         String sido = utils.getParam("sido");
         String sigugun = utils.getParam("sigugun");

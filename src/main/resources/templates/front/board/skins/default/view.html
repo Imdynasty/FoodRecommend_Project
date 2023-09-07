@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="skin">
     <th:block th:replace="~{front/board/skins/default/_board_title::title}"></th:block>
-    <ul class="board_view" th:object="${boardData}">
+    <div class="board_view" th:object="${boardData}">
         <div class="subject" th:text="*{subject}"></div>
         <div class="post_info">
             <div class="left">
@@ -30,6 +30,7 @@
             <a th:if="${board.useReply == true}" th:href="@{/board/reply/(id=*{id})}" th:text="#{board.reply}"></a>
             <a th:href="@{/board/list/{bId}(bId=*{board.bId})}" th:text="#{board.list}"></a>
         </div>
-    </ul> <!--// board_view -->
+    </div> <!--// board_view -->
+
 </th:block>
 </html>
