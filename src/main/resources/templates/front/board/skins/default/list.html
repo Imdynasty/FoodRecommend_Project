@@ -35,7 +35,7 @@
                     <option value="subject_content">제목+내용</option>
                     <option value="poster">작성자</option>
                 </select>
-                <input type="text" name="skey" th:field="*{skey}" placeholder="게시글 검색">
+                <input type="text" name="skey" th:value="*{skey}" placeholder="게시글 검색">
                 <button type="submit" class="sbtn blue">조회하기</button>
             </form>
         </li>
