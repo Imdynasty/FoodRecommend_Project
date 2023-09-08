@@ -51,4 +51,15 @@ public class ChartService {
         return list;
     }
 
+    public List<Long> ageCount() {
+        List<Long> list = new ArrayList<>();
+        list.add(repository.countByBirth(1, 19));
+        list.add(repository.countByBirth(20, 29));
+        list.add(repository.countByBirth(30, 39));
+        list.add(repository.countByBirth(40, 49));
+        list.add(repository.countByBirth(50, 99));
+
+        return list;
+    }
+
 }
