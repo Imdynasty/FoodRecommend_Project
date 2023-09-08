@@ -1,7 +1,9 @@
 <th:block xmlns:th="http://www.thymeleaf.org">
     <li th:if="${items != null && !items.isEmpty()}" th:each="item : ${items}" th:object="${item}">
-        <span th:if="*{wishCnt > 0 && wishCnt < 1000}" th:text="*{'좋아요 :' + wishCnt}">
+        <span>
+            <span th:if="*{wishCnt > 0 && wishCnt < 1000}" th:text="*{'좋아요 :' + wishCnt}">
                 </span><i class="xi-heart"></i>
+        </span>
         <a th:href="@{/restaurant/view/{id}(id=*{id})}">
             <th:block if="*{mainImages != null && !mainImages.isEmpty()}">
                 <img th:each="file, status : *{mainImages}" th:if="${status.first}" th:src="${file.thumbsUrl[0]}">
