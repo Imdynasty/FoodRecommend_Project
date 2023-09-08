@@ -53,4 +53,4 @@
 * [검색창](https://github.com/Imdynasty/Portfolio_Team2/issues/74)
 * [마이페이지](https://github.com/Imdynasty/Portfolio_Team2/issues/74)
 * [관리자페이지](https://github.com/Imdynasty/Portfolio_Team2/issues/74)
-<img src=https://github.com/Imdynasty/Portfolio_Team2/assets/104712273/6070c821-f5ca-4f5d-bfb0-7ed10aa9570b/>
+<img src=https://github.com/Imdynasty/Portfolio_Team2/assets/129600161/5b640b71-12d7-4540-8e06-962537eada72/>
