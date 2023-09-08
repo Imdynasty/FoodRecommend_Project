@@ -30,8 +30,12 @@
                 </dd>
             </dl>
         </div>
-        <div style=" box-shadow: 2px 2px 2px 2px">
-            <a th:href="@{/board/list/review}">맛집후기</a>
+        <div class="review_box">
+            <div class="review_top">
+                <input type="file" id="file" class="dn">
+                <button type="button" class="sbtn write_review" th:data-id="*{id}">후기작성</button>
+            </div>
+
         </div>
         <div class="map">
             <div id="map" style="height:400px;"></div>

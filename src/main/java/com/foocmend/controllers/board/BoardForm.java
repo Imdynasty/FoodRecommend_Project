@@ -34,9 +34,16 @@ public class BoardForm {
     @NotBlank
     private String content; // 내용
 
-    private Long userNo; // 회원번호\
+    private Long userNo; // 회원번호
+
+    private Long extraLong1;
+    private Long extraLong2;
+    private String extraText1;
+    private String extraText2;
 
     private List<FileInfo> editorImages; // 게시판 에디터 첨부 이미지
 
     private List<FileInfo> attachFiles; // 게시판 첨부 파일
+
+    private boolean popup;
 }

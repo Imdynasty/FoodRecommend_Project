@@ -1,5 +1,25 @@
 var commonLib = commonLib || {};
 commonLib.fileManager = {
+    init() {
+         const uploadFiles = document.getElementsByClassName("upload_files");
+         const fileEl = document.getElementById("file");
+            if (fileEl) {
+                for (const el of uploadFiles) {
+                    el.addEventListener("click", function() {
+                        fileEl.value = "";
+                        fileEl.click();
+                        const dataset = this.dataset;
+                        fileEl.location = dataset.location;
+                        fileEl.imageOnly = dataset.imageOnly === 'true' ? true : false;
+                    });
+                }
+
+                fileEl.addEventListener("change", function(e) {
+                    const files = e.target.files;
+                    commonLib.fileManager.upload(files, fileEl.location, fileEl.imageOnly);
+                });
+            }
+    },
     /**
     * 파일 업로드
     *
@@ -54,22 +74,5 @@ commonLib.fileManager = {
 }
 
 window.addEventListener("DOMContentLoaded", function() {
-    const uploadFiles = document.getElementsByClassName("upload_files");
-    const fileEl = document.getElementById("file");
-    if (fileEl) {
-        for (const el of uploadFiles) {
-            el.addEventListener("click", function() {
-                fileEl.value = "";
-                fileEl.click();
-                const dataset = this.dataset;
-                fileEl.location = dataset.location;
-                fileEl.imageOnly = dataset.imageOnly === 'true' ? true : false;
-            });
-        }
-
-        fileEl.addEventListener("change", function(e) {
-            const files = e.target.files;
-            commonLib.fileManager.upload(files, fileEl.location, fileEl.imageOnly);
-        });
-    }
+    commonLib.fileManager.init();
 });

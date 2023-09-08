@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -55,6 +56,13 @@ public class RestaurantFront implements CommonProcess, ScriptExceptionProcess {
         return utils.view("restaurant/view");
     }
 
+    @GetMapping("/review/form")
+    public String reviewForm(Long id, Model model) {
+        model.addAttribute("gid", UUID.randomUUID().toString());
+        model.addAttribute("restaurantId", id);
+        return utils.view("restaurant/review/form");
+    }
+
     /**
      * 개인 위치 및 선호 검색어 기준 음식점 목록
      *
@@ -81,11 +89,16 @@ public class RestaurantFront implements CommonProcess, ScriptExceptionProcess {
         if (subTitle != null && !subTitle.isBlank()) pageTitle = subTitle + "-" + pageTitle;
 
         List<String> addCommonScript = new ArrayList<>();
+        List<String> addScript = new ArrayList<>();
         if (mode.equals("view")) {
             addCommonScript.add("map");
+            addCommonScript.add("ckeditor/ckeditor");
+            addCommonScript.add("fileManager");
+            addScript.add("restaurant/review");
         }
 
         model.addAttribute("addCommonScript", addCommonScript);
+        model.addAttribute("addScript", addScript);
         model.addAttribute("categories", searchService.getCategories());
         model.addAttribute("pageTitle", pageTitle);
 

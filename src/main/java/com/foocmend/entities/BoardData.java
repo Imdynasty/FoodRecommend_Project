@@ -53,6 +53,13 @@ public class BoardData extends Base {
 
     private int commentCnt; // 댓글 수
 
+    private Long extraLong1;
+    private Long extraLong2;
+
+    private String extraText1;
+    private String extraText2;
+
+
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="memNo")
     private Member member; // 작성 회원
