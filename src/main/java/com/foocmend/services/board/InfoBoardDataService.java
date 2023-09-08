@@ -87,7 +87,7 @@ public class InfoBoardDataService {
             andBuilder.and(boardData.member.email.eq(email));
         }
 
-        /* 검색 처리 E */
+        /* 검색 처리 S */
         String sopt = search.getSopt();
         String skey = search.getSkey();
         if (sopt != null && !sopt.isBlank() && skey != null && !skey.isBlank()) {
@@ -119,7 +119,30 @@ public class InfoBoardDataService {
                 andBuilder.and(orBuilder);
             }
         }
-        /** 정렬 처리 S */
+
+        // 추가 필드 검색 처리 S
+        Long extraLong1 = search.getExtraLong1();
+        Long extraLong2 = search.getExtraLong2();
+        String extraText1 = search.getExtraText1();
+        String extraText2 = search.getExtraText2();
+        if (extraLong1 != null) {
+            andBuilder.and(boardData.extraLong1.eq(extraLong1));
+        }
+
+        if (extraLong2 != null) {
+            andBuilder.and(boardData.extraLong1.eq(extraLong2));
+        }
+
+        if (extraText1 != null && !extraText1.isBlank()) {
+            andBuilder.and(boardData.extraText1.eq(extraText1));
+        }
+
+        if (extraText2 != null && !extraText2.isBlank()) {
+            andBuilder.and(boardData.extraText2.eq(extraText2));
+        }
+        // 추가 필드 검색 처리 E
+
+        /** 정렬 처리 E */
 
         List<OrderSpecifier> orderSpecifier = new ArrayList<>();
         String sort = search.getSort();
