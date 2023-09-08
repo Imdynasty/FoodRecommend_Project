@@ -13,7 +13,6 @@ public enum Foods {
     CAFE,
     FAMILY_RESTAURANT,
     SASHIMI, // 횟집
-    SOUPS, // 탕류
     FAST_FOOD,
     BUFFET,
     PUB, // 술집
@@ -31,7 +30,6 @@ public enum Foods {
                 new String[] { "CAFE", bundle.getString("food.CAFE")},
                 new String[] { "FAMILY_RESTAURANT", bundle.getString("food.FAMILY_RESTAURANT")},
                 new String[] { "SASHIMI", bundle.getString("food.SASHIMI")},
-                new String[] { "SOUPS", bundle.getString("food.SOUPS")},
                 new String[] { "FAST_FOOD", bundle.getString("food.FAST_FOOD")},
                 new String[] { "BUFFET", bundle.getString("food.BUFFET")},
                 new String[] { "PUB", bundle.getString("food.PUB")},

@@ -13,6 +13,7 @@ import java.util.List;
 public interface MemberRepository extends JpaRepository<Member, String>, QuerydslPredicateExecutor<Member> {
 
     Member findByEmail(String email);
+    Member findByNickname(String nickname);
     List<Member> findAll();
     Member findEmailByNicknameAndMobile(String nickname,String mobile);
 
