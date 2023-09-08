@@ -234,15 +234,16 @@ footer > .inner h4 { color: #adadadab; }
 .file_items i { font-size: 15px; }
 
 /** 맛집찾기 */
-main .layout_width { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
-main .layout_width li { display: grid; grid-template-rows: repeat(1, 3fr); grid-auto-rows: minmax(30px, auto); gap: 10px; box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.24); padding: 10px; background: #fffffb; font-family: 'Dongle', sans-serif; border-radius: 15px; }
+main .layout_width { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; }
+main .layout_width li { display: grid; grid-auto-rows: minmax(30px, auto); gap: 10px; box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.24); padding: 10px; background: #fffffb; font-family: 'Dongle', sans-serif; border-radius: 15px; }
+main .layout_width li a { display: grid; grid-template-rows: repeat(1, 1fr); }
 main .layout_width li label { font-family: 'Poor Story', cursive;, sans-serif; font-size: 26px }
 main .layout_width img { width: 100%; border-radius: 15px; }
 main .layout_width span > input[type='checkbox']~label { display: inline-block; height: 32px; line-height: 32px; padding-left: 33px; background:url("../../admin/images/star-off.png") no-repeat left center; margin-right: 13px; cursor: pointer; }
 main .layout_width span > input[type='checkbox']:checked~label { background:url("../../admin/images/star-on.png") no-repeat left center; }
 main .layout_width span > input[type='checkbox']~label.standalone { padding: 0; width: 28px; display: inline-block; margin: 0; }
-.store_nm { font-weight: bold; width: 200px; font-size: 24px; font-family: 'Poor Story', cursive;, sans-serif; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.address { font-size: 16px; font-family: 'Poor Story', cursive, sans-serif; width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.store_nm { font-weight: bold; font-size: 24px; font-family: 'Poor Story', cursive;, sans-serif; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.address { font-size: 16px; font-family: 'Poor Story', cursive, sans-serif; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .categories { margin: 0px auto; margin-bottom: 15px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; min-width: 1100px; max-width: 1300px; }
 .categories a { font-size: 14px; background-color: #fffffb; border-radius: 5px; box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.24); cursor: pointer; transition: 0.2s all; padding: 2px; }
 .categories a:hover { transform: scale(1.1); background-color: #1ddeff29; }
