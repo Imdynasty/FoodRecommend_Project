@@ -7,9 +7,11 @@ import com.foocmend.controllers.member.SignUpForm;
 import com.foocmend.entities.BoardData;
 import com.foocmend.entities.Member;
 import com.foocmend.entities.QMember;
+import com.foocmend.repositories.BoardDataRepository;
 import com.foocmend.repositories.MemberRepository;
 import com.foocmend.services.admin.MemberSearch;
 import com.foocmend.services.admin.SearchMemberList;
+import com.foocmend.services.board.BoardDataNotExistsException;
 import com.foocmend.services.board.InfoBoardDataService;
 import com.foocmend.services.member.SaveMemberService;
 import com.foocmend.services.member.SearchMemberService;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/admin/member")
@@ -30,7 +33,6 @@ import java.util.List;
 public class MemberManage {
     private String tplCommon = "admin/basic/";
 
-    private final Utils utils;
     private final HttpServletRequest request;
     private final SearchMemberService infoService;
     private final SearchMemberList listService;
