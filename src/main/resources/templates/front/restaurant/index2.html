@@ -4,11 +4,7 @@
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
     <h1>맛집 찾기</h1>
-    <div class="categories">
-        <span th:if="${categories != null && !categories.isEmpty()}" th:each="category : ${categories}">
-            <a th:href="@{/restaurant?type={type}(type=${category.cateNm})}" th:text="${category.cateNm}"></a>
-        </span>
-    </div>
+   <th:block th:replace="~{front/restaurant/_category::category}"></th:block>
 
     <ul class="layout_width">
         <li th:if="${items == null || items.isEmpty()}">
