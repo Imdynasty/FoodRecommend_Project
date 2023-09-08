@@ -39,7 +39,6 @@
             <th>선호음식</th>
             <th>가입일자</th>
             <th>수정일자</th>
-            <th>작성리뷰수</th>
         </tr>
         </thead>
 
@@ -57,7 +56,6 @@
                     <td th:text="*{favoriteFoods}"></td>
                     <td th:text="${#temporals.format(item.createdDt, 'yy-MM-dd')}"></td>
                     <td th:text="${#temporals.format(item.modifiedDt, 'yy-MM-dd')}"></td>
-                    <td></td>
                 </tr>
                 <tr th:unless="${items != null && items.size() > 0}">
                     <td colspan="9" class="no_data">조회된 목록이 없습니다.</td>
