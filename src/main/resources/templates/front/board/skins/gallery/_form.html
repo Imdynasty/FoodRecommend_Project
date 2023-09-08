@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="form" th:object="${boardForm}">
     <div class="errors global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+    <input type="hidden" th:if="*{extraLong1}" name="extraLong1" th:value="*{extraLong1}">
+    <input type="hidden" th:if="*{extraLong2}" name="extraLong2" th:value="*{extraLong2}">
+    <input type="hidden" name="popup" th:field="*{popup}">
     <input th:if="${board.useAttachImage || board.useAttachFile }" type="file" id="file" class="dn" multiple>
     <dl>
         <dt th:text="#{board.poster}"></dt>
