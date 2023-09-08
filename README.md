@@ -6,7 +6,7 @@
 ## :clipboard: 개발환경
 > <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
 > <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
->  IntelliJ,  
+> <img src="https://img.shields.io/badge/IntelliJ-000000?style=for-the-badge&logo=intellijidea&logoColor=white">
 >  ARC
 
 ## :clipboard: 사용 기술
