@@ -43,10 +43,6 @@ public class SaveBoardDataService {
             boardData = BoardData.builder()
                     .gid(boardForm.getGid())
                     .board(board)
-                    .category(boardForm.getCategory())
-                    .poster(boardForm.getPoster())
-                    .subject(boardForm.getSubject())
-                    .content(boardForm.getContent())
                     .ip(ip)
                     .ua(ua)
                     .build();
@@ -59,16 +55,19 @@ public class SaveBoardDataService {
 
         } else { // 게시글 수정
             boardData = repository.findById(boardForm.getId()).orElseThrow(BoardDataNotExistsException::new);
-            boardData.setPoster(boardForm.getPoster());
-            boardData.setSubject(boardForm.getSubject());
-            boardData.setContent(boardForm.getContent());
-            boardData.setCategory(boardForm.getCategory());
             String guestPw = boardForm.getGuestPw();
             if (boardData.getMember() == null && guestPw != null && !guestPw.isBlank()) {
                 boardData.setGuestPw(passwordEncoder.encode(guestPw));
             }
         }
-
+        boardData.setPoster(boardForm.getPoster());
+        boardData.setSubject(boardForm.getSubject());
+        boardData.setContent(boardForm.getContent());
+        boardData.setCategory(boardForm.getCategory());
+        boardData.setExtraLong1(boardForm.getExtraLong1());
+        boardData.setExtraLong2(boardForm.getExtraLong2());
+        boardData.setExtraText1(boardForm.getExtraText1());
+        boardData.setExtraText2(boardForm.getExtraText2());
 
         boardData = repository.saveAndFlush(boardData);
         boardForm.setId(boardData.getId());
@@ -76,6 +75,5 @@ public class SaveBoardDataService {
         /** 파일 업로드 완료 처리 */
         String gid = boardForm.getGid();
         fileInfoRepository.processDone(gid);
-
     }
 }

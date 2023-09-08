@@ -10,21 +10,32 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
     <link rel="stylesheet" type="text/css" th:each="file : ${addCommonCss}" th:href="@{/common/css/{cssFile}.css(cssFile=${file})}">
-    <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
-    <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/front/css/{cssFile}.css(cssFile=${file})}">
-    <th:block layout:fragment="addCss"></th:block>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ecb744762773804f037af730d26d0ff4&libraries=services"></script>
+    <th:block th:if="${popup != null && popup}">
+        <link rel="stylesheet" type="text/css" th:href="@{/popup/css/style.css}">
+    </th:block>
+    <th:block th:unless="${popup != null && popup}">
+        <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
+        <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/front/css/{cssFile}.css(cssFile=${file})}">
+        <th:block layout:fragment="addCss"></th:block>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ecb744762773804f037af730d26d0ff4&libraries=services"></script>
+    </th:block>
     <script th:src="@{/common/js/common.js}"></script>
     <script th:src="@{/common/js/area.js}"></script>
+    <script th:src="@{/common/js/layer.js}"></script>
+
     <script th:each="jsFile : ${addCommonScript}" th:src="@{/common/js/{jsFile}.js(jsFile=${jsFile})}"></script>
-    <script th:src="@{/front/js/common.js}"></script>
+    <script th:unless="${popup != null && popup}" th:src="@{/front/js/common.js}"></script>
     <script th:each="jsFile : ${addScript}" th:src="@{/front/js/{jsFile}.js(jsFile=${jsFile})}"></script>
     <th:block layout:fragment="addScript"></th:block>
 </head>
 <body>
-<header th:replace="~{front/outlines/header::common}"></header>
+<th:block th:unless="${popup != null && popup}">
+    <header th:replace="~{front/outlines/header::common}"></header>
+</th:block>
 <main layout:fragment="content"></main>
-<footer th:replace="~{front/outlines/footer::common}"></footer>
+<th:block th:unless="${popup != null && popup}">
+    <footer th:replace="~{front/outlines/footer::common}"></footer>
+</th:block>
 <iframe name="ifrmProcess" class="dn"></iframe>
 </body>
 </html>

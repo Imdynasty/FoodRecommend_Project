@@ -70,6 +70,8 @@ public class BoardFront {
     @GetMapping("/write/{bId}")
     public String write(@PathVariable String bId, @ModelAttribute BoardForm boardForm, Model model) {
         commonProcess(bId, "write", model);
+        model.addAttribute("popup", boardForm.isPopup());
+
         boardForm.setBId(bId);
         if (memberUtil.isLogin()) {
             boardForm.setPoster(memberUtil.getMember().getNickname());
@@ -106,6 +108,7 @@ public class BoardFront {
     public String save(@Valid BoardForm boardForm, Errors errors, Model model) {
         Long id = boardForm.getId();
         String mode = "write";
+        model.addAttribute("popup", boardForm.isPopup());
         if (id != null) {
             mode = "update";
             BoardData boardData = infoService.get(id);
@@ -132,6 +135,13 @@ public class BoardFront {
         }
         System.out.println(boardForm);
         saveService.save(boardForm);
+
+        /** 팝업인 경우 글 작성 콜백 처리 */
+        if (boardForm.isPopup()) {
+            String script = "if (typeof parent.boardWriteCallback == 'function') parent.boardWriteCallback();";
+            model.addAttribute("script", script);
+            return "commons/execute_script";
+        }
 
         // 작성후 이동 설정 - 목록, 글보기
         String location = board.getLocationAfterWriting();
