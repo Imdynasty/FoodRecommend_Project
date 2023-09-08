@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -55,6 +56,10 @@ public class BoardData extends Base {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="memNo")
     private Member member; // 작성 회원
+
+    // 댓글 목록
+    @OneToMany(mappedBy = "boardData", fetch=FetchType.LAZY)
+    private List<BoardComment> comments = new ArrayList<>();
 
     @Transient
     private List<FileInfo> editorImages; // 게시판 에디터 첨부 이미지

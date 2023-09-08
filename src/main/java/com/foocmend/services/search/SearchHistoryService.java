@@ -1,19 +1,24 @@
 package com.foocmend.services.search;
 
 import com.foocmend.commons.Utils;
+import com.foocmend.restcontrollers.search.SearchHistoryForm;
 import com.foocmend.entities.QSearchHistory;
 import com.foocmend.entities.SearchHistory;
 import com.foocmend.entities.SearchHistoryId;
 import com.foocmend.repositories.SearchHistoryRepository;
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
+
+import static org.springframework.data.domain.Sort.Order.desc;
 
 @Service
 @RequiredArgsConstructor
@@ -22,8 +27,6 @@ public class SearchHistoryService {
     private final Utils utils;
     private final SearchHistoryRepository repository;
 
-    @PersistenceContext
-    private EntityManager em;
     public void save(String keyword) {
         int uid = utils.getBrowserId();
         LocalDate today = LocalDate.now();
@@ -53,16 +56,9 @@ public class SearchHistoryService {
         builder.and(searchHistory.uid.eq(utils.getBrowserId()))
                 .and(searchHistory.searchDate.goe(date));
 
-
-        JPAQueryFactory factory = new JPAQueryFactory(em);
-        List<SearchHistory> items = factory.selectFrom(searchHistory)
-                .where(builder)
-                .offset(0)
-                .limit(limit)
-                .groupBy(searchHistory.keyword)
-                .fetch();
-
-        return items;
+        Pageable pageable = PageRequest.of(0, limit, Sort.by(desc("updateDt"), desc("searchCnt")));
+        Page<SearchHistory> data = repository.findAll(builder, pageable);
+        return data.getContent();
     }
 
 
@@ -72,5 +68,60 @@ public class SearchHistoryService {
 
     public List<SearchHistory> getRecents(int days) {
         return getRecents(days,10);
+    }
+
+    public List<String> getList(SearchHistoryForm form) {
+        /*
+        인기 검색 : 모든 유저의 SearchHistory SearchCnt 기준으로 최대 클릭순 1~5 정렬
+        최근검색 : 이름순 -> 시간대 별 정렬 \, 기록 유지 기간은 7일
+        추천 검색 : 유저 SearchCnt 최다순 카테고리(테마) 1~5 정렬
+        자동 완성 검색 : Like '%O%' 과 같이 한 글자 기입시 관련 단어
+         */
+
+        QSearchHistory searchHistory = QSearchHistory.searchHistory;
+        BooleanBuilder builder = new BooleanBuilder();
+        builder.and(searchHistory.searchDate.goe(LocalDate.now().minusDays(7)));
+
+        String skey = form.getSkey();
+        String type = form.getSearchType();
+        type = Objects.requireNonNullElse(type, "popular");
+
+        if (skey != null && !skey.isBlank()) {
+            skey = skey.trim();
+            builder.and(searchHistory.keyword.contains(skey));
+        }
+
+        if (type.equals("recent") || type.equals("recommend")) {
+            builder.and(searchHistory.uid.eq(utils.getBrowserId()));
+        }
+
+        Sort sort = Sort.by(desc("searchCnt"));
+        if (type.equals("popular") || type.equals("recent")) {
+            sort = Sort.by(desc("updateDt"));
+        }
+
+        Pageable pageable = PageRequest.of(0, 5, sort);
+        Page<SearchHistory> data = repository.findAll(builder, pageable);
+        List<String> items = data.getContent().stream().map(SearchHistory::getKeyword).distinct().toList();
+        return items;
+
+    }
+
+    /**
+     * 검색어 삭제
+     *
+     * @param keyword
+     */
+    public void remove(String keyword) {
+        QSearchHistory searchHistory = QSearchHistory.searchHistory;
+        BooleanBuilder builder = new BooleanBuilder();
+        builder.and(searchHistory.uid.eq(utils.getBrowserId()))
+                .and(searchHistory.keyword.eq(keyword));
+
+        List<SearchHistory> items = (List<SearchHistory>)repository.findAll(builder);
+        if (items == null || items.isEmpty()) return;
+
+        repository.deleteAll(items);
+        repository.flush();
     }
 }

@@ -137,8 +137,9 @@ header .logo_search { background: #e6e6dd; }
 header .logo_search > .inner { max-width:1800px; display: flex; align-items: center; justify-content: space-between; }
 header .logo_search .logo, header .logo_search .links { width: 0; flex-grow: 1; }
 header .logo_search .logo img { height: 100px; }
-header .frm_search { display: flex; width: 550px; color: #689a9f
-width: fit-content; height: fit-content; position: relative; }
+header .frm_search { width: 550px; position: relative;  }
+header .frm_search > .inner { display: flex; color: #689a9f;
+width: fit-content; height: fit-content; }
 header .frm_search input[type='text'] { flex-grow: 1; border: 0; border-radius: 0px; height: 50px;
 width: 50px;height: 50px;border-style: none;padding: 10px;
 letter-spacing: 2px;outline: none; border-radius: 10px;transition: all .5s ease-in-out;
@@ -150,6 +151,13 @@ header .frm_search .btn-search { width: 50px; height: 50px; border-style: none; 
 font-weight: bold; outline: none; cursor: pointer; border-radius: 50%; position: absolute; right: 0px;
 color:#ffffff ; background-color:transparent; pointer-events: painted; }
 
+header .frm_search .search_dropdown { position: absolute; min-height: 250px; width: 550px; background: #fff; top: 48px; left: 0; padding: 10px; border: 1px solid #d5d5d5; border-top: 0; z-index: 10; }
+header .frm_search .search_dropdown label { background-image: none; padding: 0; }
+header .frm_search .search_dropdown .tab { display: flex; }
+header .frm_search .search_dropdown .tab li { width: 0; flex-grow: 1; }
+header .frm_search .search_dropdown .tab li input[type='radio']+label { width: 100%; }
+header .frm_search .search_dropdown .tab li input[type='radio']:checked+label { border-bottom: 2px solid #000; }
+header .frm_search .search_dropdown .close_popup { position: absolute; right: 0; bottom: 0; width: 20px; height: 20px; background: #000; color: #fff; text-align: center; line-height: 20px; cursor: pointer; font-size: 12px; }
 
 header .frm_search > select { height: 45px; border-left: 0; border-radius: 0px 5px 5px 0px; box-shadow: 0px 0px 1px 0px;
 margin-right:3px; height: 50px; width: 30px; border-style: none; padding: 10px; font-size: 15px; letter-spacing: 2px;

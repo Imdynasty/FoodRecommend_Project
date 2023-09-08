@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <th:block th:fragment="category">
-        <div class="categories tabs">
+        <div class="categories">
             <a th:href="@{/restaurant}" class="tab">전체</a>
             <th:block th:if="${categories != null && !categories.isEmpty()}" th:each="category, status : ${categories}">
-                <a th:href="@{/restaurant?type={type}(type=${category.cateNm})}" th:text="${category.cateNm}" class="tab" th:classappend="${category.cateNm == restaurantSearchForm.type} ? 'on'"></a>
+                <a th:href="@{/restaurant?type={type}&sido={sido}&sigugun={sigugun}(type=${category.cateNm}, sido=${param.sido}, sigugun=${param.sigugun})}" th:text="${category.cateNm}" th:classappend="${category.cateNm == restaurantSearchForm.type} ? 'on'"></a>
             </th:block>
         </div>
     </th:block>
