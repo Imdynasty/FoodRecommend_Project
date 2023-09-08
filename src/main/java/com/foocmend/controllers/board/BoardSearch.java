@@ -10,4 +10,9 @@ public class BoardSearch {
     private String skey;
     private String sort;
     private String email;
+
+    private Long extraLong1;
+    private Long extraLong2;
+    private String extraText1;
+    private String extraText2;
 }
