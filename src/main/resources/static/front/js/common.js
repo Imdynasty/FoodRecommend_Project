@@ -183,6 +183,8 @@ commonLib.search = {
     async loadRecentKeywords(e) {
         const { ajaxLoad } = commonLib;
         const formData = new FormData(frmSearch);
+        const searchType = formData.get("searchType");
+
         const targetEl = document.querySelector(".frm_search .keywords");
         if (!targetEl) return;
         targetEl.innerHTML = "";
@@ -194,10 +196,24 @@ commonLib.search = {
             for (const key of list) {
                 const liEl = document.createElement("li");
                 const textNode = document.createTextNode(key);
-                liEl.appendChild(textNode);
+                const spanEl = document.createElement("span");
+                spanEl.appendChild(textNode);
+                liEl.appendChild(spanEl);
+                // 최근 검색일때 삭제 버튼 추가 및 처리 S
+                if (searchType == 'recent') {
+                      const removeEl = document.createElement("i");
+                      removeEl.className="xi-close remove";
+                      liEl.appendChild(removeEl);
+                      removeEl.addEventListener("click", function() {
+                        commonLib.search.removeKeyword(key);
+                        liEl.parentElement.removeChild(liEl);
+                      });
+                }
+                // 최근 검색일때 삭제 버튼 추가 및 처리 E
+
                 targetEl.appendChild(liEl);
 
-                liEl.addEventListener("click", function() {
+                spanEl.addEventListener("click", function() {
                     frmSearch.skey.value = key;
                     frmSearch.submit();
                 });
@@ -225,6 +241,20 @@ commonLib.search = {
         if (!searchDropdown) return;
         searchDropdown.classList.remove("dn");
         searchDropdown.classList.add("dn");
+    },
+    /**
+    * 키워드 삭제
+    *
+    */
+    removeKeyword(keyword) {
+        const { ajaxLoad } = commonLib;
+        if (!keyword || !keyword.trim()) return;
+
+        keyword = keyword.trim();
+
+        const url = `/search/remove/${encodeURIComponent(keyword)}`;
+
+        ajaxLoad("GET", url);
     }
 };
 

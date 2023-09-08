@@ -1,7 +1,7 @@
 package com.foocmend.services.search;
 
 import com.foocmend.commons.Utils;
-import com.foocmend.controllers.search.SearchHistoryForm;
+import com.foocmend.restcontrollers.search.SearchHistoryForm;
 import com.foocmend.entities.QSearchHistory;
 import com.foocmend.entities.SearchHistory;
 import com.foocmend.entities.SearchHistoryId;
@@ -100,10 +100,28 @@ public class SearchHistoryService {
             sort = Sort.by(desc("updateDt"));
         }
 
-        Pageable pageable = PageRequest.of(0, 10, sort);
+        Pageable pageable = PageRequest.of(0, 5, sort);
         Page<SearchHistory> data = repository.findAll(builder, pageable);
         List<String> items = data.getContent().stream().map(SearchHistory::getKeyword).distinct().toList();
         return items;
 
+    }
+
+    /**
+     * 검색어 삭제
+     *
+     * @param keyword
+     */
+    public void remove(String keyword) {
+        QSearchHistory searchHistory = QSearchHistory.searchHistory;
+        BooleanBuilder builder = new BooleanBuilder();
+        builder.and(searchHistory.uid.eq(utils.getBrowserId()))
+                .and(searchHistory.keyword.eq(keyword));
+
+        List<SearchHistory> items = (List<SearchHistory>)repository.findAll(builder);
+        if (items == null || items.isEmpty()) return;
+
+        repository.deleteAll(items);
+        repository.flush();
     }
 }
