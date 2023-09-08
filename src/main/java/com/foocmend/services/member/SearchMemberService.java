@@ -2,9 +2,11 @@ package com.foocmend.services.member;
 
 import com.foocmend.commons.validators.EditInfoValidator;
 import com.foocmend.commons.validators.PasswordValidator;
+import com.foocmend.controllers.member.SignUpForm;
 import com.foocmend.entities.Member;
 import com.foocmend.repositories.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,6 +42,18 @@ public class SearchMemberService implements UserDetailsService, PasswordValidato
                 .authorities(authorities)
                 .build();
     }
+
+    public Member get(String nickname) {
+        Member member = repository.findByNickname(nickname);
+
+        return member;
+    }
+
+    public SignUpForm getMemberForm(String nickname) {
+        Member member = get(nickname);
+        return new ModelMapper().map(member, SignUpForm.class);
+    }
+
     public String findEmailByNicknameAndMobile(String nickname,String mobile) {
         Member findEmail = repository.findEmailByNicknameAndMobile(nickname,mobile);
 
