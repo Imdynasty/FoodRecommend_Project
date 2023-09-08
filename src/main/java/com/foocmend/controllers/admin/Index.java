@@ -28,6 +28,7 @@ public class Index {
 
         model.addAttribute("list", service.maleCount());
         model.addAttribute("list2", service.femaleCount());
+        model.addAttribute("age", service.ageCount());
 
         return "admin/main/index";
     }

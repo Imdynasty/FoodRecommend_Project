@@ -28,11 +28,8 @@ class ProjectApplicationTests {
 	@Test
 	void contextLoads() throws Exception {
 
-		List<String[]> result = Foods.getList();
-
-		String[] list = (String[]) result.stream().toArray();
-
-		System.out.println(list);
+		long result = repository.countByBirth(30, 39);
+		System.out.println(result);
 
 
 	}

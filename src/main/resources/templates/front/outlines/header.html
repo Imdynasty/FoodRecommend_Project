@@ -55,7 +55,10 @@
                                 <label for="search_type_recommend">추천 검색</label>
                             </li>
                         </ul>
-                        <ul class="keywords"></ul>
+                        <ul class="keywords">
+                            <li class="keywords"> dd</li>
+                        </ul>
+
                         <i class="xi-close close_popup"></i>
                     </div>
                 </form>
@@ -65,19 +68,19 @@
                         맛집찾기
                     </a>
                     <a th:href="@{/}">
-                        <i class="xi-hand-pointing"></i>
+                        <i class="xi-thumbs-up"></i>
                         추천
                     </a>
                 </div>
 
             </div>
         </section>
-        <div class="recent_searches dn">
+        <!--div class="recent_searches dn">
             <h3>최근 검색어</h3>
             <div>
             <a th:each="item : ${searchHistories}" th:object="${item}" th:href="@{/restaurant?skey={key}(key=*{keyword})}" th:text="*{keyword}"></a>
             </div>
-        </div>
+        </div-->
 
     </header>
 </html>
