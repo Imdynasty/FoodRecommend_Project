@@ -3,8 +3,11 @@ package com.foocmend.services.wishlist;
 import com.foocmend.commons.Utils;
 import com.foocmend.controllers.member.wishList;
 import com.foocmend.entities.QWishList;
+import com.foocmend.entities.Restaurant;
 import com.foocmend.entities.WishList;
+import com.foocmend.repositories.RestaurantRepository;
 import com.foocmend.repositories.WishListRepository;
+import com.foocmend.services.restaurant.RestaurantNotFoundException;
 import com.querydsl.core.BooleanBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class DeleteWishListService {
     private final WishListRepository repository;
+    private final RestaurantRepository restaurantRepository;
     private final Utils utils;
 
     public void delete(Long id) {
@@ -25,7 +29,13 @@ public class DeleteWishListService {
         WishList wish = repository.findOne(builder).orElse(null);
         if (wish == null) return;
 
+        Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(RestaurantNotFoundException::new);
+
+
         repository.delete(wish);
+
+        restaurant.setWishCnt(repository.getCount(id));
+
         repository.flush();
 
     }

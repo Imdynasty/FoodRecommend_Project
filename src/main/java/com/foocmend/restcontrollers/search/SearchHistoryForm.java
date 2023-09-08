@@ -1,4 +1,4 @@
-package com.foocmend.controllers.search;
+package com.foocmend.restcontrollers.search;
 
 import lombok.Data;
 

@@ -183,6 +183,8 @@ commonLib.search = {
     async loadRecentKeywords(e) {
         const { ajaxLoad } = commonLib;
         const formData = new FormData(frmSearch);
+        const searchType = formData.get("searchType");
+
         const targetEl = document.querySelector(".frm_search .keywords");
         if (!targetEl) return;
         targetEl.innerHTML = "";
@@ -194,10 +196,24 @@ commonLib.search = {
             for (const key of list) {
                 const liEl = document.createElement("li");
                 const textNode = document.createTextNode(key);
-                liEl.appendChild(textNode);
+                const spanEl = document.createElement("span");
+                spanEl.appendChild(textNode);
+                liEl.appendChild(spanEl);
+                // 최근 검색일때 삭제 버튼 추가 및 처리 S
+                if (searchType == 'recent') {
+                      const removeEl = document.createElement("i");
+                      removeEl.className="xi-close remove";
+                      liEl.appendChild(removeEl);
+                      removeEl.addEventListener("click", function() {
+                        commonLib.search.removeKeyword(key);
+                        liEl.parentElement.removeChild(liEl);
+                      });
+                }
+                // 최근 검색일때 삭제 버튼 추가 및 처리 E
+
                 targetEl.appendChild(liEl);
 
-                liEl.addEventListener("click", function() {
+                spanEl.addEventListener("click", function() {
                     frmSearch.skey.value = key;
                     frmSearch.submit();
                 });
@@ -205,7 +221,40 @@ commonLib.search = {
         } catch (err) {
             console.error(err);
         }
+    },
+    /**
+    * 드롭 다운 메뉴 보이기
+    */
+    showDropDown() {
+        const searchDropdown = document.querySelector(".search_dropdown");
+        if (!searchDropdown) return;
+        searchDropdown.classList.remove("dn");
 
+        commonLib.search.loadRecentKeywords();
+    },
+    /**
+    * 드롭다운 메뉴 감추기
+    *
+    */
+    closeDropDown() {
+        const searchDropdown = document.querySelector(".search_dropdown");
+        if (!searchDropdown) return;
+        searchDropdown.classList.remove("dn");
+        searchDropdown.classList.add("dn");
+    },
+    /**
+    * 키워드 삭제
+    *
+    */
+    removeKeyword(keyword) {
+        const { ajaxLoad } = commonLib;
+        if (!keyword || !keyword.trim()) return;
+
+        keyword = keyword.trim();
+
+        const url = `/search/remove/${encodeURIComponent(keyword)}`;
+
+        ajaxLoad("GET", url);
     }
 };
 
@@ -238,25 +287,8 @@ window.addEventListener("DOMContentLoaded", function() {
     /** 키워드 입력시 자동 완성 처리 S */
     const skeyEl = document.querySelector(".frm_search input[name='skey']");
     if (skeyEl) {
-        skeyEl.addEventListener("focus", function() {
-
-            const searchDropdown = document.querySelector(".search_dropdown");
-            if (!searchDropdown) return;
-            searchDropdown.classList.remove("dn");
-
-            search.loadRecentKeywords();
-
-        });
-
-        skeyEl.addEventListener("keyup", function() {
-
-                    const searchDropdown = document.querySelector(".search_dropdown");
-                    if (!searchDropdown) return;
-                    searchDropdown.classList.remove("dn");
-
-                    search.loadRecentKeywords();
-
-                });
+        skeyEl.addEventListener("focus", search.showDropDown);
+        skeyEl.addEventListener("keyup", search.showDropDown);
     }
 
     const searchTypeEls = document.querySelectorAll(".frm_search input[name='searchType']");
@@ -264,6 +296,11 @@ window.addEventListener("DOMContentLoaded", function() {
         el.addEventListener("click", search.loadRecentKeywords);
     }
 
+
+    const closePopupEl = document.querySelector(".close_popup");
+    if (closePopupEl) {
+        closePopupEl.addEventListener("click", search.closeDropDown);
+    }
     /** 키워드 입력시 자동 완성 처리 E */
 
     /** 클릭 색 변경 이벤트*/
