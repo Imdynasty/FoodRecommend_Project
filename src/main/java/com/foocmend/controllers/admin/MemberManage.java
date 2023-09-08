@@ -94,6 +94,12 @@ public class MemberManage {
 
         return "redirect:/admin/member";
     }
+    @GetMapping("/review/{nickname}")
+    public String userReview(@PathVariable String nickname) {
+
+
+        return "review";
+    }
 
     public void commonProcess(Model model, String mode) {
         String pageTitle = "회원 목록";
