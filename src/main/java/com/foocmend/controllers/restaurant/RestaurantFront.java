@@ -4,7 +4,10 @@ import com.foocmend.commons.CommonProcess;
 import com.foocmend.commons.ListData;
 import com.foocmend.commons.ScriptExceptionProcess;
 import com.foocmend.commons.Utils;
+import com.foocmend.controllers.board.BoardSearch;
+import com.foocmend.entities.BoardData;
 import com.foocmend.entities.Restaurant;
+import com.foocmend.services.board.InfoBoardDataService;
 import com.foocmend.services.restaurant.SearchRestaurantService;
 import com.foocmend.services.search.SearchHistoryService;
 import com.foocmend.services.wishlist.SearchWishListService;
@@ -19,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -29,6 +31,7 @@ public class RestaurantFront implements CommonProcess, ScriptExceptionProcess {
     private final SearchRestaurantService searchService;
     private final SearchWishListService wishListService;
     private final SearchHistoryService historyService;
+    private final InfoBoardDataService boardDataService;
     private final Utils utils;
 
     @GetMapping
@@ -48,19 +51,19 @@ public class RestaurantFront implements CommonProcess, ScriptExceptionProcess {
         Restaurant item = searchService.get(id);
         search.setType(item.getType());
 
+        // 작성 후기 조회
+        BoardSearch boardSearch = new BoardSearch();
+        boardSearch.setExtraLong1(id);
+        ListData<BoardData> reviewData = boardDataService.getList("review", boardSearch);
+        model.addAttribute("reviews", reviewData.getContent());
+        model.addAttribute("pagination", reviewData.getPagination());
+
         // 조회 식당 최근 검색에 추가
         historyService.save(item.getStoreName());
 
         model.addAttribute("item", item);
 
         return utils.view("restaurant/view");
-    }
-
-    @GetMapping("/review/form")
-    public String reviewForm(Long id, Model model) {
-        model.addAttribute("gid", UUID.randomUUID().toString());
-        model.addAttribute("restaurantId", id);
-        return utils.view("restaurant/review/form");
     }
 
     /**

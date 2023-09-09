@@ -14,6 +14,15 @@ window.addEventListener("DOMContentLoaded", function() {
           popup.open(url, "후기 작성하기", 700, 700, true);
        });
     }
+
+    const reviewLists = document.querySelectorAll(".review_list .subject");
+    for (const el of reviewLists) {
+        el.addEventListener("click", function() {
+            const li = this.parentElement;
+            li.classList.toggle("on");
+        });
+    }
+
 });
 
 function boardWriteCallback() {

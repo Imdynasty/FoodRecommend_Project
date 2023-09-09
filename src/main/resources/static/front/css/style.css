@@ -259,8 +259,13 @@ main .layout_width span > input[type='checkbox']~label.standalone { padding: 0; 
 .info dl dd { font-family: 'Poor Story', cursive;, sans-serif; font-size: 26px; }
 .info dl dd div { font-family: 'Poor Story', cursive; , sans-serif; font-size: 26px; }
 .main_images { width: 100%; height: 100%; border-radius: 15px; }
-
-
+.review_list li .content { display: none; border-top: 2px solid #000; margin-top: 10px; padding-top: 10px; }
+.review_list li.on .content { display: block; }
+.review_list li { border: 1px solid #d5d5d5; box-shadow: 2px 2px 5px #d5d5d5; padding: 10px;  }
+.review_list li+li { margin-top: 10px; }
+.review_list li .subject { display: flex; cursor: pointer; }
+.review_list li .subject .post_info { width: 200px; text-align: right; }
+.review_list li .subject .text { flex-grow: 1; }
 
 /**front main error 페이지*/
 .main_errors {width:100%;}
