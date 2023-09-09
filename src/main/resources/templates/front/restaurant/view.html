@@ -31,9 +31,13 @@
             </dl>
         </div>
         <div class="review_box">
-            <div class="review_top">
+            <div class="review_top ar mb10">
                 <input type="file" id="file" class="dn">
-                <button type="button" class="sbtn write_review" th:data-id="*{id}">후기작성</button>
+                <a class="sbtn" th:href="@{/board/list/review}" target="_blank">
+                    <i class="xi-list"></i> 전체 후기
+                </a>
+                <button type="button" class="sbtn write_review" th:data-id="*{id}">
+                    <i class="xi-pen-o"></i> 후기작성</button>
             </div>
             <th:block th:replace="~{front/restaurant/_reviews::reviews}"></th:block>
         </div>

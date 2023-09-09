@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <th:block th:fragment="reviews">
-        <ul th:if="${reviews != null && !reviews.isEmpty()}">
+        <ul th:if="${reviews != null && !reviews.isEmpty()}" class="review_list">
             <li th:each="item : ${reviews}" th:object="${item}">
-                <a th:href="@{/board/view/{id}(id=*{id})}" th:text="*{subject}" target="_blank"></a>
+                <div class="subject">
+                    <div th:text="*{subject}" class="text"></div>
+                    <div class="post_info">
+                        <th:block th:text="*{poster}"></th:block>
+                        <th:block th:if="*{member != null}" th:text="*{'(' + member.email + ')'}"></th:block>
+                    </div>
+                </div>
+                <!--// subject -->
+                <div class="content">
+                    <th:block th:utext="*{content}"></th:block>
+                    <div class="ar">
+                        <a th:href="@{/board/{id}/update(id=*{id})}" th:text="#{board.update}" class="sbtn"></a>
+                        <a th:href="@{/board/delete/{id}(id=*{id})}" th:text="#{board.delete}" onclick="return confirm('정말 삭제 하시겠습니까?');" class="sbtn"></a>
+                    </div>
+                </div>
             </li>
         </ul>
+        <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
     </th:block>
 </html>
