@@ -35,7 +35,7 @@
                 <input type="file" id="file" class="dn">
                 <button type="button" class="sbtn write_review" th:data-id="*{id}">후기작성</button>
             </div>
-
+            <th:block th:replace="~{front/restaurant/_reviews::reviews}"></th:block>
         </div>
         <div class="map">
             <div id="map" style="height:400px;"></div>

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="reviews">
+        <ul th:if="${reviews != null && !reviews.isEmpty()}">
+            <li th:each="item : ${reviews}" th:object="${item}">
+                <a th:href="@{/board/view/{id}(id=*{id})}" th:text="*{subject}" target="_blank"></a>
+            </li>
+        </ul>
+    </th:block>
+</html>
