@@ -73,4 +73,15 @@ public class BoardData extends Base {
 
     @Transient
     private List<FileInfo> attachFiles; // 게시판 첨부 파일
+
+    @Transient
+    private Object extra;
+
+    public <T> void setExtra(T t) {
+        extra = t;
+    }
+
+    public <T> T getExtra() {
+        return (T)extra;
+    }
 }

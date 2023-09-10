@@ -11,6 +11,8 @@
 .abc a img { height: 130px; width: 90%; padding: 5px;}
 .abc .subject {font-weight: bold; font-size: 14px; padding:10px; justify-content: space-around; }
 .post_info { font-size: 10px; padding: 10px; }
+.post_info .store_nm { font-weight: bold; font-size: 13px; margin-bottom: 10px; }
+.post_info .store_nm:hover { text-decoration: underline; }
 /* 리뷰 E */
 
 /* 좋아요 S */

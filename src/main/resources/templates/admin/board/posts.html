@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <h1>게시글 관리</h1>
+    <form name="frmSearch" method="GET" th:action="@{/admin/board/posts}" autocomplete="off" th:object="${boardSearchFront}">
+        <table class="table-cols">
+            <tr>
+                <th>게시판</th>
+                <td>
+                    <select name="bId" th:field="*{bId}">
+                        <option value="">- 게시판 선택 -</option>
+                        <option th:each="board : ${boards}"  th:value="${board.bId}" th:text="${board.bName}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>키워드</th>
+                <td>
+                    <div class="input_grp">
+                        <select name="sopt" th:field="*{sopt}">
+                            <option value="all">통합검색</option>
+                            <option value="subject">제목</option>
+                            <option value="content">내용</option>
+                            <option value="subject_content">제목+내용</option>
+                            <option value="poster">작성자</option>
+                        </select>
+                        <input type="text" name="skey" th:field="*{skey}" placeholder="검색어를 입력하세요.">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="search_btn">
+            <button type="submit">검색하기</button>
+        </div>
+    </form>
+
+    <form name="frmList" method="POST" th:action="@{/admin/board/posts}" autocomplete="off" target="ifrmProcess">
+        <table class="table-rows">
+            <thead>
+                <tr>
+                    <th width="30">
+                        <input type="checkbox" class="checkall" id="checkall" data-target-name="id">
+                        <label for="checkall" class="standalone"></label>
+                    </th>
+                    <th width="150">게시판 ID</th>
+                    <th>제목</th>
+                    <th width="150">작성자</th>
+                    <th width="100">작성일시</th>
+                    <th width="250"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${items != null && !items.isEmpty()}" th:each="item, status : ${items}" th:object="${item}">
+                    <td align="center">
+                        <input type="checkbox" name="id" th:value="*{id}" th:id="${'id_' + status.index}">
+                        <label th:for="${'id_' + status.index}" class="standalone"></label>
+                    </td>
+                    <td align='center' th:text="*{#strings.concat(board.bName, '(', board.bId ,')')}"></td>
+                    <td>
+                        <a th:href="@{/board/view/{id}(id=*{id})}" th:text="*{subject}" target="_blank"></a>
+                    </td>
+                    <td align="center">
+                        <th:block th:text="*{poster}"></th:block>
+                        <th:block th:if="*{member != null}" th:utext="*{#strings.concat('<div>(', member.email, ')</div>')}"></th:block>
+                    </td>
+                    <td align="center" th:text="*{#temporals.format(createdDt, 'yyyy.MM.dd HH:mm:ss')}"></td>
+                    <td>
+                        <a th:href="@{/board/view/{id}(id=*{id})}" target="_blank" class="sbtn">글보기</a>
+                        <a th:href="@{/board/{id}/update(id=*{id})}" target="_blank" class="sbtn blue">글수정</a>
+                    </td>
+                </tr>
+                <tr th:unless="${items != null && !items.isEmpty()}">
+                    <td colspan="6" class="no_data">조회된 게시글이 없습니다.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-action">
+            <button type="submit" class="sbtn" onclick="return confirm('정말 삭제하시겠습니까?');">선택 게시글 삭제</button>
+        </div>
+    </form>
+
+    <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
+</section>

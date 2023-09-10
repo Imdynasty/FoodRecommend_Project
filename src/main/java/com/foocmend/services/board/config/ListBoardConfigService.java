@@ -12,6 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+import static org.springframework.data.domain.Sort.Order.asc;
 import static org.springframework.data.domain.Sort.Order.desc;
 
 /**
@@ -58,5 +61,13 @@ public class ListBoardConfigService {
         Page<Board> data = boardRepository.findAll(andBuilder, pageable);
 
         return data;
+    }
+
+    /**
+     * 게시판 전체 정보 조회
+     * @return
+     */
+    public List<Board> getAll() {
+        return boardRepository.findAll(Sort.by(asc("bName")));
     }
 }

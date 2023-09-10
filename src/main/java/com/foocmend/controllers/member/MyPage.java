@@ -11,6 +11,7 @@ import com.foocmend.entities.Restaurant;
 import com.foocmend.repositories.MemberRepository;
 import com.foocmend.services.board.InfoBoardDataService;
 import com.foocmend.services.member.SaveMemberService;
+import com.foocmend.services.restaurant.SearchRestaurantService;
 import com.foocmend.services.wishlist.SearchWishListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -37,6 +38,7 @@ public class MyPage {
     private final EditInfoValidator editInfoValidator;
     private final SearchWishListService wishListService;
     private final InfoBoardDataService boardDataService;
+    private final SearchRestaurantService restaurantService;
     private final Utils utils;
     @GetMapping
     public String myPageView(String type, Integer page, @ModelAttribute SignUpForm signUpForm,  Model model) {
@@ -52,6 +54,9 @@ public class MyPage {
             ListData<BoardData> data = boardDataService.getMine("review", page, 10);
             List<BoardData> items = data.getContent();
             Pagination pagination = data.getPagination();
+
+            items.stream().forEach(this::addRestaurantInfo);
+
             model.addAttribute("items", items);
             model.addAttribute("pagination", pagination);
         } else if (type.equals("wishlist")) {
@@ -134,4 +139,10 @@ public class MyPage {
         model.addAttribute("addCommonScript", new String[] {"address"});
     }
 
+    private void addRestaurantInfo(BoardData item) {
+        Long id = item.getExtraLong1();
+        if (id != null) {
+            item.setExtra(restaurantService.get(id));
+        }
+    }
 }
