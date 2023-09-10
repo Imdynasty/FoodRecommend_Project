@@ -14,6 +14,8 @@
                 </a>
                 <a th:href="@{/board/view/{id}(id=*{id})}" th:text="*{subject}" class="subject"></a>
                 <div class="post_info">
+
+                    <a th:if="*{extra != null}" th:text="*{extra.storeName}" class="store_nm" th:href="@{/restaurant/view/{id}(id=*{extra.id})}" target="_blank"></a>
                     <div class="poster">
                         작성자 :
                         <th:block th:text="*{poster}"></th:block>
