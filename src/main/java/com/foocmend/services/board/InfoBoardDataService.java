@@ -188,6 +188,7 @@ public class InfoBoardDataService {
         return getList(bId, null);
     }
 
+
     /**
      * 게시글 에디터 및 첨부 파일 추가
      * @param boardData
