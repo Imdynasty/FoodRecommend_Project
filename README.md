@@ -43,17 +43,10 @@
 * HTTP 통신
 * JPA
 * 페이징
-* 트랜잭션
 * 예외처리
 * Git 버전관리
 * AWS EC2 배포
-* TDD
+  
 
 ## 📝 Service
-* [로그인/회원가입](https://github.com/Imdynasty/Portfolio_Team2/issues/74)
-* [맛집찾기](https://github.com/Imdynasty/Portfolio_Team2/issues/74)
-* [회원별맛집추천](https://github.com/Imdynasty/Portfolio_Team2/issues/74)
-* [검색창](https://github.com/Imdynasty/Portfolio_Team2/issues/74)
-* [마이페이지](https://github.com/Imdynasty/Portfolio_Team2/issues/74)
-* [관리자페이지](https://github.com/Imdynasty/Portfolio_Team2/issues/74)
 <img src=https://github.com/Imdynasty/Portfolio_Team2/assets/129600161/5b640b71-12d7-4540-8e06-962537eada72/>
