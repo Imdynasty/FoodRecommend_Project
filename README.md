@@ -1,7 +1,10 @@
 # 🍴Food_Recommend🍴 : 맛집 추천 프로젝트
 
-## 🥖: 링크&로고
-[<img src=https://github.com/Imdynasty/Portfolio_Team2/assets/104712273/ebf136da-979e-4f1f-825d-c40c5bd4c85c width="400" height="150"/>](https://foocmend.com)
+## 🍰: 링크&로고
+<img src=https://github.com/Imdynasty/Portfolio_Team2/assets/104712273/ebf136da-979e-4f1f-825d-c40c5bd4c85c width="400" height="150"/>
+
+
+> [웹페이지 이동](https://foocmend.com/)
 
 ## :clipboard: 개발환경
 > <img src="https://img.shields.io/badge/IntelliJIDEA-9558B2.svg?style=for-the-badge&logo=intellij-idea&logoColor=white">
